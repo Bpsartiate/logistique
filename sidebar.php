@@ -51,7 +51,7 @@
                       <!-- more inner pages-->
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="app/email/compose.html">
+                      <a class="nav-link" href="Appels_d_offres.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Appels d’offres</span>
                         </div>
                       </a>
