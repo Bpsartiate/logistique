@@ -214,8 +214,19 @@
             <div class="row">
               <div class="col-md-6">
               <div class="mb-3 text-center">
-              <div id="evaluationChart" style="width:100%;max-width:600px;height:400px;margin:auto;"></div>
-            </div>
+             <!-- Conteneur du graphique avec spinner -->
+             <div id="evaluationChartWrapper" style="width:100%;max-width:600px;margin:auto;position:relative;">
+              <!-- Spinner unique pour ce composant -->
+              <div  class="d-flex justify-content-center align-items-center"
+                  style="height:400px;position:absolute;top:0;left:0;right:0;bottom:0;
+                          background:rgba(255, 255, 255, 0);z-index:10;">
+                <div id="loader2" class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <div id="evaluationChart" style="width:100%;height:400px; display:none;"></div>
+              </div>
+              </div>
               </div>
               <div class="col-md-6">
                 <div class="mt-4">

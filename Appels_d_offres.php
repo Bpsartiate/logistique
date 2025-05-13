@@ -99,29 +99,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script>
-      var chartDom = document.getElementById('evaluationChart');
-      var myChart = echarts.init(chartDom);
-      var option = {
-        title: { text: 'Graphique d évaluation Fournisseur', left: 'center' },
-        tooltip: {},
-        radar: {
-          indicator: [
-            { name: 'Qualité', max: 100 },
-            { name: 'Délais', max: 100 },
-            { name: 'Service', max: 100 },
-            { name: 'Conformité', max: 100 },
-            { name: 'Communication', max: 100 }
-          ]
-        },
-        series: [{
-          type: 'radar',
-          data: [{ value: [95, 90, 92, 88, 85], name: 'Société Alpha' }]
-        }]
-      };
-      myChart.setOption(option);
-    </script>
-
+     <script src="./pages/appels_d_offres/appel_d_offre.js" ></script>
   </body>
 
 </html>

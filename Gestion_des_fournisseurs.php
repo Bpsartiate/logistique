@@ -99,29 +99,51 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script>
-      var chartDom = document.getElementById('evaluationChart');
-      var myChart = echarts.init(chartDom);
-      var option = {
-        title: { text: 'Graphique d évaluation Fournisseur', left: 'center' },
-        tooltip: {},
-        radar: {
-          indicator: [
-            { name: 'Qualité', max: 100 },
-            { name: 'Délais', max: 100 },
-            { name: 'Service', max: 100 },
-            { name: 'Conformité', max: 100 },
-            { name: 'Communication', max: 100 }
-          ]
-        },
-        series: [{
-          type: 'radar',
-          data: [{ value: [95, 90, 92, 88, 85], name: 'Société Alpha' }]
-        }]
-      };
-      myChart.setOption(option);
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="vendors/echarts/echarts.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Le spinner est visible, le graphique caché (défini dans le HTML)
 
+  // Simuler un petit délai pour l'effet de chargement (optionnel)
+  setTimeout(function() {
+    var chartDom = document.getElementById('evaluationChart');
+    var myChart = echarts.init(chartDom);
+
+    var option = {
+      title: { text: 'Graphique d’évaluation Fournisseur', left: 'center' },
+      tooltip: {},
+      radar: {
+        indicator: [
+          { name: 'Qualité', max: 100 },
+          { name: 'Délais', max: 100 },
+          { name: 'Service', max: 100 },
+          { name: 'Conformité', max: 100 },
+          { name: 'Communication', max: 100 }
+        ]
+      },
+      series: [{
+        type: 'radar',
+        data: [{
+          value: [95, 90, 92, 88, 85],
+          name: 'Société Alpha',
+          areaStyle: { opacity: 0.2 }
+        }]
+      }]
+    };
+
+    myChart.setOption(option);
+
+    // Masquer le spinner avec un fondu puis le supprimer, afficher le graphique
+    $('#loader2').fadeOut(300, function() {
+      $(this).remove(); // Supprime le div du DOM
+      $('#evaluationChart').fadeIn(300);
+      myChart.resize(); // Assure le bon affichage du graphique
+    });
+  }, 500); // 500ms pour l'effet visuel, ajuste ou retire selon besoin
+});
+</script>
   </body>
 
 </html>

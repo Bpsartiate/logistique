@@ -9,65 +9,37 @@
             </div>
     </div>
    
-  <div class="row g-3 mb-3">
+   <div class="row g-3 mb-3">
 
-    <!-- Widget: Appels d'offres à clôturer ou relancer -->
+    <!-- Alertes Appels d’Offres -->
     <div class="col-md-12 col-xxl-3">
       <div class="card h-md-100">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h6 class="mb-0 mt-2">Alertes Appels d’Offres</h6>
-          <button class="btn btn-sm btn-outline-secondary" title="Actualiser" onclick="refreshAlerts()">
+          <button class="btn btn-sm btn-outline-secondary" title="Actualiser" onclick="refreshAlerts()" aria-label="Actualiser les alertes">
             <i class="fas fa-sync-alt"></i>
           </button>
         </div>
         <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              AO-2025-001 <span class="badge bg-warning text-dark">Clôture dans 2 jours</span>
-              <button class="btn btn-sm btn-outline-danger ms-2" onclick="closeAO('AO-2025-001')">Clôturer</button>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              AO-2025-002 <span class="badge bg-danger">Aucune réponse reçue</span>
-              <button class="btn btn-sm btn-outline-primary ms-2" onclick="remindAO('AO-2025-002')">Relancer</button>
-            </li>
-          </ul>
+          <ul id="alertsList" class="list-group list-group-flush" aria-live="polite" aria-relevant="all"></ul>
         </div>
       </div>
     </div>
-    
-    <!-- Widget: Documents liés aux appels d'offres -->
+
+    <!-- Documents liés aux appels d’offres -->
     <div class="col-md-12 col-xxl-3">
       <div class="card h-md-100">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h6 class="mb-0 mt-2">Documents liés aux appels d’offres</h6>
-          <button class="btn btn-sm btn-outline-secondary" title="Actualiser" onclick="refreshDocuments()">
+          <button class="btn btn-sm btn-outline-secondary" title="Actualiser" onclick="refreshDocuments()" aria-label="Actualiser les documents">
             <i class="fas fa-sync-alt"></i>
           </button>
         </div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush mb-3" style="max-height: 250px; overflow-y:auto;">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cahier des charges
-              <a href="#" class="btn btn-sm btn-outline-primary" title="Télécharger">
-                <i class="fas fa-download"></i>
-              </a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Réponse Société Alpha
-              <a href="#" class="btn btn-sm btn-outline-primary" title="Télécharger">
-                <i class="fas fa-download"></i>
-              </a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Réponse Fournisseur Beta
-              <a href="#" class="btn btn-sm btn-outline-primary" title="Télécharger">
-                <i class="fas fa-download"></i>
-              </a>
-            </li>
-          </ul>
-          <form class="d-flex gap-2" onsubmit="uploadDocument(event)">
+        <div class="card-body d-flex flex-column">
+          <ul id="documentsList" class="list-group list-group-flush mb-3 scrollable-list" aria-live="polite" aria-relevant="all"></ul>
+          <form class="d-flex gap-2" onsubmit="uploadDocument(event)" aria-label="Formulaire d'ajout de document">
             <input type="file" class="form-control form-control-sm" aria-label="Ajouter un document" required />
-            <button class="btn btn-primary btn-sm" type="submit">
+            <button class="btn btn-primary btn-sm" type="submit" aria-label="Ajouter un document">
               <i class="fas fa-upload me-1"></i>Ajouter
             </button>
           </form>
@@ -75,139 +47,83 @@
       </div>
     </div>
 
-
-    <!-- Widget: Analyse comparative des offres -->
+    <!-- Analyse comparative des offres -->
     <div class="col-md-12 col-xxl-6">
       <div class="card h-md-100">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h6 class="mb-0 mt-2">Analyse comparative des offres reçues</h6>
-          <button class="btn btn-sm btn-outline-primary" onclick="exportOffersCSV()">
-            <i class="fas fa-file-export me-1"></i>Exporter
-          </button>
         </div>
         <div class="card-body">
-          <div class="table-responsive" style="max-height: 300px; overflow-y:auto;">
-            <table id="offersTable" class="table table-bordered table-striped align-middle mb-0">
-              <thead class="bg-200 text-900">
-                <tr>
-                  <th>Fournisseur</th>
-                  <th>Prix (40%)</th>
-                  <th>Délai (20%)</th>
-                  <th>Qualité (30%)</th>
-                  <th>Garantie (10%)</th>
-                  <th>Score total</th>
-                  <th>Rang</th>
-                  <th>Remarque</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Société Alpha</td>
-                  <td>85</td>
-                  <td>90</td>
-                  <td>95</td>
-                  <td>80</td>
-                  <td><strong>89.5</strong></td>
-                  <td><span class="badge bg-success">1</span></td>
-                  <td>Meilleure offre globale</td>
-                </tr>
-                <tr>
-                  <td>Fournisseur Beta</td>
-                  <td>80</td>
-                  <td>85</td>
-                  <td>90</td>
-                  <td>85</td>
-                  <td>86.5</td>
-                  <td><span class="badge bg-secondary">2</span></td>
-                  <td>Bon rapport qualité/prix</td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="offersComparison" data-list='{"valueNames":["fournisseur","prix","delai","qualite","garantie","score","rang","remarque"],"page":5,"pagination":true}'>
+    <div class="row justify-content-between align-items-center g-0 mb-3">
+      <div class="col-auto col-sm-5">
+        <!-- <form>
+          <div class="input-group">
+            <input class="form-control form-control-sm shadow-none search" type="search" placeholder="Rechercher une offre..." aria-label="Rechercher une offre" />
+            <div class="input-group-text bg-transparent"><span class="fa fa-search fs--1 text-600"></span></div>
           </div>
-          <div id="offersRadar" style="width:100%; max-width:600px; height: 350px; margin: 20px auto 0;"></div>
+        </form> -->
+      </div>
+     
+    </div>
+    <div id="offersComparison" data-list='{"valueNames":["fournisseur","prix","delai","qualite","garantie","score","rang","remarque"],"page":5,"pagination":true}'>
+    <div class="row justify-content-between align-items-center g-0 mb-3">
+      <div class="col-auto col-sm-5">
+        <form>
+          <div class="input-group">
+            <input class="form-control form-control-sm shadow-none search" type="search" placeholder="Rechercher une offre..." aria-label="Rechercher une offre" />
+            <div class="input-group-text bg-transparent"><span class="fa fa-search fs--1 text-600"></span></div>
+          </div>
+        </form>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-sm btn-outline-primary" onclick="exportOffersCSV()" aria-label="Exporter les offres au format CSV">
+          <i class="fas fa-file-export me-1"></i>Exporter
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive scrollbar">
+      <table class="table table-bordered table-striped fs--1 mb-0" aria-describedby="offersTableCaption">
+        <caption id="offersTableCaption" class="visually-hidden">Tableau comparatif des offres fournisseurs</caption>
+        <thead class="bg-200 text-900">
+          <tr>
+            <th class="sort" data-sort="fournisseur" scope="col">Fournisseur</th>
+            <th class="sort" data-sort="prix" scope="col">Prix (40%)</th>
+            <th class="sort" data-sort="delai" scope="col">Délai (20%)</th>
+            <th class="sort" data-sort="qualite" scope="col">Qualité (30%)</th>
+            <th class="sort" data-sort="garantie" scope="col">Garantie (10%)</th>
+            <th class="sort" data-sort="score" scope="col">Score total</th>
+            <th class="sort" data-sort="rang" scope="col">Rang</th>
+            <th class="sort" data-sort="remarque" scope="col">Remarque</th>
+          </tr>
+        </thead>
+        <tbody class="list" id="offersTableBody">
+          <!-- Lignes générées dynamiquement -->
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Précédent" data-list-pagination="prev">
+        <span class="fas fa-chevron-left"></span>
+      </button>
+      <ul class="pagination mb-0"></ul>
+      <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next">
+        <span class="fas fa-chevron-right"></span>
+      </button>
+    </div>
+  </div>
+  </div>
+          <div class="text-center mt-4">
+            <h6>Comparaison des Offres</h6>
+            <p>Analyse des critères de sélection</p>
+<div id="offersRadar" style="width:100%; max-width:600px; height: 350px; margin: 0 auto;"></div>          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
+
 <!-- Scripts -->
 <script src="vendors/echarts/echarts.min.js"></script>
-<script>
-  // Initialiser graphique radar des offres
-  const offersRadar = echarts.init(document.getElementById('offersRadar'));
-  const radarOption = {
-    title: { text: 'Comparaison des Offres', left: 'center' },
-    tooltip: {},
-    legend: { data: ['Société Alpha', 'Fournisseur Beta'], top: 30 },
-    radar: {
-      indicator: [
-        { name: 'Prix', max: 100 },
-        { name: 'Délai', max: 100 },
-        { name: 'Qualité', max: 100 },
-        { name: 'Garantie', max: 100 }
-      ]
-    },
-    series: [{
-      type: 'radar',
-      data: [
-        { value: [85, 90, 95, 80], name: 'Société Alpha' },
-        { value: [80, 85, 90, 85], name: 'Fournisseur Beta' }
-      ],
-      areaStyle: { opacity: 0.2 }
-    }]
-  };
-  offersRadar.setOption(radarOption);
-
-  // Fonction export CSV tableau offres
-  function exportOffersCSV() {
-    let csv = [];
-    const rows = document.querySelectorAll("#offersTable tr");
-    rows.forEach(row => {
-      const cols = row.querySelectorAll("td, th");
-      const rowData = Array.from(cols).map(td => `"${td.innerText.replace(/"/g, '""')}"`).join(",");
-      csv.push(rowData);
-    });
-    const csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
-    const downloadLink = document.createElement("a");
-    downloadLink.href = URL.createObjectURL(csvFile);
-    downloadLink.download = "analyse_comparative_offres.csv";
-    downloadLink.style.display = "none";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-  }
-
-  // Simuler rafraîchissement alertes
-  function refreshAlerts() {
-    alert("Données d'alertes mises à jour (simulation).");
-  }
-
-  // Simuler clôture appel d'offres
-  function closeAO(aoId) {
-    alert(`Appel d'offres ${aoId} clôturé (simulation).`);
-  }
-
-  // Simuler relance appel d'offres
-  function remindAO(aoId) {
-    alert(`Relance envoyée pour l'appel d'offres ${aoId} (simulation).`);
-  }
-
-  // Simuler rafraîchissement documents
-  function refreshDocuments() {
-    alert("Liste des documents mise à jour (simulation).");
-  }
-
-  // Simuler upload document
-  function uploadDocument(event) {
-    event.preventDefault();
-    const fileInput = event.target.querySelector('input[type="file"]');
-    if (fileInput.files.length === 0) {
-      alert("Veuillez sélectionner un fichier.");
-      return;
-    }
-    alert(`Document "${fileInput.files[0].name}" ajouté (simulation).`);
-    fileInput.value = "";
-  }
-</script>
-sss
