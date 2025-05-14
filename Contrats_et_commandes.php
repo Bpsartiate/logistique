@@ -10,7 +10,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title  >Appels d'offres</title>
+    <title>Contrats et commandes</title>
 
 
     <!-- ===============================================-->
@@ -73,7 +73,7 @@
        <!-- nav prime  -->
         <?php include_once "sidebar.php"; ?>
         <!-- content -->
-       <?php include_once "./pages/appels_d_offres/gestion_appel_offre.php"; ?>
+       <?php include_once "./pages/contrats_commandes/contrats_commandes.php"; ?>
        <!-- modal section -->
         <?php include_once "modal.php"; ?>
       </div>
@@ -96,10 +96,14 @@
     <script src="vendors/echarts/echarts.min.js"></script>
     <script src="vendors/fontawesome/all.min.js"></script>
     <script src="vendors/lodash/lodash.min.js"></script>
-    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script> -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
-     <script src="./pages/appels_d_offres/appel_d_offre.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="vendors/echarts/echarts.min.js"></script>
+    
+
   </body>
 
 </html>

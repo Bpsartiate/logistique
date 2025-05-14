@@ -58,7 +58,7 @@
                       <!-- more inner pages-->
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="app/email/compose.html">
+                      <a class="nav-link" href="Contrats_et_commandes.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Contrats et commandes</span>
                         </div>
                       </a>

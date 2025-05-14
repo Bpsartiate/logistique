@@ -16,28 +16,28 @@
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="../assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
-    <script src="../assets/js/config.js"></script>
-    <script src="../vendors/simplebar/simplebar.min.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="vendors/simplebar/simplebar.min.js"></script>
 
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="../vendors/prism/prism-okaidia.css" rel="stylesheet">
+    <link href="vendors/prism/prism-okaidia.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
-    <link href="../vendors/simplebar/simplebar.min.css" rel="stylesheet">
-    <link href="../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
-    <link href="../assets/css/theme.min.css" rel="stylesheet" id="style-default">
-    <link href="../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
-    <link href="../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <link href="vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <link href="assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="assets/css/user.min.css" rel="stylesheet" id="user-style-default">
     <script>
       var isRTL = JSON.parse(localStorage.getItem('isRTL'));
       if (isRTL) {
@@ -83,8 +83,8 @@
 
               <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
 
-            </div><a class="navbar-brand" href="../index.html">
-              <div class="d-flex align-items-center py-3"><img class="me-2" src="../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span>
+            </div><a class="navbar-brand" href="index.html">
+              <div class="d-flex align-items-center py-3"><img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span>
               </div>
             </a>
           </div>
@@ -97,49 +97,49 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="dashboard">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">
+                    <li class="nav-item"><a class="nav-link" href="index.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Default</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/analytics.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/analytics.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Analytics</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/crm.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/crm.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CRM</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/e-commerce.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/e-commerce.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">E commerce</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/lms.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/lms.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">LMS</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/project-management.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/project-management.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Management</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/saas.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/saas.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">SaaS</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../dashboard/support-desk.html">
+                    <li class="nav-item"><a class="nav-link" href="dashboard/support-desk.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Support desk</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
@@ -156,11 +156,11 @@
                       <hr class="mb-0 navbar-vertical-divider" />
                     </div>
                   </div>
-                  <!-- parent pages--><a class="nav-link" href="../app/calendar.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="app/calendar.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span><span class="nav-link-text ps-1">Calendar</span>
                     </div>
                   </a>
-                  <!-- parent pages--><a class="nav-link" href="../app/chat.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="app/chat.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-comments"></span></span><span class="nav-link-text ps-1">Chat</span>
                     </div>
                   </a>
@@ -169,19 +169,19 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="email">
-                    <li class="nav-item"><a class="nav-link" href="../app/email/inbox.html">
+                    <li class="nav-item"><a class="nav-link" href="app/email/inbox.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Inbox</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/email/email-detail.html">
+                    <li class="nav-item"><a class="nav-link" href="app/email/email-detail.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Email detail</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/email/compose.html">
+                    <li class="nav-item"><a class="nav-link" href="app/email/compose.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Compose</span>
                         </div>
                       </a>
@@ -193,19 +193,19 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="events">
-                    <li class="nav-item"><a class="nav-link" href="../app/events/create-an-event.html">
+                    <li class="nav-item"><a class="nav-link" href="app/events/create-an-event.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create an event</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/events/event-detail.html">
+                    <li class="nav-item"><a class="nav-link" href="app/events/event-detail.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Event detail</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/events/event-list.html">
+                    <li class="nav-item"><a class="nav-link" href="app/events/event-list.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Event list</span>
                         </div>
                       </a>
@@ -223,19 +223,19 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="product">
-                        <li class="nav-item"><a class="nav-link" href="../app/e-commerce/product/product-list.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-list.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product list</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-commerce/product/product-grid.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-grid.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product grid</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-commerce/product/product-details.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-details.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product details</span>
                             </div>
                           </a>
@@ -249,13 +249,13 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="orders">
-                        <li class="nav-item"><a class="nav-link" href="../app/e-commerce/orders/order-list.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-commerce/orders/order-list.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Order list</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-commerce/orders/order-details.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-commerce/orders/order-details.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Order details</span>
                             </div>
                           </a>
@@ -263,37 +263,37 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/customers.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/customers.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Customers</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/customer-details.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/customer-details.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Customer details</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/shopping-cart.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/shopping-cart.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Shopping cart</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/checkout.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/checkout.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Checkout</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/billing.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/billing.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Billing</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-commerce/invoice.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-commerce/invoice.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Invoice</span>
                         </div>
                       </a>
@@ -311,25 +311,25 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="course">
-                        <li class="nav-item"><a class="nav-link" href="../app/e-learning/course/course-list.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-learning/course/course-list.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Course list</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-learning/course/course-grid.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-learning/course/course-grid.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Course grid</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-learning/course/course-details.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-learning/course/course-details.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Course details</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../app/e-learning/course/create-a-course.html">
+                        <li class="nav-item"><a class="nav-link" href="app/e-learning/course/create-a-course.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create a course</span>
                             </div>
                           </a>
@@ -337,20 +337,20 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-learning/student-overview.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-learning/student-overview.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Student overview</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/e-learning/trainer-profile.html">
+                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trainer profile</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
                   </ul>
-                  <!-- parent pages--><a class="nav-link" href="../app/kanban.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="app/kanban.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fab fa-trello"></span></span><span class="nav-link-text ps-1">Kanban</span>
                     </div>
                   </a>
@@ -359,25 +359,25 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="social">
-                    <li class="nav-item"><a class="nav-link" href="../app/social/feed.html">
+                    <li class="nav-item"><a class="nav-link" href="app/social/feed.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Feed</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/social/activity-log.html">
+                    <li class="nav-item"><a class="nav-link" href="app/social/activity-log.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Activity log</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/social/notifications.html">
+                    <li class="nav-item"><a class="nav-link" href="app/social/notifications.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Notifications</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/social/followers.html">
+                    <li class="nav-item"><a class="nav-link" href="app/social/followers.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Followers</span>
                         </div>
                       </a>
@@ -389,43 +389,43 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="support-desk">
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/table-view.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/table-view.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Table view</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/card-view.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/card-view.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Card view</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/contacts.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/contacts.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Contacts</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/contact-details.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/contact-details.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Contact details</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/tickets-preview.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/tickets-preview.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tickets preview</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/quick-links.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/quick-links.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Quick links</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../app/support-desk/reports.html">
+                    <li class="nav-item"><a class="nav-link" href="app/support-desk/reports.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Reports</span>
                         </div>
                       </a>
@@ -442,11 +442,11 @@
                       <hr class="mb-0 navbar-vertical-divider" />
                     </div>
                   </div>
-                  <!-- parent pages--><a class="nav-link" href="../pages/starter.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="pages/starter.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-flag"></span></span><span class="nav-link-text ps-1">Starter</span>
                     </div>
                   </a>
-                  <!-- parent pages--><a class="nav-link" href="../pages/landing.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="pages/landing.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Landing</span>
                     </div>
                   </a>
@@ -461,43 +461,43 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="simple">
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/login.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/login.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Login</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/logout.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/logout.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Logout</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/register.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/register.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Register</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/forgot-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/forgot-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Forgot password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/confirm-mail.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/confirm-mail.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Confirm mail</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/reset-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/reset-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Reset password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/simple/lock-screen.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/simple/lock-screen.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Lock screen</span>
                             </div>
                           </a>
@@ -511,43 +511,43 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="card">
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/login.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/login.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Login</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/logout.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/logout.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Logout</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/register.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/register.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Register</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/forgot-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/forgot-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Forgot password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/confirm-mail.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/confirm-mail.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Confirm mail</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/reset-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/reset-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Reset password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/card/lock-screen.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/card/lock-screen.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Lock screen</span>
                             </div>
                           </a>
@@ -561,43 +561,43 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="split">
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/login.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/login.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Login</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/logout.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/logout.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Logout</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/register.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/register.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Register</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/forgot-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/forgot-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Forgot password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/confirm-mail.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/confirm-mail.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Confirm mail</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/reset-password.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/reset-password.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Reset password</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/authentication/split/lock-screen.html">
+                        <li class="nav-item"><a class="nav-link" href="pages/authentication/split/lock-screen.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Lock screen</span>
                             </div>
                           </a>
@@ -605,13 +605,13 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/authentication/wizard.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/authentication/wizard.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Wizard</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../#authentication-modal" data-bs-toggle="modal">
+                    <li class="nav-item"><a class="nav-link" href="#authentication-modal" data-bs-toggle="modal">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Modal</span>
                         </div>
                       </a>
@@ -623,13 +623,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="user">
-                    <li class="nav-item"><a class="nav-link" href="../pages/user/profile.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/user/profile.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Profile</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/user/settings.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/user/settings.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Settings</span>
                         </div>
                       </a>
@@ -641,13 +641,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="pricing">
-                    <li class="nav-item"><a class="nav-link" href="../pages/pricing/pricing-default.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/pricing/pricing-default.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Pricing default</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/pricing/pricing-alt.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/pricing/pricing-alt.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Pricing alt</span>
                         </div>
                       </a>
@@ -659,19 +659,19 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="faq">
-                    <li class="nav-item"><a class="nav-link" href="../pages/faq/faq-basic.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/faq/faq-basic.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq basic</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/faq/faq-alt.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/faq/faq-alt.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq alt</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/faq/faq-accordion.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/faq/faq-accordion.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq accordion</span>
                         </div>
                       </a>
@@ -683,13 +683,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="errors">
-                    <li class="nav-item"><a class="nav-link" href="../pages/errors/404.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/errors/404.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">404</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/errors/500.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/errors/500.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">500</span>
                         </div>
                       </a>
@@ -701,19 +701,19 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="miscellaneous">
-                    <li class="nav-item"><a class="nav-link" href="../pages/miscellaneous/associations.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/miscellaneous/associations.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Associations</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/miscellaneous/invite-people.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/miscellaneous/invite-people.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Invite people</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/miscellaneous/privacy-policy.html">
+                    <li class="nav-item"><a class="nav-link" href="pages/miscellaneous/privacy-policy.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Privacy policy</span>
                         </div>
                       </a>
@@ -725,25 +725,25 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="Layouts">
-                    <li class="nav-item"><a class="nav-link" href="../demo/navbar-vertical.html" target="_blank">
+                    <li class="nav-item"><a class="nav-link" href="demo/navbar-vertical.html" target="_blank">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Navbar vertical</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../demo/navbar-top.html" target="_blank">
+                    <li class="nav-item"><a class="nav-link" href="demo/navbar-top.html" target="_blank">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Top nav</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../demo/navbar-double-top.html" target="_blank">
+                    <li class="nav-item"><a class="nav-link" href="demo/navbar-double-top.html" target="_blank">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Double top</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../demo/combo-nav.html" target="_blank">
+                    <li class="nav-item"><a class="nav-link" href="demo/combo-nav.html" target="_blank">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Combo nav</span>
                         </div>
                       </a>
@@ -771,37 +771,37 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="basic">
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/form-control.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/form-control.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Form control</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/input-group.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/input-group.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Input group</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/select.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/select.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Select</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/checks.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/checks.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Checks</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/range.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/range.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Range</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/basic/layout.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/basic/layout.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Layout</span>
                             </div>
                           </a>
@@ -815,37 +815,37 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="advance">
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/advance-select.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/advance-select.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Advance select</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/date-picker.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/date-picker.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Date picker</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/editor.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/editor.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Editor</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/emoji-button.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/emoji-button.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Emoji button</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/file-uploader.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/file-uploader.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">File uploader</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/forms/advance/rating.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/forms/advance/rating.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Rating</span>
                             </div>
                           </a>
@@ -853,19 +853,19 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/forms/floating-labels.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/forms/floating-labels.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Floating labels</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/forms/wizard.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/forms/wizard.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Wizard</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/forms/validation.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/forms/validation.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Validation</span>
                         </div>
                       </a>
@@ -877,19 +877,19 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="tables">
-                    <li class="nav-item"><a class="nav-link" href="../modules/tables/basic-tables.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/tables/basic-tables.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Basic tables</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/tables/advance-tables.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/tables/advance-tables.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Advance tables</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/tables/bulk-select.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/tables/bulk-select.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bulk select</span>
                         </div>
                       </a>
@@ -901,13 +901,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="charts">
-                    <li class="nav-item"><a class="nav-link" href="../modules/charts/chartjs.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/charts/chartjs.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Chartjs</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/charts/d3js.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/charts/d3js.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">D3js</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
@@ -919,61 +919,61 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="eCharts">
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/line-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/line-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Line charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/bar-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/bar-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bar charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/candlestick-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/candlestick-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Candlestick charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/geo-map.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/geo-map.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Geo map</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/scatter-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/scatter-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Scatter charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/pie-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/pie-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Pie charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/gauge-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/gauge-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Gauge charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/radar-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/radar-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Radar charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/heatmap-charts.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/heatmap-charts.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Heatmap charts</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/charts/echarts/how-to-use.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/charts/echarts/how-to-use.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">How to use</span>
                             </div>
                           </a>
@@ -987,25 +987,25 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="icons">
-                    <li class="nav-item"><a class="nav-link" href="../modules/icons/font-awesome.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/icons/font-awesome.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Font awesome</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/icons/bootstrap-icons.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/icons/bootstrap-icons.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bootstrap icons</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/icons/feather.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/icons/feather.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Feather</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/icons/material-icons.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/icons/material-icons.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Material icons</span>
                         </div>
                       </a>
@@ -1017,13 +1017,13 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="maps">
-                    <li class="nav-item"><a class="nav-link" href="../modules/maps/google-map.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/maps/google-map.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Google map</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/maps/leaflet-map.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/maps/leaflet-map.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Leaflet map</span>
                         </div>
                       </a>
@@ -1035,67 +1035,67 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="components">
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/accordion.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/accordion.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Accordion</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/alerts.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/alerts.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Alerts</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/anchor.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/anchor.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Anchor</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/animated-icons.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/animated-icons.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Animated icons</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/background.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/background.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Background</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/badges.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/badges.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Badges</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/bottom-bar.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/bottom-bar.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bottom bar</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/breadcrumbs.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/breadcrumbs.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Breadcrumbs</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/buttons.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/buttons.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Buttons</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/calendar.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/calendar.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Calendar</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/cards.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/cards.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cards</span>
                         </div>
                       </a>
@@ -1107,13 +1107,13 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="carousel">
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/carousel/bootstrap.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/carousel/bootstrap.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bootstrap</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/carousel/swiper.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/carousel/swiper.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Swiper</span>
                             </div>
                           </a>
@@ -1121,49 +1121,49 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/collapse.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/collapse.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Collapse</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/cookie-notice.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/cookie-notice.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Cookie notice</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/countup.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/countup.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Countup</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/draggable.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/draggable.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Draggable</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/dropdowns.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/dropdowns.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dropdowns</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/jquery-components.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/jquery-components.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Jquery</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/list-group.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/list-group.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">List group</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/modals.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/modals.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Modals</span>
                         </div>
                       </a>
@@ -1175,43 +1175,43 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="navs-_and_-Tabs">
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/navs.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/navs.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Navs</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/navbar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/navbar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Navbar</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/vertical-navbar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/vertical-navbar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Navbar vertical</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/top-navbar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/top-navbar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Top nav</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/double-top-navbar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/double-top-navbar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Double top</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/combo-navbar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/combo-navbar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Combo nav</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/navs-and-tabs/tabs.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/navs-and-tabs/tabs.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tabs</span>
                             </div>
                           </a>
@@ -1219,7 +1219,7 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/offcanvas.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/offcanvas.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Offcanvas</span>
                         </div>
                       </a>
@@ -1231,31 +1231,31 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="pictures">
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/pictures/avatar.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/pictures/avatar.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Avatar</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/pictures/images.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/pictures/images.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Images</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/pictures/figures.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/pictures/figures.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Figures</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/pictures/hoverbox.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/pictures/hoverbox.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Hoverbox</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/pictures/lightbox.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/pictures/lightbox.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Lightbox</span>
                             </div>
                           </a>
@@ -1263,73 +1263,73 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/progress-bar.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/progress-bar.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Progress bar</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/placeholder.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/placeholder.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Placeholder</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/pagination.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/pagination.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Pagination</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/popovers.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/popovers.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Popovers</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/scrollspy.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/scrollspy.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Scrollspy</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/search.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/search.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Search</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/spinners.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/spinners.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Spinners</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/timeline.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/timeline.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Timeline</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/toasts.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/toasts.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Toasts</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/tooltips.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/tooltips.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tooltips</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/treeview.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/treeview.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Treeview</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/components/typed-text.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/components/typed-text.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Typed text</span>
                         </div>
                       </a>
@@ -1341,13 +1341,13 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="videos">
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/videos/embed.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/videos/embed.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Embed</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../modules/components/videos/plyr.html">
+                        <li class="nav-item"><a class="nav-link" href="modules/components/videos/plyr.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Plyr</span>
                             </div>
                           </a>
@@ -1361,110 +1361,110 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="utilities">
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/borders.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/borders.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Borders</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/clearfix.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/clearfix.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Clearfix</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/colors.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/colors.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Colors</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/colored-links.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/colored-links.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Colored links</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/display.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/display.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Display</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/flex.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/flex.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Flex</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/float.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/float.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Float</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/grid.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/grid.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Grid</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/overlayscrollbar.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/overlayscrollbar.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Overlay scrollbar</span><span class="badge rounded-pill ms-2 badge-soft-success">New</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/position.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/position.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Position</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/spacing.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/spacing.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Spacing</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/sizing.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/sizing.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Sizing</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/stretched-link.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/stretched-link.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stretched link</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/text-truncation.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/text-truncation.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Text truncation</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/typography.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/typography.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Typography</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/vertical-align.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/vertical-align.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Vertical align</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../modules/utilities/visibility.html">
+                    <li class="nav-item"><a class="nav-link" href="modules/utilities/visibility.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Visibility</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
                   </ul>
-                  <!-- parent pages--><a class="nav-link" href="../widgets.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="widgets.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-poll"></span></span><span class="nav-link-text ps-1">Widgets</span>
                     </div>
                   </a>
@@ -1479,13 +1479,13 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="level-two">
-                        <li class="nav-item"><a class="nav-link" href="../#!.html">
+                        <li class="nav-item"><a class="nav-link" href="#!.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 1</span>
                             </div>
                           </a>
                           <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../#!.html">
+                        <li class="nav-item"><a class="nav-link" href="#!.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 2</span>
                             </div>
                           </a>
@@ -1499,7 +1499,7 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="level-three">
-                        <li class="nav-item"><a class="nav-link" href="../#!.html">
+                        <li class="nav-item"><a class="nav-link" href="#!.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 3</span>
                             </div>
                           </a>
@@ -1511,13 +1511,13 @@
                           </a>
                           <!-- more inner pages-->
                           <ul class="nav collapse" id="item-4">
-                            <li class="nav-item"><a class="nav-link" href="../#!.html">
+                            <li class="nav-item"><a class="nav-link" href="#!.html">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 5</span>
                                 </div>
                               </a>
                               <!-- more inner pages-->
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="../#!.html">
+                            <li class="nav-item"><a class="nav-link" href="#!.html">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 6</span>
                                 </div>
                               </a>
@@ -1533,7 +1533,7 @@
                       </a>
                       <!-- more inner pages-->
                       <ul class="nav collapse" id="level-four">
-                        <li class="nav-item"><a class="nav-link" href="../#!.html">
+                        <li class="nav-item"><a class="nav-link" href="#!.html">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 6</span>
                             </div>
                           </a>
@@ -1545,7 +1545,7 @@
                           </a>
                           <!-- more inner pages-->
                           <ul class="nav collapse" id="item-7">
-                            <li class="nav-item"><a class="nav-link" href="../#!.html">
+                            <li class="nav-item"><a class="nav-link" href="#!.html">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 8</span>
                                 </div>
                               </a>
@@ -1557,13 +1557,13 @@
                               </a>
                               <!-- more inner pages-->
                               <ul class="nav collapse" id="item-9">
-                                <li class="nav-item"><a class="nav-link" href="../#!.html">
+                                <li class="nav-item"><a class="nav-link" href="#!.html">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 10</span>
                                     </div>
                                   </a>
                                   <!-- more inner pages-->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="../#!.html">
+                                <li class="nav-item"><a class="nav-link" href="#!.html">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Item 11</span>
                                     </div>
                                   </a>
@@ -1586,7 +1586,7 @@
                       <hr class="mb-0 navbar-vertical-divider" />
                     </div>
                   </div>
-                  <!-- parent pages--><a class="nav-link active" href="../documentation/getting-started.html" role="button">
+                  <!-- parent pages--><a class="nav-link active" href="documentation/getting-started.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-rocket"></span></span><span class="nav-link-text ps-1">Getting started</span>
                     </div>
                   </a>
@@ -1595,44 +1595,44 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="customization">
-                    <li class="nav-item"><a class="nav-link" href="../documentation/customization/configuration.html">
+                    <li class="nav-item"><a class="nav-link" href="documentation/customization/configuration.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Configuration</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../documentation/customization/styling.html">
+                    <li class="nav-item"><a class="nav-link" href="documentation/customization/styling.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Styling</span><span class="badge rounded-pill ms-2 badge-soft-success">Updated</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../documentation/customization/dark-mode.html">
+                    <li class="nav-item"><a class="nav-link" href="documentation/customization/dark-mode.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dark mode</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../documentation/customization/plugin.html">
+                    <li class="nav-item"><a class="nav-link" href="documentation/customization/plugin.html">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Plugin</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
                   </ul>
-                  <!-- parent pages--><a class="nav-link" href="../documentation/faq.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="documentation/faq.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-question-circle"></span></span><span class="nav-link-text ps-1">Faq</span>
                     </div>
                   </a>
-                  <!-- parent pages--><a class="nav-link" href="../documentation/gulp.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="documentation/gulp.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fab fa-gulp"></span></span><span class="nav-link-text ps-1">Gulp</span>
                     </div>
                   </a>
-                  <!-- parent pages--><a class="nav-link" href="../documentation/design-file.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="documentation/design-file.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-palette"></span></span><span class="nav-link-text ps-1">Design file</span>
                     </div>
                   </a>
-                  <!-- parent pages--><a class="nav-link" href="../changelog.html" role="button">
+                  <!-- parent pages--><a class="nav-link" href="changelog.html" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-code-branch"></span></span><span class="nav-link-text ps-1">Changelog</span>
                     </div>
                   </a>
@@ -1644,7 +1644,7 @@
                     <div class="btn-close-falcon-container">
                       <button class="btn btn-link btn-close-falcon p-0" aria-label="Close" data-bs-dismiss="alert"></button>
                     </div>
-                    <div class="text-center"><img src="../assets/img/icons/spot-illustrations/navbar-vertical.png" alt="" width="80" />
+                    <div class="text-center"><img src="assets/img/icons/spot-illustrations/navbar-vertical.png" alt="" width="80" />
                       <p class="fs--2 mt-2">Loving what you see? <br />Get your copy of <a href="#!">Falcon</a></p>
                       <div class="d-grid"><a class="btn btn-sm btn-purchase" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/" target="_blank">Purchase</a></div>
                     </div>
@@ -1658,8 +1658,8 @@
           <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand">
 
             <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-            <a class="navbar-brand me-1 me-sm-3" href="../index.html">
-              <div class="d-flex align-items-center"><img class="me-2" src="../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span>
+            <a class="navbar-brand me-1 me-sm-3" href="index.html">
+              <div class="d-flex align-items-center"><img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span>
               </div>
             </a>
             <ul class="navbar-nav align-items-center d-none d-lg-block">
@@ -1675,14 +1675,14 @@
                   </div>
                   <div class="dropdown-menu border font-base start-0 mt-2 py-0 overflow-hidden w-100">
                     <div class="scrollbar list py-3" style="max-height: 24rem;">
-                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Recently Browsed</h6><a class="dropdown-item fs--1 px-x1 py-1 hover-primary" href="../app/events/event-detail.html">
+                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Recently Browsed</h6><a class="dropdown-item fs--1 px-x1 py-1 hover-primary" href="app/events/event-detail.html">
                         <div class="d-flex align-items-center">
                           <span class="fas fa-circle me-2 text-300 fs--2"></span>
 
                           <div class="fw-normal title">Pages <span class="fas fa-chevron-right mx-1 text-500 fs--2" data-fa-transform="shrink-2"></span> Events</div>
                         </div>
                       </a>
-                      <a class="dropdown-item fs--1 px-x1 py-1 hover-primary" href="../app/e-commerce/customers.html">
+                      <a class="dropdown-item fs--1 px-x1 py-1 hover-primary" href="app/e-commerce/customers.html">
                         <div class="d-flex align-items-center">
                           <span class="fas fa-circle me-2 text-300 fs--2"></span>
 
@@ -1691,17 +1691,17 @@
                       </a>
 
                       <hr class="text-200 dark__text-900" />
-                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Suggested Filter</h6><a class="dropdown-item px-x1 py-1 fs-0" href="../app/e-commerce/customers.html">
+                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Suggested Filter</h6><a class="dropdown-item px-x1 py-1 fs-0" href="app/e-commerce/customers.html">
                         <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-warning">customers:</span>
                           <div class="flex-1 fs--1 title">All customers list</div>
                         </div>
                       </a>
-                      <a class="dropdown-item px-x1 py-1 fs-0" href="../app/events/event-detail.html">
+                      <a class="dropdown-item px-x1 py-1 fs-0" href="app/events/event-detail.html">
                         <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-success">events:</span>
                           <div class="flex-1 fs--1 title">Latest events in current month</div>
                         </div>
                       </a>
-                      <a class="dropdown-item px-x1 py-1 fs-0" href="../app/e-commerce/product/product-grid.html">
+                      <a class="dropdown-item px-x1 py-1 fs-0" href="app/e-commerce/product/product-grid.html">
                         <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-info">products:</span>
                           <div class="flex-1 fs--1 title">Most popular products</div>
                         </div>
@@ -1710,7 +1710,7 @@
                       <hr class="text-200 dark__text-900" />
                       <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Files</h6><a class="dropdown-item px-x1 py-2" href="#!">
                         <div class="d-flex align-items-center">
-                          <div class="file-thumbnail me-2"><img class="border h-100 w-100 fit-cover rounded-3" src="../assets/img/products/3-thumb.png" alt="" /></div>
+                          <div class="file-thumbnail me-2"><img class="border h-100 w-100 fit-cover rounded-3" src="assets/img/products/3-thumb.png" alt="" /></div>
                           <div class="flex-1">
                             <h6 class="mb-0 title">iPhone</h6>
                             <p class="fs--2 mb-0 d-flex"><span class="fw-semi-bold">Antony</span><span class="fw-medium text-600 ms-2">27 Sep at 10:30 AM</span></p>
@@ -1719,7 +1719,7 @@
                       </a>
                       <a class="dropdown-item px-x1 py-2" href="#!">
                         <div class="d-flex align-items-center">
-                          <div class="file-thumbnail me-2"><img class="img-fluid" src="../assets/img/icons/zip.png" alt="" /></div>
+                          <div class="file-thumbnail me-2"><img class="img-fluid" src="assets/img/icons/zip.png" alt="" /></div>
                           <div class="flex-1">
                             <h6 class="mb-0 title">Falcon v1.8.2</h6>
                             <p class="fs--2 mb-0 d-flex"><span class="fw-semi-bold">John</span><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
@@ -1728,10 +1728,10 @@
                       </a>
 
                       <hr class="text-200 dark__text-900" />
-                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Members</h6><a class="dropdown-item px-x1 py-2" href="../pages/user/profile.html">
+                      <h6 class="dropdown-header fw-medium text-uppercase px-x1 fs--2 pt-0 pb-2">Members</h6><a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                         <div class="d-flex align-items-center">
                           <div class="avatar avatar-l status-online me-2">
-                            <img class="rounded-circle" src="../assets/img/team/1.jpg" alt="" />
+                            <img class="rounded-circle" src="assets/img/team/1.jpg" alt="" />
 
                           </div>
                           <div class="flex-1">
@@ -1740,10 +1740,10 @@
                           </div>
                         </div>
                       </a>
-                      <a class="dropdown-item px-x1 py-2" href="../pages/user/profile.html">
+                      <a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                         <div class="d-flex align-items-center">
                           <div class="avatar avatar-l me-2">
-                            <img class="rounded-circle" src="../assets/img/team/2.jpg" alt="" />
+                            <img class="rounded-circle" src="assets/img/team/2.jpg" alt="" />
 
                           </div>
                           <div class="flex-1">
@@ -1752,10 +1752,10 @@
                           </div>
                         </div>
                       </a>
-                      <a class="dropdown-item px-x1 py-2" href="../pages/user/profile.html">
+                      <a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                         <div class="d-flex align-items-center">
                           <div class="avatar avatar-l me-2">
-                            <img class="rounded-circle" src="../assets/img/team/3.jpg" alt="" />
+                            <img class="rounded-circle" src="assets/img/team/3.jpg" alt="" />
 
                           </div>
                           <div class="flex-1">
@@ -1782,7 +1782,7 @@
                 </div>
               </li>
               <li class="nav-item d-none d-sm-block">
-                <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait" href="../app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span><span class="notification-indicator-number">1</span></a>
+                <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait" href="app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span><span class="notification-indicator-number">1</span></a>
 
               </li>
               <li class="nav-item dropdown">
@@ -1804,7 +1804,7 @@
                           <a class="notification notification-flush notification-unread" href="#!">
                             <div class="notification-avatar">
                               <div class="avatar avatar-2xl me-3">
-                                <img class="rounded-circle" src="../assets/img/team/1-thumb.png" alt="" />
+                                <img class="rounded-circle" src="assets/img/team/1-thumb.png" alt="" />
 
                               </div>
                             </div>
@@ -1836,7 +1836,7 @@
                           <a class="notification notification-flush" href="#!">
                             <div class="notification-avatar">
                               <div class="avatar avatar-2xl me-3">
-                                <img class="rounded-circle" src="../assets/img/icons/weather-sm.jpg" alt="" />
+                                <img class="rounded-circle" src="assets/img/icons/weather-sm.jpg" alt="" />
 
                               </div>
                             </div>
@@ -1852,7 +1852,7 @@
                           <a class="border-bottom-0 notification-unread  notification notification-flush" href="#!">
                             <div class="notification-avatar">
                               <div class="avatar avatar-xl me-3">
-                                <img class="rounded-circle" src="../assets/img/logos/oxford.png" alt="" />
+                                <img class="rounded-circle" src="assets/img/logos/oxford.png" alt="" />
 
                               </div>
                             </div>
@@ -1868,7 +1868,7 @@
                           <a class="border-bottom-0 notification notification-flush" href="#!">
                             <div class="notification-avatar">
                               <div class="avatar avatar-xl me-3">
-                                <img class="rounded-circle" src="../assets/img/team/10.jpg" alt="" />
+                                <img class="rounded-circle" src="assets/img/team/10.jpg" alt="" />
 
                               </div>
                             </div>
@@ -1882,7 +1882,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card-footer text-center border-top"><a class="card-link d-block" href="../app/social/notifications.html">View all</a></div>
+                    <div class="card-footer text-center border-top"><a class="card-link d-block" href="app/social/notifications.html">View all</a></div>
                   </div>
                 </div>
 
@@ -1905,65 +1905,65 @@
                     <div class="scrollbar-overlay nine-dots-dropdown">
                       <div class="card-body px-3">
                         <div class="row text-center gx-0 gy-0">
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="../pages/user/profile.html" target="_blank">
-                              <div class="avatar avatar-2xl"> <img class="rounded-circle" src="../assets/img/team/3.jpg" alt="" /></div>
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="pages/user/profile.html" target="_blank">
+                              <div class="avatar avatar-2xl"> <img class="rounded-circle" src="assets/img/team/3.jpg" alt="" /></div>
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2">Account</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="https://themewagon.com/" target="_blank"><img class="rounded" src="../assets/img/nav-icons/themewagon.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="https://themewagon.com/" target="_blank"><img class="rounded" src="assets/img/nav-icons/themewagon.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Themewagon</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="https://mailbluster.com/" target="_blank"><img class="rounded" src="../assets/img/nav-icons/mailbluster.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="https://mailbluster.com/" target="_blank"><img class="rounded" src="assets/img/nav-icons/mailbluster.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Mailbluster</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/google.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/google.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Google</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/spotify.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/spotify.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Spotify</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/steam.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/steam.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Steam</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/github-light.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/github-light.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Github</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/discord.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/discord.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Discord</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/xbox.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/xbox.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">xbox</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/trello.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/trello.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Kanban</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/hp.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/hp.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Hp</p>
                             </a></div>
                           <div class="col-12">
                             <hr class="my-3 mx-n3 bg-200" />
                           </div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/linkedin.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/linkedin.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Linkedin</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/twitter.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/twitter.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Twitter</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/facebook.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/facebook.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Facebook</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/instagram.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/instagram.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Instagram</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/pinterest.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/pinterest.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Pinterest</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/slack.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/slack.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Slack</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="../assets/img/nav-icons/deviantart.png" alt="" width="40" height="40" />
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="#!" target="_blank"><img class="rounded" src="assets/img/nav-icons/deviantart.png" alt="" width="40" height="40" />
                               <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Deviantart</p>
                             </a></div>
-                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="../app/events/event-detail.html" target="_blank">
+                          <div class="col-4"><a class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none" href="app/events/event-detail.html" target="_blank">
                               <div class="avatar avatar-2xl">
                                 <div class="avatar-name rounded-circle bg-soft-primary text-primary"><span class="fs-2">E</span></div>
                               </div>
@@ -1979,7 +1979,7 @@
               </li>
               <li class="nav-item dropdown"><a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="avatar avatar-xl">
-                    <img class="rounded-circle" src="../assets/img/team/3-thumb.png" alt="" />
+                    <img class="rounded-circle" src="assets/img/team/3-thumb.png" alt="" />
 
                   </div>
                 </a>
@@ -1989,19 +1989,19 @@
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#!">Set status</a>
-                    <a class="dropdown-item" href="../pages/user/profile.html">Profile &amp; account</a>
+                    <a class="dropdown-item" href="pages/user/profile.html">Profile &amp; account</a>
                     <a class="dropdown-item" href="#!">Feedback</a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../pages/user/settings.html">Settings</a>
-                    <a class="dropdown-item" href="../pages/authentication/card/logout.html">Logout</a>
+                    <a class="dropdown-item" href="pages/user/settings.html">Settings</a>
+                    <a class="dropdown-item" href="pages/authentication/card/logout.html">Logout</a>
                   </div>
                 </div>
               </li>
             </ul>
           </nav>
           <div class="card mb-3">
-            <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-4.png);">
+            <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
             </div>
             <!--/.bg-holder-->
 
@@ -2223,20 +2223,20 @@ public/vendors
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherLight" name="theme-color" type="radio" value="light" data-theme-control="theme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="../assets/img/generic/falcon-mode-default.jpg" alt=""/></span><span class="label-text">Light</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="assets/img/generic/falcon-mode-default.jpg" alt=""/></span><span class="label-text">Light</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherDark" name="theme-color" type="radio" value="dark" data-theme-control="theme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="../assets/img/generic/falcon-mode-dark.jpg" alt=""/></span><span class="label-text"> Dark</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="assets/img/generic/falcon-mode-dark.jpg" alt=""/></span><span class="label-text"> Dark</span></label>
             </div>
           </div>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
-          <div class="d-flex align-items-start"><img class="me-2" src="../assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
+          <div class="d-flex align-items-start"><img class="me-2" src="assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
             <div class="flex-1">
               <h5 class="fs-0">RTL Mode</h5>
-              <p class="fs--1 mb-0">Switch your language direction </p><a class="fs--1" href="../documentation/customization/configuration.html">RTL Documentation</a>
+              <p class="fs--1 mb-0">Switch your language direction </p><a class="fs--1" href="documentation/customization/configuration.html">RTL Documentation</a>
             </div>
           </div>
           <div class="form-check form-switch">
@@ -2245,10 +2245,10 @@ public/vendors
         </div>
         <hr />
         <div class="d-flex justify-content-between">
-          <div class="d-flex align-items-start"><img class="me-2" src="../assets/img/icons/arrows-h.svg" width="20" alt="" />
+          <div class="d-flex align-items-start"><img class="me-2" src="assets/img/icons/arrows-h.svg" width="20" alt="" />
             <div class="flex-1">
               <h5 class="fs-0">Fluid Layout</h5>
-              <p class="fs--1 mb-0">Toggle container layout system </p><a class="fs--1" href="../documentation/customization/configuration.html">Fluid Documentation</a>
+              <p class="fs--1 mb-0">Toggle container layout system </p><a class="fs--1" href="documentation/customization/configuration.html">Fluid Documentation</a>
             </div>
           </div>
           <div class="form-check form-switch">
@@ -2256,16 +2256,16 @@ public/vendors
           </div>
         </div>
         <hr />
-        <div class="d-flex align-items-start"><img class="me-2" src="../assets/img/icons/paragraph.svg" width="20" alt="" />
+        <div class="d-flex align-items-start"><img class="me-2" src="assets/img/icons/paragraph.svg" width="20" alt="" />
           <div class="flex-1">
             <h5 class="fs-0 d-flex align-items-center">Navigation Position</h5>
             <p class="fs--1 mb-2">Select a suitable navigation system for your web application </p>
             <div>
               <select class="form-select form-select-sm" aria-label="Navbar position" data-theme-control="navbarPosition">
-                <option value="vertical" data-page-url="../modules/components/navs-and-tabs/vertical-navbar.html">Vertical</option>
-                <option value="top" data-page-url="../modules/components/navs-and-tabs/top-navbar.html">Top</option>
-                <option value="combo" data-page-url="../modules/components/navs-and-tabs/combo-navbar.html">Combo</option>
-                <option value="double-top" data-page-url="../modules/components/navs-and-tabs/double-top-navbar.html">Double Top</option>
+                <option value="vertical" data-page-url="modules/components/navs-and-tabs/vertical-navbar.html">Vertical</option>
+                <option value="top" data-page-url="modules/components/navs-and-tabs/top-navbar.html">Top</option>
+                <option value="combo" data-page-url="modules/components/navs-and-tabs/combo-navbar.html">Combo</option>
+                <option value="double-top" data-page-url="modules/components/navs-and-tabs/double-top-navbar.html">Double Top</option>
               </select>
             </div>
           </div>
@@ -2273,28 +2273,28 @@ public/vendors
         <hr />
         <h5 class="fs-0 d-flex align-items-center">Vertical Navbar Style</h5>
         <p class="fs--1 mb-0">Switch between styles for your vertical navbar </p>
-        <p> <a class="fs--1" href="../modules/components/navs-and-tabs/vertical-navbar.html#navbar-styles">See Documentation</a></p>
+        <p> <a class="fs--1" href="modules/components/navs-and-tabs/vertical-navbar.html#navbar-styles">See Documentation</a></p>
         <div class="btn-group d-block w-100 btn-group-navbar-style">
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbar-style-transparent" type="radio" name="navbarStyle" value="transparent" data-theme-control="navbarStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-transparent"> <img class="img-fluid img-prototype" src="../assets/img/generic/default.png" alt="" /><span class="label-text"> Transparent</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-transparent"> <img class="img-fluid img-prototype" src="assets/img/generic/default.png" alt="" /><span class="label-text"> Transparent</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbar-style-inverted" type="radio" name="navbarStyle" value="inverted" data-theme-control="navbarStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-inverted"> <img class="img-fluid img-prototype" src="../assets/img/generic/inverted.png" alt="" /><span class="label-text"> Inverted</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-inverted"> <img class="img-fluid img-prototype" src="assets/img/generic/inverted.png" alt="" /><span class="label-text"> Inverted</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbar-style-card" type="radio" name="navbarStyle" value="card" data-theme-control="navbarStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-card"> <img class="img-fluid img-prototype" src="../assets/img/generic/card.png" alt="" /><span class="label-text"> Card</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-card"> <img class="img-fluid img-prototype" src="assets/img/generic/card.png" alt="" /><span class="label-text"> Card</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbar-style-vibrant" type="radio" name="navbarStyle" value="vibrant" data-theme-control="navbarStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-vibrant"> <img class="img-fluid img-prototype" src="../assets/img/generic/vibrant.png" alt="" /><span class="label-text"> Vibrant</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-vibrant"> <img class="img-fluid img-prototype" src="assets/img/generic/vibrant.png" alt="" /><span class="label-text"> Vibrant</span></label>
             </div>
           </div>
         </div>
-        <div class="text-center mt-5"><img class="mb-4" src="../assets/img/icons/spot-illustrations/47.png" alt="" width="120" />
+        <div class="text-center mt-5"><img class="mb-4" src="assets/img/icons/spot-illustrations/47.png" alt="" width="120" />
           <h5>Like What You See?</h5>
           <p class="fs--1">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p><a class="mb-3 btn btn-primary" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/" target="_blank">Purchase</a>
         </div>
@@ -2314,16 +2314,16 @@ public/vendors
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="../vendors/popper/popper.min.js"></script>
-    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../vendors/is/is.min.js"></script>
-    <script src="../vendors/prism/prism.js"></script>
-    <script src="../vendors/fontawesome/all.min.js"></script>
-    <script src="../vendors/lodash/lodash.min.js"></script>
+    <script src="vendors/popper/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/anchorjs/anchor.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="vendors/prism/prism.js"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="vendors/lodash/lodash.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../vendors/list.js/list.min.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="vendors/list.js/list.min.js"></script>
+    <script src="assets/js/theme.js"></script>
 
   </body>
 
