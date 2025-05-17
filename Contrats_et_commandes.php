@@ -96,13 +96,15 @@
     <script src="vendors/echarts/echarts.min.js"></script>
     <script src="vendors/fontawesome/all.min.js"></script>
     <script src="vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script> -->
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="vendors/echarts/echarts.min.js"></script>
-    
+    <script src="./pages/contrats_commandes/contrats.js" ></script>
+    <script src="./pages/contrats_commandes/ajouterContrat.js"></script>
+
 
   </body>
 
