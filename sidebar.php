@@ -38,7 +38,7 @@
                     </div>
                   </a>
                   <ul class="nav collapse" id="email">
-                    <li class="nav-item"><a class="nav-link" href="app/email/inbox.html">
+                    <li class="nav-item"><a class="nav-link" href="plan_approvisionnement.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Planification des besoins</span>
                         </div>
                       </a>
@@ -60,6 +60,13 @@
                     <li class="nav-item">
                       <a class="nav-link" href="Contrats_et_commandes.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Contrats et commandes</span>
+                        </div>
+                      </a>
+                      <!-- more inner pages-->
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="bon_commande.php">
+                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bons de commande</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
