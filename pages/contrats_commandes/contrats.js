@@ -1,132 +1,236 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Toast Bootstrap ---
+  function showToast(message, type = 'primary') {
+    const toastEl = document.getElementById('mainToast');
+    const toastBody = document.getElementById('mainToastBody');
+    toastBody.textContent = message;
+    toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+    toastBody.setAttribute('role', 'status');
+    toastBody.setAttribute('aria-live', 'polite');
+    const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+    toast.show();
+  }
 
-  // Données simulées
-  const contrats = [
-    { id: 1, numero: 'C-2025-001', fournisseur: 'Société Alpha', dateDebut: '2025-01-01', dateFin: '2025-12-31', montant: 100000, statut: 'En cours' },
-    { id: 2, numero: 'C-2025-002', fournisseur: 'Fournisseur Beta', dateDebut: '2025-03-15', dateFin: '2026-03-14', montant: 50000, statut: 'En cours' }
+  // --- Données transporteurs et commandes ---
+  const transporteurs = [
+    'TransExpress',
+    'LogiFast',
+    'Speedy Delivery'
   ];
 
-  const commandes = [
-    { id: 1, contratId: 1, numero: 'CMD-001', dateCommande: '2025-02-01', dateLivraison: '2025-02-28', montant: 20000, statut: 'Livrée' },
-    { id: 2, contratId: 1, numero: 'CMD-002', dateCommande: '2025-05-10', dateLivraison: '2025-06-10', montant: 30000, statut: 'En attente' },
-    { id: 3, contratId: 2, numero: 'CMD-003', dateCommande: '2025-04-01', dateLivraison: '2025-04-30', montant: 15000, statut: 'Livrée' }
+  let commandes = [
+    {
+      numero: '#CMD001',
+      client: 'Alice Dupont',
+      produits: 'Produit A, Produit B',
+      quantite: 10,
+      adresse: '123 rue Exemple, Goma',
+      statut: 'En attente',
+      transporteur: 'TransExpress'
+    },
+    {
+      numero: '#CMD002',
+      client: 'Bob Martin',
+      produits: 'Produit C',
+      quantite: 5,
+      adresse: '456 avenue Exemple, Goma',
+      statut: 'Expédiée',
+      transporteur: 'LogiFast'
+    }
   ];
 
-  // Initialisation List.js contrats (inchangé)
-  const contratsList = new List('contratsTable', {
-    valueNames: ['numero', 'fournisseur', 'dateDebut', 'dateFin', 'montant', 'statut', 'actions'],
+  // --- Remplir les selects transporteur (ajout et modification) ---
+  const selectTransporteur = document.getElementById('transporteurCommande');
+  transporteurs.forEach(t => {
+    const option = document.createElement('option');
+    option.value = t;
+    option.textContent = t;
+    selectTransporteur.appendChild(option);
+  });
+  const modifierTransporteurSelect = document.getElementById('modifierTransporteur');
+  transporteurs.forEach(t => {
+    const option = document.createElement('option');
+    option.value = t;
+    option.textContent = t;
+    modifierTransporteurSelect.appendChild(option);
+  });
+
+  // --- Initialisation List.js avec template ---
+  const commandesList = new List('commandesTable', {
+    valueNames: ['numero', 'client', 'produits', 'quantite', 'adresse', 'statut', 'transporteur'],
     page: 5,
     pagination: true,
     item: `<tr>
       <td class="numero"></td>
-      <td class="fournisseur"></td>
-      <td class="dateDebut"></td>
-      <td class="dateFin"></td>
-      <td class="montant"></td>
+      <td class="client"></td>
+      <td class="produits"></td>
+      <td class="quantite"></td>
+      <td class="adresse"></td>
       <td class="statut"></td>
+      <td class="transporteur"></td>
       <td class="actions"></td>
     </tr>`
-  }, contrats);
-
-  // Ajout des boutons actions dans contrats
- window.addContratActions = function() {
-  const rows = document.querySelectorAll('#contratsTable tbody.list tr');
-  rows.forEach((tr, i) => {
-    const td = tr.querySelector('td.actions');
-    if (!td) return;
-    // On suppose que tu as un tableau global "contrats" synchronisé avec List.js
-    const contrat = window.contrats && window.contrats[i] ? window.contrats[i] : null;
-    const id = contrat ? contrat.id : Date.now() + i; // fallback temporaire
-    td.innerHTML = `
-        <i class="fas text-primary fa-eye me-2" title="Voir détails" aria-label="Voir détails contrat ${contrats[i].numero}" onclick="showContratDetailModal(${contrats[i].id})"></i>
-        <i class="fas text-warning fa-edit me-2" title="Modifier" aria-label="Modifier" onclick="modifierContrat(${id})"></i>
-        <i class="fas text-danger fa-trash" title="Supprimer" aria-label="Supprimer" onclick="supprimerContrat(${id})"></i>
-    `;
   });
-};
-  contratsList.on('updated', addContratActions);
-  addContratActions();
 
-  // Variable pour List.js commandes dans modal
-  let commandesListModal;
-
-  // Fonction pour afficher le modal avec détail contrat + commandes
-  window.showContratDetailModal = function(id) {
-    const contrat = contrats.find(c => c.id === id);
-    if (!contrat) {
-      alert('Contrat non trouvé');
-      return;
+  // --- Badge statut avec icône ---
+  function getStatutBadge(statut) {
+    switch (statut) {
+      case 'En attente':
+        return '<span class="badge bg-warning text-dark"><i class="fas fa-hourglass-half me-1"></i>En attente</span>';
+      case 'En préparation':
+        return '<span class="badge bg-info text-white"><i class="fas fa-tools me-1"></i>En préparation</span>';
+      case 'Expédiée':
+        return '<span class="badge bg-primary"><i class="fas fa-truck me-1"></i>Expédiée</span>';
+      case 'Livrée':
+        return '<span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Livrée</span>';
+      default:
+        return `<span class="badge bg-secondary">${statut}</span>`;
     }
+  }
 
-    // Injecter les infos contrat dans modal
-    const detailDiv = document.getElementById('contratDetail');
-    detailDiv.innerHTML = `
-      <p><strong><i class="fas text-primary fa-file-contract fs-2 me-2"></i>Numéro :</strong> ${contrat.numero}</p>
-      <p><strong><i class="fas  text-danger fa-industry fs-2 me-2"></i>Fournisseur :</strong> ${contrat.fournisseur}</p>
-      <p><strong><i class="fas text-success fa-calendar-alt fs-2 me-2"></i>Durée :</strong> ${contrat.dateDebut} à ${contrat.dateFin}</p>
-      <p><strong><i class="fas text-warning fa-dollar-sign fs-2 me-2"></i>Montant :</strong> ${contrat.montant.toLocaleString()} $</p>
-      <p><strong><i class="fas  text-success fa-info-circle fs-2 me-2"></i>Statut :</strong> ${contrat.statut}</p>
-    `;
-
-    // Filtrer commandes associées
-    const commandesAssoc = commandes.filter(cmd => cmd.contratId === id);
-
-    // Initialiser ou rafraîchir List.js commandes dans modal
-    if (!commandesListModal) {
-      commandesListModal = new List('commandesTableModal', {
-        valueNames: ['numero', 'dateCommande', 'dateLivraison', 'montant', 'statut', 'actions'],
-        page: 5,
-        pagination: true,
-        item: `<tr>
-          <td class="numero"></td>
-          <td class="dateCommande"></td>
-          <td class="dateLivraison"></td>
-          <td class="montant"></td>
-          <td class="statut"></td>
-          <td class="actions"></td>
-        </tr>`
+  // --- Mise à jour du tableau ---
+  function updateCommandesList() {
+    commandesList.clear();
+    commandes.forEach(c => {
+      commandesList.add({
+        numero: c.numero,
+        client: c.client,
+        produits: c.produits,
+        quantite: c.quantite,
+        adresse: c.adresse,
+        statut: c.statut, // on injectera le badge manuellement
+        transporteur: c.transporteur,
+        actions: '' // on gère manuellement
       });
-      commandesListModal.on('updated', addCommandeActionsModal);
-    }
+    });
 
-    commandesListModal.clear();
-
-    if (commandesAssoc.length === 0) {
-      const tbody = document.querySelector('#commandesTableModal tbody.list');
-      tbody.innerHTML = `<tr><td colspan="6" class="text-center fst-italic">Aucune commande associée</td></tr>`;
-    } else {
-      commandesAssoc.forEach(cmd => {
-        commandesListModal.add({
-          numero: cmd.numero,
-          dateCommande: cmd.dateCommande,
-          dateLivraison: cmd.dateLivraison,
-          montant: cmd.montant.toLocaleString(),
-          statut: cmd.statut,
-          actions: ''
-        });
-      });
-      commandesListModal.sort('numero', { order: "asc" });
-      addCommandeActionsModal();
-    }
-
-    // Afficher le modal Bootstrap
-    const modal = new bootstrap.Modal(document.getElementById('contratDetailModal'));
-    modal.show();
-  };
-
-  // Ajout des boutons actions dans commandes modal
-  function addCommandeActionsModal() {
-    const rows = document.querySelectorAll('#commandesTableModal tbody.list tr');
-    rows.forEach((tr, i) => {
-      const td = tr.querySelector('td.actions');
-      if (!td) return;
-      const item = commandesListModal.items[i];
-      td.innerHTML = `
-        <button class="btn btn-sm btn-info" title="Détails commande" aria-label="Détails commande ${item.values().numero}" onclick="alert('Détail commande ${item.values().numero}')">
-          <i class="fas fa-info-circle"></i>
-        </button>
-      `;
+    // Injection manuelle des badges et actions
+    document.querySelectorAll('#commandesTable tbody tr').forEach((tr, i) => {
+      const tds = tr.querySelectorAll('td');
+      if (tds.length && commandes[i]) {
+        tds[5].innerHTML = getStatutBadge(commandes[i].statut);
+        tds[7].innerHTML = `
+          <button class="btn btn-sm btn-primary" title="Voir" onclick="voirCommande('${commandes[i].numero}')"><i class="fas fa-eye"></i></button>
+          <button class="btn btn-sm btn-warning" title="Modifier" onclick="modifierCommande('${commandes[i].numero}')"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger" title="Supprimer" onclick="confirmerSuppressionCommande('${commandes[i].numero}')"><i class="fas fa-trash"></i></button>
+        `;
+      }
     });
   }
 
+  // --- Formulaire d'ajout ---
+  const formCommande = document.getElementById('formAjouterCommande');
+  formCommande.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!formCommande.checkValidity()) {
+      formCommande.classList.add('was-validated');
+      return;
+    }
+    const client = document.getElementById('clientCommande').value.trim();
+    const produits = document.getElementById('produitsCommande').value.trim();
+    const quantite = parseInt(document.getElementById('quantiteCommande').value, 10);
+    const adresse = document.getElementById('adresseCommande').value.trim();
+    const statut = document.getElementById('statutCommande').value;
+    const transporteur = document.getElementById('transporteurCommande').value;
+    const numero = '#CMD' + String(commandes.length + 1).padStart(3, '0');
+
+    commandes.push({ numero, client, produits, quantite, adresse, statut, transporteur });
+    updateCommandesList();
+
+    formCommande.reset();
+    formCommande.classList.remove('was-validated');
+    bootstrap.Modal.getInstance(document.getElementById('ajouterCommandeModal')).hide();
+    showToast('Commande ajoutée avec succès !', 'success');
+  });
+
+  // --- Modals Bootstrap ---
+  const afficherModal = new bootstrap.Modal(document.getElementById('afficherCommandeModal'));
+  const modifierModal = new bootstrap.Modal(document.getElementById('modifierCommandeModal'));
+
+  // --- Afficher commande ---
+  window.voirCommande = function(numero) {
+    const cmd = commandes.find(c => c.numero === numero);
+    if (!cmd) {
+      showToast('Commande non trouvée.', 'warning');
+      return;
+    }
+    document.getElementById('detailNumero').textContent = cmd.numero;
+    document.getElementById('detailClient').textContent = cmd.client;
+    document.getElementById('detailProduits').textContent = cmd.produits;
+    document.getElementById('detailQuantite').textContent = cmd.quantite;
+    document.getElementById('detailAdresse').textContent = cmd.adresse;
+    document.getElementById('detailStatut').innerHTML = getStatutBadge(cmd.statut);
+    document.getElementById('detailTransporteur').textContent = cmd.transporteur;
+    afficherModal.show();
+  };
+
+  // --- Modifier commande ---
+  window.modifierCommande = function(numero) {
+    const cmd = commandes.find(c => c.numero === numero);
+    if (!cmd) {
+      showToast('Commande non trouvée.', 'warning');
+      return;
+    }
+    document.getElementById('modifierNumero').value = cmd.numero;
+    document.getElementById('modifierClient').value = cmd.client;
+    document.getElementById('modifierProduits').value = cmd.produits;
+    document.getElementById('modifierQuantite').value = cmd.quantite;
+    document.getElementById('modifierAdresse').value = cmd.adresse;
+    document.getElementById('modifierStatut').value = cmd.statut;
+    document.getElementById('modifierTransporteur').value = cmd.transporteur;
+    modifierModal.show();
+  };
+
+  // --- Formulaire de modification ---
+  const formModifier = document.getElementById('formModifierCommande');
+  formModifier.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!formModifier.checkValidity()) {
+      formModifier.classList.add('was-validated');
+      return;
+    }
+    const numero = document.getElementById('modifierNumero').value;
+    const client = document.getElementById('modifierClient').value.trim();
+    const produits = document.getElementById('modifierProduits').value.trim();
+    const quantite = parseInt(document.getElementById('modifierQuantite').value, 10);
+    const adresse = document.getElementById('modifierAdresse').value.trim();
+    const statut = document.getElementById('modifierStatut').value;
+    const transporteur = document.getElementById('modifierTransporteur').value;
+
+    const index = commandes.findIndex(c => c.numero === numero);
+    if (index === -1) {
+      showToast('Commande non trouvée.', 'danger');
+      return;
+    }
+    commandes[index] = { numero, client, produits, quantite, adresse, statut, transporteur };
+    updateCommandesList();
+
+    formModifier.classList.remove('was-validated');
+    modifierModal.hide();
+    showToast('Commande modifiée avec succès !', 'info');
+  });
+
+  // --- Modal confirmation suppression ---
+  const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationSuppressionModal'));
+  const commandeASupprimerText = document.getElementById('commandeASupprimer');
+  const btnConfirmerSuppression = document.getElementById('btnConfirmerSuppression');
+  let numeroCommandeASupprimer = null;
+
+  window.confirmerSuppressionCommande = function(numero) {
+    numeroCommandeASupprimer = numero;
+    commandeASupprimerText.textContent = `Commande ${numero}`;
+    confirmationModal.show();
+  };
+
+  btnConfirmerSuppression.addEventListener('click', () => {
+    if (!numeroCommandeASupprimer) return;
+    commandes = commandes.filter(c => c.numero !== numeroCommandeASupprimer);
+    updateCommandesList();
+    confirmationModal.hide();
+    showToast(`La commande ${numeroCommandeASupprimer} a été supprimée.`, 'danger');
+    numeroCommandeASupprimer = null;
+  });
+
+  // --- Initialisation de la liste au chargement ---
+  updateCommandesList();
 });

@@ -1,75 +1,98 @@
-<div class="modal fade" id="contratDetailModal" tabindex="-1" aria-labelledby="contratDetailModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+<!-- Modal Afficher Commande -->
+<div class="modal fade" id="afficherCommandeModal" tabindex="-1" aria-labelledby="afficherCommandeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="contratDetailModalLabel">Détail du contrat sélectionné</h5>
+        <h5 class="modal-title" id="afficherCommandeModalLabel">Détails de la commande</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
       </div>
       <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs mb-3" id="contratDetailTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="infos-tab" data-bs-toggle="tab" data-bs-target="#infos" type="button" role="tab" aria-controls="infos" aria-selected="true">
-                    Informations du contrat
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="commandes-tab" data-bs-toggle="tab" data-bs-target="#commandes" type="button" role="tab" aria-controls="commandes" aria-selected="false">
-                    Commandes associées
-                  </button>
-                </li>
-              </ul>
-              <!-- Tab panes -->
-              <div class="tab-content" id="contratDetailTabsContent">
-                <div class="tab-pane fade show active" id="infos" role="tabpanel" aria-labelledby="infos-tab">
-                  <div id="contratDetail" class="mb-3">
-                    <!-- Infos dynamiques injectées ici -->
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="commandes" role="tabpanel" aria-labelledby="commandes-tab">
-                  <div id="commandesTableModal" data-list='{"valueNames":["numero","dateCommande","dateLivraison","montant","statut"],"page":5,"pagination":true}'>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <input class="search form-control mb-3" placeholder="Rechercher une commande" aria-label="Recherche commandes" />
-                      </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table table-bordered table-striped align-middle mb-0">
-                        <thead>
-                          <tr>
-                            <th><button class="sort btn btn-link p-0" data-sort="numero" type="button">Numéro</button></th>
-                            <th><button class="sort btn btn-link p-0" data-sort="dateCommande" type="button">Date commande</button></th>
-                            <th><button class="sort btn btn-link p-0" data-sort="dateLivraison" type="button">Date livraison</button></th>
-                            <th><button class="sort btn btn-link p-0" data-sort="montant" type="button">Montant ($)</button></th>
-                            <th><button class="sort btn btn-link p-0" data-sort="statut" type="button">Statut</button></th>
-                            <th>Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody class="list"></tbody>
-                      </table>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3">
-                      <button class="btn btn-sm btn-falcon-default me-1" type="button" data-list-pagination="prev" title="Précédent">
-                        <span class="fas fa-chevron-left"></span>
-                      </button>
-                      <ul class="pagination mb-0"></ul>
-                      <button class="btn btn-sm btn-falcon-default ms-1" type="button" data-list-pagination="next" title="Suivant">
-                        <span class="fas fa-chevron-right"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>        
+        <dl class="row">
+          <dt class="col-sm-4">Numéro</dt>
+          <dd class="col-sm-8" id="detailNumero"></dd>
+
+          <dt class="col-sm-4">Client</dt>
+          <dd class="col-sm-8" id="detailClient"></dd>
+
+          <dt class="col-sm-4">Produits</dt>
+          <dd class="col-sm-8" id="detailProduits"></dd>
+
+          <dt class="col-sm-4">Quantité</dt>
+          <dd class="col-sm-8" id="detailQuantite"></dd>
+
+          <dt class="col-sm-4">Adresse de livraison</dt>
+          <dd class="col-sm-8" id="detailAdresse"></dd>
+
+          <dt class="col-sm-4">Statut</dt>
+          <dd class="col-sm-8" id="detailStatut"></dd>
+
+          <dt class="col-sm-4">Transporteur</dt>
+          <dd class="col-sm-8" id="detailTransporteur"></dd>
+        </dl>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Modifier Commande -->
+<div class="modal fade" id="modifierCommandeModal" tabindex="-1" aria-labelledby="modifierCommandeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifierCommandeModalLabel">Modifier la commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <!-- form -->
+        <form id="formModifierCommande" novalidate>
+          <input type="hidden" id="modifierNumero" name="numero" />
+          <div class="mb-3">
+            <label for="modifierClient" class="form-label">Client <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="modifierClient" name="client" required />
+            <div class="invalid-feedback">Le nom du client est obligatoire.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modifierProduits" class="form-label">Produits <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="modifierProduits" name="produits" rows="2" required></textarea>
+            <div class="invalid-feedback">Veuillez indiquer au moins un produit.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modifierQuantite" class="form-label">Quantité <span class="text-danger">*</span></label>
+            <input type="number" min="1" class="form-control" id="modifierQuantite" name="quantite" required />
+            <div class="invalid-feedback">La quantité doit être au moins 1.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modifierAdresse" class="form-label">Adresse de livraison <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="modifierAdresse" name="adresse" rows="2" required></textarea>
+            <div class="invalid-feedback">L'adresse est obligatoire.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modifierStatut" class="form-label">Statut <span class="text-danger">*</span></label>
+            <select class="form-select" id="modifierStatut" name="statut" required>
+              <option value="">Sélectionnez un statut</option>
+              <option value="En attente">En attente</option>
+              <option value="En préparation">En préparation</option>
+              <option value="Expédiée">Expédiée</option>
+              <option value="Livrée">Livrée</option>
+            </select>
+            <div class="invalid-feedback">Le statut est obligatoire.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modifierTransporteur" class="form-label">Transporteur <span class="text-danger">*</span></label>
+            <select class="form-select" id="modifierTransporteur" name="transporteur" required>
+              <!-- Options ajoutées dynamiquement via JS -->
+            </select>
+            <div class="invalid-feedback">Le transporteur est obligatoire.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

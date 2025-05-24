@@ -1,17 +1,32 @@
 <div class="content">
      <!-- content nav -->
      <?php include_once "./content_nav.php" ?>
+<!-- Modal -->
+    <?php include_once "add_fourn.php"; ?>
+    <?php include_once "fiche_fourn.php" ?>
+    <?php include_once "historique_fourn.php" ?>
+
      <!-- conetent  end -->
-        <div class="row mb-4">
-            <div class="col-12 col-lg-12 col-xl-12 d-flex">
-                <h5 class="mb-0">Gestion des Fournisseurs</h5>
+      <!-- tittre -->
+            <div class="row">
+                <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
+                    </div>
+                    <!--/.bg-holder-->
+
+                    <div class="card-body position-relative">
+                    <div class="row">
+                        <div class="col-lg-8">
+                        <h5 class="mt-3">Gestion des Fournisseurs</h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
-
-            <!-- Modal -->
-             <?php include_once "add_fourn.php"; ?>
-             <?php include_once "fiche_fourn.php" ?>
-             <?php include_once "historique_fourn.php" ?>
-
+        <div class="row mb-4">
+         
            
         </div>
         <!-- Exemple d'alerte critique -->

@@ -103,7 +103,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="vendors/echarts/echarts.min.js"></script>
     <script src="./pages/contrats_commandes/contrats.js" ></script>
-    <script src="./pages/contrats_commandes/ajouterContrat.js"></script>
+    <div aria-live="polite" aria-atomic="true" class="position-fixed p-3 top-0 start-50 translate-middle-x" style="z-index: 1080;">
+  <div id="mainToast" class="toast align-items-center text-bg-primary border-0" role="status" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="mainToastBody"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fermer"></button>
+    </div>
+  </div>
+</div>
+
 
 
   </body>
