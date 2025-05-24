@@ -10,7 +10,7 @@
       <!-- tittre -->
             <div class="row">
                 <div class="col-md-12">
-                <div class="card mb-3">
+                <div class="card">
                     <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
                     </div>
                     <!--/.bg-holder-->
@@ -25,16 +25,16 @@
                 </div>
                 </div>
             </div>
-        <div class="row mb-4">
-         
-           
-        </div>
-        <!-- Exemple d'alerte critique -->
-        <div class="alert alert-danger mt-4 d-flex align-items-center" role="alert">
+       <div class="row">
+        <div class="col-md-12">
+             <!-- Exemple d'alerte critique -->
+        <div class="alert alert-danger mt-2 d-flex align-items-center" role="alert">
                     <span class="fas fa-exclamation-triangle me-2"></span>
                     Évaluation urgente à faire pour 2 fournisseurs à risque élevé !
                     <a href="#" class="btn btn-sm btn-outline-danger ms-auto">Voir</a>
-                    </div>
+        </div>
+        </div>
+       </div>
         <!-- table -->
         <div class="row">
             <div class="col-12 col-lg-12 col-xl-12">
