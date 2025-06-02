@@ -91,20 +91,23 @@
     </tr>`
   }, appelsOffres);
 
-  function addAOActions() {
-    document.querySelectorAll('#aoTable tbody.list tr').forEach((tr, i) => {
-      const td = tr.querySelector('td.actions');
-      if (!td) return;
-      td.innerHTML = `
-        <button class="btn btn-sm btn-success me-1" onclick="alert('Réception confirmée pour ${appelsOffres[i].ref}')">
-          <i class="fas fa-check"></i>
-        </button>
-        <button class="btn btn-sm btn-danger" onclick="alert('Problème signalé pour ${appelsOffres[i].ref}')">
-          <i class="fas fa-exclamation-triangle"></i>
-        </button>
-      `;
-    });
-  }
+function addAOActions() {
+  document.querySelectorAll('#aoTable tbody.list tr').forEach((tr, i) => {
+    const td = tr.querySelector('td.actions');
+    if (!td) return;
+    td.innerHTML = `
+      <button class="btn btn-sm btn-success me-1" onclick="alert('Réception confirmée pour ${appelsOffres[i].ref}')">
+        <i class="fas fa-check"></i>
+      </button>
+      <button class="btn btn-sm btn-danger me-1" onclick="alert('Problème signalé pour ${appelsOffres[i].ref}')">
+        <i class="fas fa-exclamation-triangle"></i>
+      </button>
+      <button title=" Gérer fournisseurs" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalFournisseursInvites" data-ao-ref="${appelsOffres[i].ref}">
+        <i class="fas fa-users"></i>
+      </button>
+    `;
+  });
+}
   aoList.on('updated', addAOActions);
   addAOActions();
 
@@ -214,3 +217,95 @@
     refreshOffers();
     initBarChart();
   });
+
+  $(document).ready(function() {
+  // Exemple de liste des fournisseurs (à remplacer par ta source réelle)
+  const fournisseurs = [
+    { id: 1, nom: 'Alpha' },
+    { id: 2, nom: 'Beta' },
+    { id: 3, nom: 'Gamma' },
+    { id: 4, nom: 'Delta' }
+  ];
+
+  const $selectFournisseurs = $('#selectFournisseursInvites');
+  const $modal = $('#modalFournisseursInvites');
+  const $aoRefInput = $('#aoRef');
+  const $listeFournisseursInvites = $('#listeFournisseursInvites');
+  const $btnAjouter = $('#btnAjouterFournisseurs');
+
+  // Stockage temporaire des fournisseurs invités par appel d'offre (par ref)
+  const invitationsParAO = {
+    'AO-001': [
+      { id: 1, nom: 'Alpha', statut: 'Invité' },
+      { id: 2, nom: 'Beta', statut: 'A répondu' }
+    ],
+    'AO-002': [
+      { id: 3, nom: 'Gamma', statut: 'Invité' }
+    ]
+  };
+
+  // Remplir le select avec les fournisseurs
+  function remplirSelectFournisseurs() {
+    $selectFournisseurs.empty();
+    fournisseurs.forEach(f => {
+      $selectFournisseurs.append(`<option value="${f.id}">${f.nom}</option>`);
+    });
+    $selectFournisseurs.selectpicker('refresh');
+  }
+
+  // Afficher la liste des fournisseurs invités dans le tableau
+  function afficherFournisseursInvites(aoRef) {
+    $listeFournisseursInvites.empty();
+    const invites = invitationsParAO[aoRef] || [];
+    invites.forEach(f => {
+      const $tr = $(`
+        <tr>
+          <td>${f.nom}</td>
+          <td>${f.statut}</td>
+          <td>
+            <button class="btn btn-sm btn-danger btn-supprimer" data-id="${f.id}">Supprimer</button>
+          </td>
+        </tr>
+      `);
+      $listeFournisseursInvites.append($tr);
+    });
+  }
+
+  // Quand le modal s'ouvre, charger les données
+  $modal.on('show.bs.modal', function(event) {
+    const button = $(event.relatedTarget);
+    const aoRef = button.data('ao-ref');
+    $aoRefInput.val(aoRef);
+    remplirSelectFournisseurs();
+    afficherFournisseursInvites(aoRef);
+  });
+
+  // Ajouter les fournisseurs sélectionnés
+  $btnAjouter.on('click', function() {
+    const aoRef = $aoRefInput.val();
+    if (!invitationsParAO[aoRef]) {
+      invitationsParAO[aoRef] = [];
+    }
+    const invites = invitationsParAO[aoRef];
+    const selectedIds = $selectFournisseurs.val() || [];
+
+    selectedIds.forEach(idStr => {
+      const id = parseInt(idStr);
+      if (!invites.find(f => f.id === id)) {
+        const fournisseur = fournisseurs.find(f => f.id === id);
+        invites.push({ id: fournisseur.id, nom: fournisseur.nom, statut: 'Invité' });
+      }
+    });
+
+    afficherFournisseursInvites(aoRef);
+    $selectFournisseurs.selectpicker('deselectAll');
+  });
+
+  // Supprimer un fournisseur invité
+  $listeFournisseursInvites.on('click', '.btn-supprimer', function() {
+    const aoRef = $aoRefInput.val();
+    const idFournisseur = parseInt($(this).data('id'));
+    invitationsParAO[aoRef] = invitationsParAO[aoRef].filter(f => f.id !== idFournisseur);
+    afficherFournisseursInvites(aoRef);
+  });
+});

@@ -1,6 +1,9 @@
 <div class="content">
   <!-- content nav -->
   <?php include_once "content_nav.php" ?>
+  <!-- Modal -->
+  <?php include_once "add_apple.php"; ?>
+  <?php include_once "invit_fourn.php"; ?> 
 
   <!-- Dashboard Widgets -->
   <!-- <div class="row mb-4">
@@ -28,12 +31,26 @@
       <div class="col-md-12">
           <!-- allertes -->
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <h5 class="mb-0">Alertes Appels d’Offres</h5>
-              <button class="btn btn-sm btn-outline-secondary" onclick="refreshAlerts()" title="Actualiser les alertes">
-                <i class="fas fa-sync-alt"></i> Actualiser
-              </button>
-            </div>
+            <div class="card-header ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Alertes Appels d’Offres</h5>
+                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalLancerAO">
+                      <i class="fas fa-plus me-1"></i>Lancer un appel d’offre
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-3">
+                <div class="col-md-6">
+                  <div class="d-flex gap-2 justify-content-end">
+                    <input class="form-control form-control-sm shadow-none search" type="search" placeholder="Rechercher une alerte..." aria-label="Rechercher une alerte" />
+                    <button class="btn btn-sm btn-outline-secondary" onclick="refreshAlerts()" title="Actualiser">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                 </div>
+               </div>
             <div class="card-body scrollbar">
               <ul id="alertsList" class="list-group list-group-flush"></ul>
             </div>

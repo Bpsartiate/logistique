@@ -35,7 +35,7 @@
           <!-- Onglet Informations générales -->
           <div class="tab-pane fade show active" id="infos" role="tabpanel" aria-labelledby="infos-tab">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                  <!-- div 1 : Informations de base -->
               <div class="mt-4">
                 <h5><i class="fas fa-id-badge me-2 text-secondary"></i>Informations de base</h5>
@@ -66,13 +66,21 @@
                 </dl>
               </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                  <!-- div 3 : Informations financières -->
              <div class="mt-4">
               <h5><i class="fas fa-wallet me-2 text-secondary"></i>Informations financières</h5>
               <dl class="row">
+                
                 <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>RIB / IBAN</dt>
                 <dd class="col-sm-8">CD55 0012 0345 6789 0123 45</dd>
+
+                <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>Nom de la Banque</dt>
+                <dd class="col-sm-8">Equity</dd>
+
+                <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>Address de la Banque</dt>
+                <dd class="col-sm-8">Goma Drc, avec du Lac N123 </dd>
+
 
                 <dt class="col-sm-4"><i class="fas fa-clock me-1 text-muted"></i>Conditions de paiement</dt>
                 <dd class="col-sm-8">30 jours fin de mois</dd>
@@ -129,7 +137,7 @@
 
              <div class="row">
             <!-- div 4 : Produits / Services -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="mt-4">
                   <h5><i class="fas fa-boxes me-2 text-secondary"></i>Produits / Services</h5>
                   <ul class="list-unstyled ps-3">
@@ -145,7 +153,7 @@
                 </div>
               </div>
               <!-- div 5 : Informations contractuelles -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="mt-4">
                   <h5><i class="fas fa-file-contract me-2 text-secondary"></i>Informations contractuelles</h5>
                   <dl class="row">
@@ -374,7 +382,7 @@
         <span class="me-auto text-muted">Connecté en tant que <strong>Responsable Achats</strong></span>
         <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
         <button class="btn btn-primary">Modifier</button>
-        <button class="btn btn-success">Ajouter évaluation</button>
+        <button onclick="ouvrirPanelEvaluationFournisseur()" class="btn btn-success">Ajouter évaluation</button>
         <button class="btn btn-warning">Signaler incident</button>
         <button class="btn btn-outline-info">Exporter fiche</button>
       </div>

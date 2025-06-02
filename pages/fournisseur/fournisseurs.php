@@ -5,6 +5,7 @@
     <?php include_once "add_fourn.php"; ?>
     <?php include_once "fiche_fourn.php" ?>
     <?php include_once "historique_fourn.php" ?>
+    <?php include_once "modal_evalu.php"; ?>
 
      <!-- conetent  end -->
       <!-- tittre -->
@@ -77,7 +78,7 @@
                             <td class="risque"><span class="badge bg-success">Faible</span></td>
                             <td>
                                 <a data-bs-toggle="modal" data-bs-target="#ficheFournisseur" class="btn btn-sm btn-info" title="Voir fiche"><span class="fa fa-eye"></span></a>
-                                <a data-bs-toggle="modal" class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
+                                <a data-bs-toggle="modal" data-bs-target="#panelEvaluationFournisseur"  class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
                                 <a data-bs-toggle="modal" class="btn btn-sm btn-secondary" data-bs-target="#HistoFournisseur" title="Historique"><span class="fa fa-history"></span></a>
                                 <a data-bs-toggle="modal" class="btn btn-sm btn-dark" title="Documents"><span class="fa fa-file-alt"></span></a>
                             </td>
@@ -105,7 +106,7 @@
                             <td class="risque"><span class="badge bg-warning text-dark">Moyen</span></td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-info" title="Voir fiche"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
+                                <a onclick="ouvrirPanelEvaluationFournisseur()" class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
                                 <a href="#" class="btn btn-sm btn-secondary" title="Historique"><span class="fa fa-history"></span></a>
                                 <a href="#" class="btn btn-sm btn-dark" title="Documents"><span class="fa fa-file-alt"></span></a>
                             </td>
