@@ -4,6 +4,7 @@
   <!-- Modal -->
   <?php include_once "add_apple.php"; ?>
   <?php include_once "invit_fourn.php"; ?> 
+  <?php include_once "vue_fourn.php"; ?>
 
   <!-- Dashboard Widgets -->
   <!-- <div class="row mb-4">

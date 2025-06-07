@@ -7,6 +7,8 @@
   <?php include_once "afficherContrat.php"; ?>
   <!-- Modal de confirmation de suppression -->
   <?php include_once "deleteModal.php"; ?>
+  <!-- Modal Ajouter Transporteur -->
+  <?php include_once "transporteur.php"; ?>
   
 
   <!-- tittre -->
@@ -35,9 +37,15 @@
 <div class="card mb-4">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h5 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Commandes</h5>
-    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterCommandeModal">
-      <i class="fas fa-plus me-1"></i>Nouvelle commande
-    </button>
+    <div class="d-flex flex-row gap-2">
+      <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterCommandeModal">
+        <i class="fas fa-plus me-1"></i>Nouvelle commande
+      </button>
+      <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterTransporteur">
+        <i class="fas fa-plus me-1"></i>Ajouter Transporteur
+      </button>
+      
+    </div>
   </div>
   <div class="card-body p-3">
     <div id="commandesTable" data-list='{"valueNames":["numero","client","produits","quantite","adresse","statut","transporteur"],"page":5,"pagination":true}'>

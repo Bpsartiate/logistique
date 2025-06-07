@@ -151,21 +151,23 @@ function addAOActions() {
     });
     addOfferActions();
   }
-
-  function addOfferActions() {
-    document.querySelectorAll('#offersTable tbody.list tr').forEach((tr, i) => {
-      const td = tr.querySelector('td.actions');
-      if (!td) return;
-      td.innerHTML = `
-        <button class="btn btn-sm btn-primary me-1" onclick="alert('Détail ${offersData[i].fournisseur}')">
-          <i class="fas fa-info-circle"></i>
-        </button>
-        <button class="btn btn-sm btn-success" onclick="alert('Sélectionné ${offersData[i].fournisseur}')">
-          <i class="fas fa-check"></i>
-        </button>
-      `;
-    });
-  }
+  // action pour ajouter les boutons d'action dans les offres
+function addOfferActions() {
+  document.querySelectorAll('#offersTable tbody.list tr').forEach((tr, i) => {
+    const td = tr.querySelector('td.actions');
+    if (!td) return;
+    const offre = offersData[i];
+    const dataOffre = encodeURIComponent(JSON.stringify(offre));
+    td.innerHTML = `
+      <button class="btn btn-sm btn-info me-1 btn-voir-fournisseur" data-offre="${dataOffre}">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="btn btn-sm btn-success" onclick="alert('Sélectionné ${offre.fournisseur}')">
+        <i class="fas fa-check"></i>
+      </button>
+    `;
+  });
+}
 
   // Export CSV
   function exportOffersCSV() {
@@ -309,3 +311,58 @@ function addAOActions() {
     afficherFournisseursInvites(aoRef);
   });
 });
+// oppen modal pour voir les détails du fournisseur
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-voir-fournisseur');
+    if (btn) {
+      const offre = JSON.parse(decodeURIComponent(btn.getAttribute('data-offre')));
+      const modalBody = document.getElementById('modal-offre-content');
+
+      document.getElementById('modalVoirFournisseurLabel').textContent = `Détails de l'offre - ${offre.fournisseur}`;
+
+      function getIcon(key) {
+        switch(key.toLowerCase()) {
+          case 'fournisseur': return '<i class="fas fa-user"></i>';
+          case 'prix': return '<i class="fas fa-euro-sign"></i>';
+          case 'delai': return '<i class="fas fa-clock"></i>';
+          case 'qualite': return '<i class="fas fa-star"></i>';
+          case 'garantie': return '<i class="fas fa-shield-alt"></i>';
+          case 'remarque': return '<i class="fas fa-comment-dots"></i>';
+          case 'statut': return '<i class="fas fa-info-circle"></i>';
+          default: return '<i class="fas fa-info"></i>';
+        }
+      }
+
+      function formatValue(key, value) {
+        if (key.toLowerCase() === 'statut') {
+          let badgeClass = 'bg-secondary';
+          if (value.toLowerCase().includes('en cours')) badgeClass = 'bg-warning text-dark';
+          else if (value.toLowerCase().includes('clôturé')) badgeClass = 'bg-danger';
+          else if (value.toLowerCase().includes('validé')) badgeClass = 'bg-success';
+          return `<span class="badge ${badgeClass}">${value}</span>`;
+        }
+        if (key.toLowerCase() === 'remarque' && value.trim() !== '') {
+          return `<span class="badge bg-info text-dark">${value}</span>`;
+        }
+        return value;
+      }
+
+      let html = '<table class="table responsive table-bordered table-striped">';
+      html += '<tbody>';
+      for (const [key, value] of Object.entries(offre)) {
+        const icon = getIcon(key);
+        const label = key.charAt(0).toUpperCase() + key.slice(1);
+        const formattedValue = formatValue(key, value);
+        html += `<tr><th>${icon} ${label}</th><td>${formattedValue}</td></tr>`;
+      }
+      html += '</tbody></table>';
+
+      modalBody.innerHTML = html;
+
+      const modal = new bootstrap.Modal(document.getElementById('modalVoirFournisseur'));
+      modal.show();
+    }
+  });
+});
+

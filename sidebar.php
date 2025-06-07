@@ -83,13 +83,13 @@
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="app/events/event-detail.html">
+                    <li class="nav-item"><a class="nav-link" href="Réception_et_inspection.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Réception et inspection</span>
                         </div>
                       </a>
                       <!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="app/events/event-list.html">
+                    <li class="nav-item"><a class="nav-link" href="stocks_et_entreposage.php">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stocks et entreposage</span>
                         </div>
                       </a>
