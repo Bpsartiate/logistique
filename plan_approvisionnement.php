@@ -99,11 +99,11 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="vendors/echarts/echarts.min.js"></script>
-<script>
-$(document).ready(function() {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="vendors/echarts/echarts.min.js"></script>
+    <script src="./pages/approvisionnement/procedure_recommandee.js"></script>
+    <script>
+        $(document).ready(function() {
   // Le spinner est visible, le graphique caché (défini dans le HTML)
 
   // Simuler un petit délai pour l'effet de chargement (optionnel)

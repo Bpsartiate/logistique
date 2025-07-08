@@ -36,6 +36,7 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                         </form>
                         </div>
                         <div class="col-auto">
+                            <a href = "type_procedure.php" class="btn btn-sm btn-primary" type="button"></span>Type de procedure</a>
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal" type="button"><span class="fa fa-plus me-1"></span>Ajouter un besoin</button>
                         </div>
                     </div>
@@ -50,7 +51,7 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                                     <th class="sort" data-sort="etat">Statut</th>
                                     <th class="sort" data-sort="type_besoin">Type de besoin</th>
                                     <th class="sort" data-sort="type_procedure">Type de procédure</th>
-                                    <th class="sort" data-sort="fournisseur">Fournisseur</th>
+                                    <th class="sort" data-sort="fournisseur">Priorité</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -63,11 +64,11 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                                     <td class = "approvisionnement_id" id = "approvisionnementid"><?php echo $approvisionnement['id']; ?></td>
                                     <td><?php echo $approvisionnement['designation']; ?></td>
                                     <td><?php echo $approvisionnement['quantite']; ?></td>
-                                    <td><?php echo $approvisionnement['valeur_budgetisee']; ?></td>
+                                    <td><?php echo $approvisionnement['budget_estime']; ?></td>
                                     <td><?php echo $approvisionnement['etat']; ?></td>
                                     <td><?php echo $approvisionnement['type_besoin']; ?></td>
                                     <td><?php echo $approvisionnement['type_procedure']; ?></td>
-                                    <td><?php echo $approvisionnement['fournisseur']; ?></td>
+                                    <td><?php echo $approvisionnement['priorite']; ?></td>
                                     <td>
                                         <a data-bs-toggle="modal" data-bs-target="#updateFournisseur" class="btn btn-sm btn-warning edit_data" title="Évaluer" id = "<?php echo $approvisionnement['id']; ?>"><span class="fa fa-edit"></span></a>
                                         <a data-bs-toggle="modal" class="btn btn-sm btn-secondary delete_data" data-bs-target="#deleteFournisseur" title="Historique"><span class="fa fa-history"></span></a>
@@ -78,7 +79,7 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                                 }else{
                                 ?>
                                 <tr>
-                                    <td colspan = "6">Aucun resultat</td>
+                                    <td colspan = "9">Aucun resultat</td>
                                 </tr>
                                 <?php
                                     }
@@ -196,4 +197,3 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
             $('#delete_id').val(data[0]);
         });
     });
-</script>
