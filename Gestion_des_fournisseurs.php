@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once ('connect.php'); ?>
 <html lang="en-US" dir="ltr">
 
   <head>
