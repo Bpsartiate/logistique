@@ -2,7 +2,7 @@
 $host = 'localhost'; // Adresse du serveur MySQL
 $db   = 'c1743910c_aurorardc'; // Nom de la base de données
 $user = 'root'; // Nom d'utilisateur
-$pass = 'aurora@2021RDC';      // Mot de passe
+$pass = '';      // Mot de passe
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
