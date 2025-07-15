@@ -101,7 +101,7 @@
     <script src="assets/js/theme.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="vendors/echarts/echarts.min.js"></script>
-    <script src="./pages/approvisionnement/procedure_recommandee.js"></script>
+    
     <script>
         $(document).ready(function() {
   // Le spinner est visible, le graphique caché (défini dans le HTML)

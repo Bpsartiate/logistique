@@ -82,10 +82,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Type de procédure</label>
-                            <input type="text" name = "typeProcedure" id = "typeProcedure" class="form-control" id="typeProcedure" readonly>
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Priorité</label>
                             <select class="form-select" aria-label="Default select example" name = "priorite">
