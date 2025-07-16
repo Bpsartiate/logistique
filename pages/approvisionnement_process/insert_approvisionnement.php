@@ -1,8 +1,35 @@
 <?php
 
-require_once('../connect.php');
+require_once(__DIR__ . '/../../connect.php'); // Chemin correct depuis le dossier pages/approvisionnement
 
 if(isset($_POST['enregistrer'])){
+    // Vérification des champs obligatoires
+    $required = [
+        'designation',
+        'date_debut_approvisionnement',
+        'date_fin_approvisionnement',
+        'responsable',
+        'quantite',
+        'prix_unitaire',
+        'budget_estime',
+        'prix_sur_terrain',
+        'etat',
+        'typeBesoin',
+        'priorite',
+        'observation'
+    ];
+    $allFilled = true;
+    foreach($required as $field) {
+        if(empty($_POST[$field])) {
+            $allFilled = false;
+            break;
+        }
+    }
+    if(!$allFilled) {
+        echo "<div style='color:red;'>Veuillez remplir tous les champs obligatoires.</div>";
+        exit;
+    }
+
     $designation = htmlspecialchars(addslashes($_POST['designation']));
     $date_debut_approvisionnement = $_POST['date_debut_approvisionnement'];
     $date_fin_approvisionnement = $_POST['date_fin_approvisionnement'];

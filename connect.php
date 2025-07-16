@@ -1,24 +1,24 @@
 <?php
-$host = 'localhost'; // Adresse du serveur MySQL
-$db   = 'c1743910c_aurorardc'; // Nom de la base de données
-$user = 'root'; // Nom d'utilisateur
-$pass = '';      // Mot de passe
+$host = 'localhost';
+$db = 'c1743910c_aurorardc';
+$user = 'root';
+$pass = 'aurora@2021RDC';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Gestion des erreurs
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // Mode de récupération
-    PDO::ATTR_EMULATE_PREPARES   => false,                  // Préparation réelle des requêtes
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "Connexion réussie à la base de données.";
+    $bdd = new PDO($dsn, $user, $pass, $options); // Utilise $bdd partout
+    // echo "Connexion réussie à la base de données."; // À commenter ou supprimer
 } catch (\PDOException $e) {
-    // Ne jamais afficher les détails en production
-    echo "Erreur de connexion à la base de données.";
-    // Pour le debug uniquement (à retirer en production) :
+    // En production, log l'erreur au lieu d'afficher
+    echo "Erreur : " . $e->getMessage();
+    // Pour debug uniquement :
     // echo "Erreur : " . $e->getMessage();
 }
 ?>

@@ -10,37 +10,37 @@
                 <form action = "./pages/approvisionnement_process/insert_approvisionnement.php" method = "POST" id = "formBesoin">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Désignation</label>
-                        <input type="text" name = "designation" class="form-control" id="exampleFormControlInput1" placeholder="Désignation">
+                        <input type="text" name = "designation" class="form-control" id="exampleFormControlInput1" placeholder="Désignation" required>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Date de début de l'approvisionnement</label>
-                                <input type="date" name = "date_debut_approvisionnement" class="form-control" id="exampleFormControlInput1" placeholder="Quantité">
+                                <input type="date" name = "date_debut_approvisionnement" class="form-control" id="exampleFormControlInput1" placeholder="Quantité" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Date de fin de l'approvisionnement</label>
-                                <input type="date" name = "date_fin_approvisionnement" class="form-control" id="exampleFormControlInput1" placeholder="Valeur budgétisée">
+                                <input type="date" name = "date_fin_approvisionnement" class="form-control" id="exampleFormControlInput1" placeholder="Valeur budgétisée" required>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Responsable</label>
-                        <input type="text" name = "responsable" class="form-control" id="exampleFormControlInput1" placeholder="Responsable">
+                        <input type="text" name = "responsable" class="form-control" id="exampleFormControlInput1" placeholder="Responsable" required>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Quantité</label>
-                                <input type="number" name = "quantite" class="form-control" id="exampleFormControlInput1" placeholder="Quantité">
+                                <input type="number" name = "quantite" class="form-control" id="exampleFormControlInput1" placeholder="Quantité" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix Unitaire</label>
-                                <input type="number" name = "prix_unitaire" class="form-control" id="exampleFormControlInput1" placeholder="Prix Unitaire">
+                                <input type="number" name = "prix_unitaire" class="form-control" id="exampleFormControlInput1" placeholder="Prix Unitaire" required>
                             </div>
                         </div>
                     </div>
@@ -48,13 +48,13 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Budget estimé</label>
-                                <input type="number" name = "budget_estime" class="form-control" id="budgetEstime" placeholder="Budget estimé" min="101" step="0.01">
+                                <input type="number" name = "budget_estime" class="form-control" id="budgetEstime" placeholder="Budget estimé" min="101" step="0.01" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix sur terrain</label>
-                                <input type="number" name = "prix_sur_terrain" class="form-control" id="exampleFormControlInput1" placeholder="Prix sur terrain">
+                                <input type="number" name = "prix_sur_terrain" class="form-control" id="exampleFormControlInput1" placeholder="Prix sur terrain" required>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Etat</label>
-                                <select class="form-select" aria-label="Default select example" name = "etat">
+                                <select class="form-select" aria-label="Default select example" name = "etat" required>
                                     <option selected>Sélectionner l'état</option>
                                     <option value="Pas encore lancé">Pas encore lancé</option>
                                     <option value="En cours">En cours</option>
@@ -74,7 +74,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Type de bésoin</label>
-                                <select class="form-select" aria-label="Default select example" name = "typeBesoin" id = "typeBesoin">
+                                <select class="form-select" aria-label="Default select example" name = "typeBesoin" id = "typeBesoin" required>
                                     <option selected>Sélectionner le type</option>
                                     <option value="Biens">Biens</option>
                                     <option value="Services">Services</option>
@@ -85,7 +85,7 @@
                         
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Priorité</label>
-                            <select class="form-select" aria-label="Default select example" name = "priorite">
+                            <select class="form-select" aria-label="Default select example" name = "priorite" required>
                                 <option selected>Sélectionner priorité</option>
                                 <option value="Haute">Haute</option>
                                 <option value="Moyenne">Moyenne</option>
@@ -120,19 +120,19 @@
                     <div class="mb-3">
                         <input type="hidden" name = "update_id" id = "update_id">
                         <label for="exampleFormControlInput1" class="form-label">Désignation</label>
-                        <input type="text" name = "designation" id = "designation" class="form-control">
+                        <input type="text" name = "designation" id = "designation" class="form-control" required>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Quantité</label>
-                                <input type="number" name = "quantite" id = "quantite" class="form-control">
+                                <input type="number" name = "quantite" id = "quantite" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Budget Estimé</label>
-                                <input type="number" name = "valeur_budgetisee" id = "montantEstime" class="form-control">
+                                <input type="number" name = "valeur_budgetisee" id = "montantEstime" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Etat</label>
-                                <select class="form-select" aria-label="Default select example" name = "etat" id = "etat">
+                                <select class="form-select" aria-label="Default select example" name = "etat" id = "etat" required>
                                     <option selected>Sélectionner l'état</option>
                                     <option value="Pas encore lancé">Pas encore lancé</option>
                                     <option value="En cours">En cours</option>
@@ -151,7 +151,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Type de bésoin</label>
-                                <select class="form-select" aria-label="Default select example" name = "type_besoin" id = "typebesoin">
+                                <select class="form-select" aria-label="Default select example" name = "type_besoin" id = "typebesoin" required>
                                     <option selected>Sélectionner le type</option>
                                     <option value="Biens">Biens</option>
                                     <option value="Services">Services</option>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Type de procédure</label>
-                        <select class="form-select" aria-label="Default select example" name = "typeprocedure" id = "typeProcedure">
+                        <select class="form-select" aria-label="Default select example" name = "typeprocedure" id = "typeProcedure" required>
                             <option selected>Sélectionner le type de procédure</option>
                             <option value="Procédure d'une seule quotation (pro forma)">Procédure d'une seule quotation (pro forma)</option>
                             <option value="Procédure négociée - minimum 3 pro forma">Procédure négociée - minimum 3 pro forma</option>
@@ -171,7 +171,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Fournisseur</label>
-                        <input type="text" name = "fournisseur" id = "fournisseur" class="form-control">
+                        <input type="text" name = "fournisseur" id = "fournisseur" class="form-control" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -182,3 +182,24 @@
         </div>
     </div>
 </div>
+<script>
+// Validation côté client pour empêcher l'envoi si un champ est vide
+$(document).ready(function(){
+    $('#formBesoin').on('submit', function(e){
+        let valid = true;
+        // Vérifie tous les champs requis (adapte les sélecteurs si besoin)
+        $(this).find('input[required], select[required], textarea[required]').each(function(){
+            if(!$(this).val() || $(this).val() === 'Sélectionner l\'état' || $(this).val() === 'Sélectionner le type' || $(this).val() === 'Sélectionner priorité'){
+                valid = false;
+                $(this).addClass('is-invalid');
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+        if(!valid){
+            e.preventDefault();
+            alert('Veuillez remplir tous les champs obligatoires.');
+        }
+    });
+});
+</script>

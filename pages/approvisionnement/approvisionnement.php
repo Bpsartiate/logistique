@@ -1,5 +1,5 @@
 <?php
-require_once('connect.php');
+require_once(__DIR__ . '/../../connect.php'); // Chemin correct depuis le dossier pages/approvisionnement
 $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY id DESC");
 ?>
 <div class="content">
