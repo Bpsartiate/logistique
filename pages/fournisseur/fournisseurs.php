@@ -1,6 +1,8 @@
 <div class="content">
      <!-- content nav -->
      <?php include_once "./content_nav.php" ?>
+     <!-- Alertes dynamiques Bootstrap -->
+     <div id="alertContainer" class="mt-2"></div>
 <!-- Modal -->
     <?php include_once "add_fourn.php"; ?>
     <?php include_once "fiche_fourn.php" ?>
@@ -37,6 +39,22 @@
         </div>
        </div>
         <!-- table -->
+<script>
+// Fonction pour afficher une alerte Bootstrap
+function showAlert(message, type = 'info', timeout = 4000) {
+  const alertId = 'alert-' + Date.now();
+  const alertHtml = `<div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>`;
+  $('#alertContainer').append(alertHtml);
+  if (timeout > 0) {
+    setTimeout(() => {
+      $('#' + alertId).alert('close');
+    }, timeout);
+  }
+}
+</script>
         <div class="row">
             <div class="col-12 col-lg-12 col-xl-12">
                 <div class="card mb-4">

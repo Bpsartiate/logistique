@@ -75,8 +75,33 @@
                 </div>
                 <!-- Contacts -->
                 <div class="mb-3">
-                  <label for="contacts" class="form-label">Contacts (Nom, Titre, Téléphone, Email)</label>
-                  <textarea class="form-control" id="contacts" name="contacts" rows="2" placeholder="Exemple : Jean Dupont, Directeur, +243 999 999 999, jean.dupont@societealpha.com"></textarea>
+                  <label class="form-label">Contacts</label>
+                  <div id="contactsContainer">
+                    <!-- Un contact principal obligatoire -->
+                    <div class="row g-2 align-items-end contact-row">
+                      <div class="col-md-3">
+                        <select class="form-select" name="typeContact[]">
+                          <option value="principale">Principale</option>
+                          <option value="facturation">Facturation</option>
+                          <option value="technique">Technique</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="nomContact[]" placeholder="Nom du contact principal" required>
+                        <div class="invalid-feedback">Le nom du contact principal est obligatoire.</div>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="telContact[]" placeholder="Téléphone">
+                      </div>
+                      <div class="col-md-4">
+                        <input type="email" class="form-control" name="mailContact[]" placeholder="Email">
+                      </div>
+                      <div class="col-md-1">
+                        <button type="button" class="btn btn-danger btn-sm remove-contact" style="display:none">&times;</button>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-outline-primary btn-sm mt-2" id="addContactBtn">+ Ajouter un contact</button>
                 </div>
                 <!-- Produits / Services -->
                 <div class="mb-3">
@@ -123,13 +148,13 @@
                 <!-- IMPORT DOCUMENTS -->
                 <div class="mb-3">
                   <label for="documentsDemandes" class="form-label">Documents/informations demandés (import)</label>
-                  <input type="file" class="form-control" id="documentsDemandes" name="documentsDemandes[]" multiple>
+                  <input type="file" class="form-control" id="documentsDemandes" name="documentsDemandes" multiple>
                   <div class="form-text">Sélectionne un ou plusieurs fichiers à importer (PDF, DOCX, JPG...)</div>
                   <ul id="listeDemandes" class="small"></ul>
                 </div>
                 <div class="mb-3">
                   <label for="documentsFournis" class="form-label">Documents/informations fournis (import)</label>
-                  <input type="file" class="form-control" id="documentsFournis" name="documentsFournis[]" multiple>
+                  <input type="file" class="form-control" id="documentsFournis" name="documentsFournis" multiple>
                   <div class="form-text">Sélectionne un ou plusieurs fichiers à importer (PDF, DOCX, JPG...)</div>
                   <ul id="listeFournis" class="small"></ul>
                 </div>
@@ -146,7 +171,50 @@
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
+// Ajout dynamique de contacts
+$(document).ready(function() {
+  $('#addContactBtn').on('click', function() {
+    const contactRow = `<div class="row g-2 align-items-end contact-row">
+      <div class="col-md-3 mt-4">
+        <select class="form-select" name="typeContact[]">
+          <option value="principale">Principale</option>
+          <option value="facturation">Facturation</option>
+          <option value="technique">Technique</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="nomContact[]" placeholder="Nom">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="telContact[]" placeholder="Téléphone">
+      </div>
+      <div class="col-md-4">
+        <input type="email" class="form-control" name="mailContact[]" placeholder="Email">
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-danger btn-sm remove-contact">&times;</button>
+      </div>
+    </div>`;
+    $('#contactsContainer').append(contactRow);
+    $('#contactsContainer .remove-contact').show();
+  });
+
+  // Suppression d'un contact
+  $('#contactsContainer').on('click', '.remove-contact', function() {
+    $(this).closest('.contact-row').remove();
+    // Si un seul contact reste, cacher le bouton supprimer
+    if ($('#contactsContainer .contact-row').length === 1) {
+      $('#contactsContainer .remove-contact').hide();
+    }
+  });
+
+  // Au chargement, cacher le bouton supprimer si un seul contact
+  if ($('#contactsContainer .contact-row').length === 1) {
+    $('#contactsContainer .remove-contact').hide();
+  }
+});
 document.getElementById('documentsDemandes').addEventListener('change', function() {
   let out = '';
   for (const file of this.files) {
@@ -161,13 +229,33 @@ document.getElementById('documentsFournis').addEventListener('change', function(
   }
   document.getElementById('listeFournis').innerHTML = out;
 });
-document.getElementById('formAjoutFournisseur').addEventListener('submit', function(e) {
+$('#formAjoutFournisseur').on('submit', function(e) {
   e.preventDefault();
+
   if (!this.checkValidity()) {
     this.classList.add('was-validated');
     return;
   }
-  // Ici, tu peux envoyer le formulaire avec AJAX ou laisser le backend PHP gérer l'upload
-  alert('Fournisseur enregistré !');
+
+  const formData = new FormData(this);
+
+  $.ajax({
+    url: 'http://localhost:3000/fournisseurs',
+    method: 'POST',
+    data: formData,
+    processData: false,  // Ne pas traiter les données, laisser FormData gérer
+    contentType: false,  // Ne pas fixer le content-type, laisser FormData gérer
+    success: function(res) {
+      showAlert(res.message, 'success');
+      $('#addSupplierModal').modal('hide');
+      $('#formAjoutFournisseur')[0].reset();
+      $('#formAjoutFournisseur').removeClass('was-validated');
+      // Ici tu peux déclencher un rafraîchissement de la liste des fournisseurs
+    },
+    error: function(xhr) {
+      showAlert('Erreur: ' + (xhr.responseJSON?.error || xhr.statusText), 'danger');
+    }
+  });
 });
+
 </script>
