@@ -8,6 +8,7 @@
     <?php include_once "fiche_fourn.php" ?>
     <?php include_once "historique_fourn.php" ?>
     <?php include_once "modal_evalu.php"; ?>
+    <?php include_once "docFourn.php"; ?>
 
      <!-- conetent  end -->
       <!-- tittre -->
@@ -87,50 +88,129 @@ function showAlert(message, type = 'info', timeout = 4000) {
                             </tr>
                         </thead>
                         <tbody class="list">
-                            <tr>
-                            <td class="nom">Société Alpha</td>
-                            <td class="type">Transport</td>
-                            <td class="statut"><span class="badge bg-success">Actif</span></td>
-                            <td class="contact">Jean Kalume</td>
-                            <td class="score">92%</td>
-                            <td class="risque"><span class="badge bg-success">Faible</span></td>
-                            <td>
-                                <a data-bs-toggle="modal" data-bs-target="#ficheFournisseur" class="btn btn-sm btn-info" title="Voir fiche"><span class="fa fa-eye"></span></a>
-                                <a data-bs-toggle="modal" data-bs-target="#panelEvaluationFournisseur"  class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
-                                <a data-bs-toggle="modal" class="btn btn-sm btn-secondary" data-bs-target="#HistoFournisseur" title="Historique"><span class="fa fa-history"></span></a>
-                                <a data-bs-toggle="modal" class="btn btn-sm btn-dark" title="Documents"><span class="fa fa-file-alt"></span></a>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td class="nom">Logistix SARL</td>
-                            <td class="type">Fourniture</td>
-                            <td class="statut"><span class="badge bg-warning text-dark">En attente</span></td>
-                            <td class="contact">Marie Nyota</td>
-                            <td class="score">78%</td>
-                            <td class="risque"><span class="badge bg-danger">Élevé</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-info" title="Voir fiche"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
-                                <a href="#" class="btn btn-sm btn-secondary" title="Historique"><span class="fa fa-history"></span></a>
-                                <a href="#" class="btn btn-sm btn-dark" title="Documents"><span class="fa fa-file-alt"></span></a>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td class="nom">TransExpress</td>
-                            <td class="type">Transport</td>
-                            <td class="statut"><span class="badge bg-danger">Suspendu</span></td>
-                            <td class="contact">Ali Mbafuniepaka</td>
-                            <td class="score">60%</td>
-                            <td class="risque"><span class="badge bg-warning text-dark">Moyen</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-info" title="Voir fiche"><span class="fa fa-eye"></span></a>
-                                <a onclick="ouvrirPanelEvaluationFournisseur()" class="btn btn-sm btn-warning" title="Évaluer"><span class="fa fa-star"></span></a>
-                                <a href="#" class="btn btn-sm btn-secondary" title="Historique"><span class="fa fa-history"></span></a>
-                                <a href="#" class="btn btn-sm btn-dark" title="Documents"><span class="fa fa-file-alt"></span></a>
-                            </td>
-                            </tr>
-                            <!-- Ajoute d'autres fournisseurs ici -->
-                        </tbody>
+                            <!-- Les lignes seront générées dynamiquement -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script>
+ let fournisseurList;
+
+function chargerFournisseurs() {
+  $.ajax({
+    url: 'http://localhost:3000/fournisseurs',
+    
+    method: 'GET',
+    dataType: 'json',
+    success: function(fournisseurs) {
+      if (fournisseurList) {
+        fournisseurList.clear();
+      }
+
+      const items = fournisseurs.map(f => {
+        let statutClass = 'bg-secondary';
+        if (f.statut) {
+          const s = f.statut.toLowerCase();
+          if (s === 'actif') statutClass = 'bg-success';
+          else if (s === 'suspendu') statutClass = 'bg-danger';
+          else if (s === 'en attente') statutClass = 'bg-warning text-dark';
+        }
+
+        let risqueClass = 'bg-secondary';
+        let risqueText = '-';
+        if (f.niveau_risque) {
+          risqueText = f.niveau_risque;
+          switch (f.niveau_risque.toLowerCase()) {
+            case 'faible': risqueClass = 'bg-success'; break;
+            case 'moyen': risqueClass = 'bg-warning text-dark'; break;
+            case 'élevé':
+            case 'eleve': risqueClass = 'bg-danger'; break;
+          }
+        }
+
+        let contactsText = '-';
+        if (f.contacts && f.contacts.length) {
+          contactsText = f.contacts.map(c => c.nom).join(', ');
+        }
+
+        return {
+          nom: f.nom || '',
+          type: f.statut_juridique || f.type || '',
+          statut: `<span class="badge ${statutClass}">${f.statut || ''}</span>`,
+          contact: f.nom_contact_principal || contactsText,
+          score: (typeof f.score === 'number') ? f.score.toFixed(2) : '-',
+          risque: `<span class="badge ${risqueClass}">${risqueText}</span>`,
+          actions: `
+           <a 
+              data-bs-toggle="modal"  
+              data-fournisseur-id="${f.id || ''}" 
+              data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}"  
+              data-bs-target="#ficheFournisseur" 
+              class="btn btn-sm btn-info btn-fiche-fournisseur" 
+              title="Voir fiche">
+              <span class="fa fa-eye"></span>
+            </a>
+
+            <button class="btn btn-sm btn-warning btn-evaluer-fournisseur" 
+            data-fournisseur-id="${f.id || ''}" 
+            data-fournisseur-nom="${f.nom ? f.nom.replace(/\"/g, '&quot;') : ''}"
+            title="Évaluer">
+            <span class="fa fa-star"></span>
+            </button>
+            <a data-bs-toggle="modal" class="btn btn-sm btn-secondary" data-bs-target="#HistoFournisseur" title="Historique"><span class="fa fa-history"></span></a>
+            <a 
+                class="btn btn-sm btn-dark btn-docs-fournisseur" 
+                data-fournisseur-id="${f.id || ''}" 
+                data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}" 
+                data-bs-toggle="modal"
+                data-bs-target="#modalDocsFournisseur"
+                title="Documents">
+                <span class="fa fa-file-alt"></span>
+              </a>          `
+        };
+      });
+
+      if (!fournisseurList) {
+        fournisseurList = new List('tableFournisseurs', {
+          valueNames: ["nom", "type", "statut", "contact", "score", "risque", "actions"],
+          page: 5,
+          pagination: true,
+          item: `<tr>
+            <td class="nom"></td>
+            <td class="type"></td>
+            <td class="statut"></td>
+            <td class="contact"></td>
+            <td class="score"></td>
+            <td class="risque"></td>
+            <td class="actions"></td>
+          </tr>`
+        });
+      }
+
+      fournisseurList.add(items);
+
+      if (typeof fournisseurList.page === 'function') {
+        fournisseurList.page(1);
+      }
+    },
+    error: function() {
+      // Si tu as une fonction showAlert, sinon utilise alert()
+      if (typeof showAlert === 'function') {
+        showAlert('Erreur lors du chargement des fournisseurs', 'danger');
+      } else {
+        alert('Erreur lors du chargement des fournisseurs');
+      }
+    }
+  });
+}
+
+$(document).ready(() => {
+  chargerFournisseurs();
+});
+
+$(document).on('fournisseurAjoute', () => {
+  chargerFournisseurs();
+});
+
+</script>
+</tbody>
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-3">

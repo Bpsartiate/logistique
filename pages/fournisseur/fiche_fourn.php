@@ -41,28 +41,28 @@
                 <h5><i class="fas fa-id-badge me-2 text-secondary"></i>Informations de base</h5>
                 <dl class="row">
                   <dt class="col-sm-4"><i class="fas fa-building me-1 text-muted"></i>Nom du fournisseur</dt>
-                  <dd class="col-sm-8 fw-semibold">Société Alpha SARL</dd>
+                  <dd class="col-sm-8 fw-semibold"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-tag me-1 text-muted"></i>Nom commercial</dt>
-                  <dd class="col-sm-8">Alpha Logistique</dd>
+                  <dd class="col-sm-8" id="nomCommercial"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-file-invoice me-1 text-muted"></i>Numéro d'identification fiscale</dt>
-                  <dd class="col-sm-8"><span class="badge bg-info">NIF: 123456789</span> <span class="badge bg-info ms-1">TVA: 987654321</span></dd>
+                  <dd class="col-sm-8"><span class="badge bg-info">NIF: <span id="nif"></span></span> <span class="badge bg-info ms-1">TVA: <span id="tva"></span></span></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-balance-scale me-1 text-muted"></i>Statut juridique</dt>
-                  <dd class="col-sm-8">SARL</dd>
+                  <dd class="col-sm-8" id="statutJuridique"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-map-marker-alt me-1 text-muted"></i>Adresse du siège social</dt>
-                  <dd class="col-sm-8">12 rue de la Logistique, 75000 Kibwe, Goma</dd>
+                  <dd class="col-sm-8" id="adresseSiege"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-file-invoice-dollar me-1 text-muted"></i>Adresse de facturation</dt>
-                  <dd class="col-sm-8">B.P. 123, Goma</dd>
+                  <dd class="col-sm-8" id="adresseFacturation"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-truck me-1 text-muted"></i>Adresse de livraison</dt>
-                  <dd class="col-sm-8">Entrepôt Nord, Ndosho, Goma</dd>
+                  <dd class="col-sm-8" id="adresseLivraison"></dd>
 
                   <dt class="col-sm-4"><i class="fas fa-globe me-1 text-muted"></i>Site web</dt>
-                  <dd class="col-sm-8"><a href="https://www.societealpha.com" target="_blank" rel="noopener">www.societealpha.com <i class="fas fa-external-link-alt ms-1 fs--2"></i></a></dd>
+                  <dd class="col-sm-8"><a href="#" target="_blank" rel="noopener" id="siteWeb"></a></dd>
                 </dl>
               </div>
               </div>
@@ -73,23 +73,23 @@
               <dl class="row">
                 
                 <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>RIB / IBAN</dt>
-                <dd class="col-sm-8">CD55 0012 0345 6789 0123 45</dd>
+                <dd class="col-sm-8" id="rib"></dd>
 
                 <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>Nom de la Banque</dt>
-                <dd class="col-sm-8">Equity</dd>
+                <dd class="col-sm-8" id="nomBanque"></dd>
 
                 <dt class="col-sm-4"><i class="fas fa-university me-1 text-muted"></i>Address de la Banque</dt>
-                <dd class="col-sm-8">Goma Drc, avec du Lac N123 </dd>
+                <dd class="col-sm-8" id="adresseBanque"></dd>
 
 
                 <dt class="col-sm-4"><i class="fas fa-clock me-1 text-muted"></i>Conditions de paiement</dt>
-                <dd class="col-sm-8">30 jours fin de mois</dd>
+                <dd class="col-sm-8" id="conditionsPaiement"></dd>
 
                 <dt class="col-sm-4"><i class="fas fa-coins me-1 text-muted"></i>Devise</dt>
-                <dd class="col-sm-8">USD</dd>
+                <dd class="col-sm-8" ><span class="badge text-transform_uppercase bg-info" id="devise"></span></dd>
 
                 <dt class="col-sm-4"><i class="fas fa-chart-line me-1 text-muted"></i>Informations de crédit</dt>
-                <dd class="col-sm-8"><span class="badge bg-success">Solvable</span></dd>
+                <dd class="col-sm-8" id="infosCredit"></dd>
               </dl>
               </div>
               </div>
@@ -97,7 +97,7 @@
             <!-- div 2 : Informations de contact -->
             <div class="mt-4">
               <h5><i class="fas fa-address-book me-2 text-secondary"></i>Informations de contact</h5>
-              <table class="table table-bordered table-striped align-middle">
+              <table class="table table-bordered table-striped align-middle" id="contactsTable">
                 <thead class="table-light">
                   <tr>
                     <th><i class="fas fa-user-tag me-1"></i>Type de contact</th>
@@ -107,28 +107,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><span class="badge bg-primary">Principal</span></td>
-                    <td>Jean Dupont, Directeur</td>
-                    <td><a href="tel:+243999999999" class="text-decoration-none">+243 999 999 999</a></td>
-                    <td><a href="mailto:jean.dupont@societealpha.com">jean.dupont@societealpha.com</a></td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge bg-success">Facturation</span></td>
-                    <td>Marie Curie, Comptable</td>
-                    <td><a href="tel:+243998888777" class="text-decoration-none">+243 998 888 777</a></td>
-                    <td><a href="mailto:facturation@societealpha.com">facturation@societealpha.com</a></td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge bg-warning text-dark">Technique</span></td>
-                    <td>Paul kabeza, Responsable Technique</td>
-                    <td><a href="tel:+243997777666" class="text-decoration-none">+243 997 777 666</a></td>
-                    <td><a href="mailto:technique@societealpha.com">technique@societealpha.com</a></td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-phone-alt"></i> Téléphone général</td>
-                    <td colspan="3"><a href="tel:+243999999999" class="text-decoration-none fw-semibold">+243 999 999 999</a></td>
-                  </tr>
+                  <!-- Contacts dynamiques -->
                 </tbody>
               </table>
             </div>
@@ -140,16 +119,17 @@
               <div class="col-md-12">
                 <div class="mt-4">
                   <h5><i class="fas fa-boxes me-2 text-secondary"></i>Produits / Services</h5>
-                  <ul class="list-unstyled ps-3">
-                    <li><i class="fas fa-check-circle text-success me-2"></i>Matériel logistique</li>
-                    <li><i class="fas fa-check-circle text-success me-2"></i>Transport</li>
-                    <li><i class="fas fa-check-circle text-success me-2"></i>Services de maintenance</li>
-                    <li><i class="fas fa-check-circle text-success me-2"></i>Fournitures diverses</li>
+                  <ul class="list-unstyled ps-3" id="produitsList">
+                    <!-- Produits/services dynamiques -->
                   </ul>
-                  <p><strong>Description :</strong> Fourniture et maintenance de matériel logistique, transport national et international, services techniques associés.</p>
-                  <p><strong>Tarifs :</strong> Sur demande ou via catalogue dédié.</p>
-                  <p><strong>Délai de livraison standard :</strong> 5 à 7 jours ouvrés selon disponibilité.</p>
-                  <p><strong>Conditions de garantie :</strong> Garantie standard de 12 mois sur matériel, conditions spécifiques selon contrat.</p>
+                  <!-- Description -->
+                  <div id="descriptionProduit" class="mt-3"></div>
+                  <!-- Tarifs -->
+                  <div id="tarifsProduit" class="mt-3"></div>
+                  <!-- Délai de livraison -->
+                  <div id="delaiLivraison" class="mt-3"></div>
+                  <!-- Garantie -->
+                  <div id="conditionsGarantie" class="mt-3"></div>
                 </div>
               </div>
               <!-- div 5 : Informations contractuelles -->
@@ -158,23 +138,20 @@
                   <h5><i class="fas fa-file-contract me-2 text-secondary"></i>Informations contractuelles</h5>
                   <dl class="row">
                     <dt class="col-sm-4"><i class="fas fa-calendar-alt me-1 text-muted"></i>Date de début de la relation</dt>
-                    <dd class="col-sm-8">15 Janvier 2020</dd>
+                    <dd class="col-sm-8" id="dateDebutRelation"></dd>
 
                     <dt class="col-sm-4"><i class="fas fa-calendar-times me-1 text-muted"></i>Date de fin de contrat</dt>
-                    <dd class="col-sm-8">15 Janvier 2025</dd>
+                    <dd class="col-sm-8" id="dateFinContrat"></dd>
 
                     <dt class="col-sm-4"><i class="fas fa-file-alt me-1 text-muted"></i>Conditions générales de vente</dt>
-                    <dd class="col-sm-8"><a href="#" target="_blank" rel="noopener">Voir CGV <i class="fas fa-external-link-alt ms-1 fs--2"></i></a></dd>
+                    <dd class="col-sm-8" id="cgv"></dd>
 
                     <dt class="col-sm-4"><i class="fas fa-hashtag me-1 text-muted"></i>Référence contrat</dt>
-                    <dd class="col-sm-8">CONTRAT-2020-ALPHA-001</dd>
+                    <dd class="col-sm-8" id="refContrat"></dd>
 
                     <dt class="col-sm-4"><i class="fas fa-file-download me-1 text-muted"></i>Documents contractuels</dt>
                     <dd class="col-sm-8">
-                      <ul class="list-unstyled mb-0">
-                        <li><a href="#" target="_blank" rel="noopener"><i class="fas fa-file-pdf text-danger me-1"></i>Contrat cadre 2020</a></li>
-                        <li><a href="#" target="_blank" rel="noopener"><i class="fas fa-file-alt text-secondary me-1"></i>Annexes contractuelles</a></li>
-                      </ul>
+                    <ul class="list-unstyled mb-0" id="documentsContractuels"></ul>
                     </dd>
                   </dl>
                 </div>
@@ -185,33 +162,33 @@
               <h5><i class="fas fa-tachometer-alt me-2 text-secondary"></i>Performance</h5>
               <div class="row text-center">
                 <div class="col-md-3">
-                  <h3 class="text-success"><i class="fas fa-check-circle me-1"></i>95%</h3>
-                  <p>Qualité des produits/services</p>
+                  <h3 class="text-success" id="perfQualite"></h3>
+                  <p id="perfQualiteTxt"></p>
                 </div>
                 <div class="col-md-3">
-                  <h3 class="text-warning"><i class="fas fa-clock me-1"></i>90%</h3>
-                  <p>Respect des délais</p>
+                  <h3 class="text-warning" id="perfDelais"></h3>
+                  <p id="perfDelaisTxt"></p>
                 </div>
                 <div class="col-md-3">
-                  <h3 class="text-info"><i class="fas fa-bolt me-1"></i>92%</h3>
-                  <p>Réactivité</p>
+                  <h3 class="text-info" id="perfReactivite"></h3>
+                  <p id="perfReactiviteTxt"></p>
                 </div>
                 <div class="col-md-3">
-                  <h3 class="text-primary"><i class="fas fa-smile me-1"></i>88%</h3>
-                  <p>Satisfaction client</p>
+                  <h3 class="text-primary" id="perfSatisfaction"></h3>
+                  <p id="perfSatisfactionTxt"></p>
                 </div>
               </div>
               <h6 class="mt-3">Notes internes</h6>
-              <p>Fournisseur fiable avec un bon respect des délais. Quelques retards signalés en février 2025.</p>
+              <p id="notesInternes"></p>
             </div>
 
             <!-- div 7 : Autres informations -->
             <div class="mt-4">
               <h5><i class="fas fa-info me-2 text-secondary"></i>Autres informations</h5>
               <ul>
-                <li><i class="fas fa-certificate text-success me-1"></i>Certifications : ISO 9001 (valide jusqu'en 2026), Certificat environnemental</li>
-                <li><i class="fas fa-sticky-note text-warning me-1"></i>Remarques : Partenaire stratégique pour les opérations en RDC. Forte capacité d’adaptation.</li>
-                <li><i class="fas fa-clock text-muted me-1"></i>Date de dernière mise à jour : 01 Avril 2025</li>
+                <li id="certifications"></li>
+                <li id="remarques"></li>
+                <li id="dateMaj"></li>
               </ul>
             </div>
           </div>
@@ -248,31 +225,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Qualité</td>
-                    <td>95%</td>
-                    <td>Très bonne qualité constante</td>
-                  </tr>
-                  <tr>
-                    <td>Délais</td>
-                    <td>90%</td>
-                    <td>Respect des délais sauf en février 2025</td>
-                  </tr>
-                  <tr>
-                    <td>Service</td>
-                    <td>92%</td>
-                    <td>Bon service client</td>
-                  </tr>
-                  <tr>
-                    <td>Conformité</td>
-                    <td>88%</td>
-                    <td>Certifications à jour</td>
-                  </tr>
-                  <tr>
-                    <td>Communication</td>
-                    <td>85%</td>
-                    <td>Amélioration possible sur le suivi</td>
-                  </tr>
+                  <!-- Critères d'évaluation dynamiques -->
                 </tbody>
               </table>
               <button class="btn btn-success btn-sm mb-2">Ajouter / Modifier une évaluation</button>
@@ -283,10 +236,7 @@
             <div class="row justify-content-center ">
               <div class="col-md-10">
                 <h6>Historique des évaluations</h6>
-                <ul class="list-group">
-                  <li class="list-group-item">10/04/2025 - Score global 92% - <span class="text-success">Validé</span></li>
-                  <li class="list-group-item">15/01/2024 - Score global 89% - <span class="text-success">Validé</span></li>
-                </ul>
+                <ul class="list-group" id="historiqueEvaluations"></ul>
               </div>
             </div>
           </div>
@@ -295,27 +245,7 @@
             <div class="mb-3">
               <h6>Liste des documents</h6>
               <ul class="list-group mb-2">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Contrat cadre 2024
-                  <span>
-                    <span class="badge bg-success me-2" title="Valide jusqu'au 31/12/2024">Valide</span>
-                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i></a>
-                  </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Certificat ISO 9001
-                  <span>
-                    <span class="badge bg-warning text-dark me-2" title="Expire bientôt">Expire bientôt</span>
-                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i></a>
-                  </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Questionnaire fournisseur
-                  <span>
-                    <span class="badge bg-danger me-2" title="Expiré">Expiré</span>
-                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i></a>
-                  </span>
-                </li>
+                <!-- Documents dynamiques -->
               </ul>
               <form class="d-flex align-items-center gap-2">
                 <input type="file" class="form-control form-control-sm" />
@@ -338,27 +268,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>24/04/2025 09:15</td>
-                    <td>Marie Laurent</td>
-                    <td><span class="text-success"><i class="fas fa-plus-circle"></i> Ajout</span></td>
-                    <td>Contrat fournisseur</td>
-                    <td><a href="#"><i class="fas fa-file-alt me-1"></i>Voir le document</a></td>
-                  </tr>
-                  <tr>
-                    <td>23/04/2025 17:40</td>
-                    <td>Ali Ben Said</td>
-                    <td><span class="text-primary"><i class="fas fa-check-circle"></i> Validation</span></td>
-                    <td>Commande CMD-20250415-001</td>
-                    <td><i class="fas fa-truck me-1"></i>Statut passé à "Livrée"</td>
-                  </tr>
-                  <tr>
-                    <td>20/02/2025 13:30</td>
-                    <td>Jean Kalume</td>
-                    <td><span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Incident</span></td>
-                    <td>Livraison</td>
-                    <td><i class="fas fa-box-open me-1"></i>Marchandise endommagée</td>
-                  </tr>
+                  <!-- Historique dynamique -->
                 </tbody>
               </table>
             </div>
@@ -368,10 +278,10 @@
           <div class="tab-pane fade" id="conformite" role="tabpanel" aria-labelledby="conformite-tab">
             <h6>Conformité et code de conduite</h6>
             <ul>
-              <li>Code de bonne conduite signé : <span class="badge bg-success">Oui</span></li>
-              <li>Questionnaire fournisseur (Annexe 10) : <a href="#" class="btn btn-sm btn-outline-primary">Voir / Remplir</a></li>
-              <li>Certifications à jour : <span class="badge bg-success">Oui</span></li>
-              <li>Dernier audit conformité : 10/04/2025</li>
+              <li id="codeConduite"></li>
+              <li id="questionnaireFournisseur"></li>
+              <li id="certificationsConformite"></li>
+              <li id="dernierAudit"></li>
             </ul>
             <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-book me-1"></i>Consulter le code de conduite</a>
           </div>
@@ -389,3 +299,141 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function chargerFicheFournisseur(id) {
+  // Infos générales
+  $.get('http://localhost:3000/fournisseurs', function(fournisseurs) {
+    const f = fournisseurs.find(f => f.id == id);
+    if (!f) return;
+    // Infos générales
+    $('#ficheFournisseur .fw-semibold').text(f.nom || '');
+    // Fil d'Ariane : nom du fournisseur
+    $('#ficheFournisseur .breadcrumb-item.active').html(`<i class="fas fa-building me-1"></i>${f.nom || ''}`);
+    $('#ficheFournisseur #nomCommercial').text(f.nom_commercial || '');
+    $('#ficheFournisseur #nif').text(f.nif || '');
+    $('#ficheFournisseur #tva').text(f.tva || '');
+    $('#ficheFournisseur #statutJuridique').text(f.statut_juridique || '');
+    $('#ficheFournisseur #adresseSiege').text(f.adresse_siege || '');
+    $('#ficheFournisseur #adresseFacturation').text(f.adresse_facturation || '');
+    $('#ficheFournisseur #adresseLivraison').text(f.adresse_livraison || '');
+    $('#ficheFournisseur #siteWeb').attr('href', f.site_web || '#').text(f.site_web || '');
+    // Financières
+    $('#ficheFournisseur #rib').text(f.rib_iban || '');
+    $('#ficheFournisseur #nomBanque').text(f.banque || '');
+    $('#ficheFournisseur #adresseBanque').text(f.adresse_banque || '');
+    $('#ficheFournisseur #conditionsPaiement').text(f.conditions_paiement || '');
+    $('#ficheFournisseur #devise').text(f.devise || '');
+    $('#ficheFournisseur #infosCredit').text(f.credit_info || '');
+    // Contacts
+    let contactsHtml = '';
+    if (f.contacts && f.contacts.length) {
+      f.contacts.forEach(function(c) {
+        let type = c.type_contact ? c.type_contact.toLowerCase() : '';
+        let badgeClass = 'success';
+        if (type === 'principal') badgeClass = 'success';
+        else if (type === 'facturation') badgeClass = 'primary';
+        else if (type === 'technique') badgeClass = 'warning text-dark';
+        contactsHtml += `<tr><td><span class="badge bg-${badgeClass}">${c.type_contact}</span></td><td>${c.nom}</td><td><a href="tel:${c.telephone}">${c.telephone}</a></td><td><a href="mailto:${c.email}">${c.email}</a></td></tr>`;
+      });
+    }
+    $('#ficheFournisseur #contactsTable tbody').html(contactsHtml);
+    // Produits/services
+    let produitsHtml = '';
+    if (f.produits && f.produits.length) {
+      f.produits.forEach(p => {
+        produitsHtml += `<li><i class="fas fa-check-circle text-success me-2"></i>${p.description}</li>`;
+      });
+    }
+    $('#ficheFournisseur #produitsList').html(produitsHtml);
+    // Description
+    $('#ficheFournisseur #descriptionProduit').html(`<strong>Description :</strong> ${f.description || ''}`);
+    // Tarifs
+    $('#ficheFournisseur #tarifsProduit').html(`<strong>Tarifs :</strong> ${f.tarifs || ''}`);
+    // Délai de livraison
+    $('#ficheFournisseur #delaiLivraison').html(`<strong>Délai de livraison standard :</strong> ${f.delai_livraison || ''}`);
+    // Garantie
+    $('#ficheFournisseur #conditionsGarantie').html(`<strong>Conditions de garantie :</strong> ${f.conditions_garantie || ''}`);
+    // Contractuelles
+    $('#ficheFournisseur #dateDebutRelation').text(f.date_debut_relation || '');
+    $('#ficheFournisseur #dateFinContrat').text(f.date_fin_contrat || '');
+    $('#ficheFournisseur #cgv').html(f.conditions_generales_vente ? `<span>${f.conditions_generales_vente}</span>` : (f.cgv ? `<a href="${f.cgv}" target="_blank">Voir CGV</a>` : ''));
+    $('#ficheFournisseur #refContrat').text(f.reference_contrat || '');
+    let docsContratHtml = '';
+    if (f.documents_contractuels && f.documents_contractuels.length) {
+      f.documents_contractuels.forEach(doc => {
+        docsContratHtml += `<li><a href="${doc.url}" target="_blank"><i class="fas fa-file-alt me-1"></i>${doc.nom}</a></li>`;
+      });
+    }
+    $('#ficheFournisseur #documentsContractuels').html(docsContratHtml);
+    // Performance
+    $('#ficheFournisseur #perfQualite').html(f.perf_qualite ? `<i class="fas fa-check-circle me-1"></i>${f.perf_qualite}%` : '');
+    $('#ficheFournisseur #perfQualiteTxt').text(f.perf_qualite_txt || '');
+    $('#ficheFournisseur #perfDelais').html(f.perf_delais ? `<i class="fas fa-clock me-1"></i>${f.perf_delais}%` : '');
+    $('#ficheFournisseur #perfDelaisTxt').text(f.perf_delais_txt || '');
+    $('#ficheFournisseur #perfReactivite').html(f.perf_reactivite ? `<i class="fas fa-bolt me-1"></i>${f.perf_reactivite}%` : '');
+    $('#ficheFournisseur #perfReactiviteTxt').text(f.perf_reactivite_txt || '');
+    $('#ficheFournisseur #perfSatisfaction').html(f.perf_satisfaction ? `<i class="fas fa-smile me-1"></i>${f.perf_satisfaction}%` : '');
+    $('#ficheFournisseur #perfSatisfactionTxt').text(f.perf_satisfaction_txt || '');
+    $('#ficheFournisseur #notesInternes').text(f.notes_internes || '');
+    // Autres infos
+    $('#ficheFournisseur #certifications').text(f.certifications || '');
+    $('#ficheFournisseur #remarques').text(f.remarques || '');
+    $('#ficheFournisseur #dateMaj').text(f.date_maj || '');
+    // Conformité
+    $('#ficheFournisseur #codeConduite').text(f.code_conduite || '');
+    $('#ficheFournisseur #questionnaireFournisseur').text(f.questionnaire_fournisseur || '');
+    $('#ficheFournisseur #certificationsConformite').text(f.certifications_conformite || '');
+    $('#ficheFournisseur #dernierAudit').text(f.dernier_audit || '');
+    // Statut utilisateur (footer)
+    $('#ficheFournisseur .me-auto.text-muted').html(`Connecté en tant que <strong>${f.role_utilisateur || 'Utilisateur'}</strong>`);
+  });
+
+  // Documents
+  $.get('http://localhost:3000/documents/' + id, function(docs) {
+    let html = '';
+    docs.forEach(doc => {
+      html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+        ${doc.nom_original}
+        <span>
+          <span class="badge bg-${doc.statut_validite==='Valide'?'success':doc.statut_validite==='Expiré'?'danger':'warning text-dark'} me-2" title="${doc.statut_validite}">${doc.statut_validite}</span>
+          ${doc.url_public ? `<a href="${doc.url_public}" class="btn btn-sm btn-outline-primary" download><i class="fas fa-download"></i></a>` : ''}
+        </span>
+      </li>`;
+    });
+    $('#documents .list-group').html(html);
+  });
+
+  // Evaluations
+  $.get('http://localhost:3000/evaluations/count/' + id, function(data) {
+    // Afficher le nombre d'évaluations si besoin
+    // $('#evaluations .nb-evals').text(data.count);
+  });
+
+  // Incidents
+  $.get('http://localhost:3000/incidents/' + id, function(incidents) {
+    let histHtml = '';
+    if (incidents && incidents.length) {
+      incidents.forEach(inc => {
+        histHtml += `<tr>
+          <td>${inc.date_signalement || ''}</td>
+          <td>${inc.utilisateur || ''}</td>
+          <td><span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Incident</span></td>
+          <td>${inc.type_incident || ''}</td>
+          <td>${inc.description || ''}</td>
+        </tr>`;
+      });
+    } else {
+      histHtml = '<tr><td colspan="5" class="text-center text-muted">Aucun incident</td></tr>';
+    }
+    $('#historique table tbody').html(histHtml);
+  });
+}
+
+// Ouvre la fiche fournisseur et charge les données
+$(document).on('click', '.btn-fiche-fournisseur', function() {
+  const id = $(this).data('fournisseur-id');
+  chargerFicheFournisseur(id);
+  $('#ficheFournisseur').modal('show');
+});
+</script>

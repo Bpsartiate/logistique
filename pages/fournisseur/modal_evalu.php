@@ -1,196 +1,172 @@
-<div class="modal modal-dialog-scrollable fade  " id="panelEvaluationFournisseur" tabindex="-1" aria-labelledby="panelEvaluationFournisseur" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-scrollable">
-    <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="panelEvaluationModalLabel">Panel d’évaluation des fournisseurs</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                            <form id="formPanelEvaluation" novalidate>
+<div class="modal modal-dialog-scrollable fade" id="panelEvaluationFournisseur" tabindex="-1" aria-labelledby="panelEvaluationFournisseur" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="formEvalFournisseur" class="modal-content" novalidate>
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEvalFournisseurLabel">
+          Évaluation du fournisseur <span id="fournisseurNom"></span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">  
 
-                        <table class="table table-bordered table-hover align-middle">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">Fournisseur</th>
-                                    <th colspan="3" class="text-center">Qualité</th>
-                                    <th colspan="3" class="text-center">Délai</th>
-                                    <th colspan="3" class="text-center">Conformité</th>
-                                    <th colspan="3" class="text-center">Service</th>
-                                    <th colspan="3" class="text-center">Communication</th>
-                                    <th colspan="5" class="text-center">Totaux par critère</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">M1</th>
-                                    <th class="text-center">M2</th>
-                                    <th class="text-center">M3</th>
-                                    <th class="text-center">M1</th>
-                                    <th class="text-center">M2</th>
-                                    <th class="text-center">M3</th>
-                                    <th class="text-center">M1</th>
-                                    <th class="text-center">M2</th>
-                                    <th class="text-center">M3</th>
-                                    <th class="text-center">M1</th>
-                                    <th class="text-center">M2</th>
-                                    <th class="text-center">M3</th>
-                                    <th class="text-center">M1</th>
-                                    <th class="text-center">M2</th>
-                                    <th class="text-center">M3</th>
-                                    <th class="text-center">Qualité</th>
-                                    <th class="text-center">Délai</th>
-                                    <th class="text-center">Conformité</th>
-                                    <th class="text-center">Service</th>
-                                    <th class="text-center">Communication</th>
-                                </tr>
-                            </thead>
-                            <tbody id="evaluationTableBody">
-                                <!-- Généré dynamiquement -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        
+        <!-- Nombre d’évaluateurs -->
+        <div class="alert alert-info py-2" id="nbEvaluateursFournisseur">
+          <strong>Déjà <span id="compteurEvaluateurs">0</span> personne(s) ont évalué ce fournisseur.</strong>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Enregistrer les évaluations</button>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Qualité des produits/services <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="qualite" min="1" max="10" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Respect des délais <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="delai" min="1" max="10" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Service client <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="service" min="1" max="10" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Communication <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="communication" min="1" max="10" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Coût & Compétitivité <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="cout" min="1" max="10">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Conformité <span class="text-primary">(1 à 10)</span></label>
+            <input type="number" class="form-control" name="conformite" min="1" max="10" required>
+          </div>
         </div>
-      </form>
-    </div>
+
+        <div class="mb-3">
+          <label class="form-label">Commentaires (facultatif)</label>
+          <textarea class="form-control" name="commentaires" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Soumettre l’évaluation</button>
+      </div>
+    </form>
   </div>
 </div>
 <script>
-    // Exemple de données
-const membresPanel = [
-  { id: 1, nom: 'Alice' },
-  { id: 2, nom: 'Bob' },
-  { id: 3, nom: 'Charlie' }
-];
+  $(function () {
+  let fournisseurSelectionneId = null;
 
-const fournisseursSoumissionnaires = [
-  { id: 101, nom: 'Fournisseur A' },
-  { id: 102, nom: 'Fournisseur B' },
-  { id: 103, nom: 'Fournisseur C' }
-];
+  // Fonction pour ouvrir la modale avec le fournisseur ciblé
+  function ouvrirModaleEvaluation(idFournisseur, nomFournisseur) {
+    fournisseurSelectionneId = idFournisseur;
+    $('#fournisseurNom').text(nomFournisseur);
 
-// Fonction pour générer le tableau d’évaluation
-function genererTableauEvaluation() {
-  const tbody = document.getElementById('evaluationTableBody');
-  tbody.innerHTML = '';
+    // Remise à zéro du formulaire et validation
+    const $form = $('#formEvalFournisseur');
+    $form[0].reset();
+    $form.removeClass('was-validated');
 
-  const criteres = ['Qualité', 'Délai', 'Conformité', 'Service', 'Communication'];
-  fournisseursSoumissionnaires.forEach(fournisseur => {
-    const tr = document.createElement('tr');
-    tr.dataset.fournisseurId = fournisseur.id;
-
-    // Nom fournisseur
-    const tdNom = document.createElement('td');
-    tdNom.textContent = fournisseur.nom;
-    tr.appendChild(tdNom);
-
-    // Pour chaque critère, pour chaque membre, ajouter une cellule
-    criteres.forEach(critere => {
-      membresPanel.forEach(membre => {
-        const tdCritere = document.createElement('td');
-        tdCritere.classList.add('text-center');
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.min = 0;
-        input.max = 100;
-        input.value = 0;
-        input.classList.add('form-control', 'form-control-sm', 'text-center');
-        input.dataset.membreId = membre.id;
-        input.dataset.fournisseurId = fournisseur.id;
-        input.dataset.critere = critere;
-        input.placeholder = critere;
-        input.addEventListener('input', () => {
-          if (input.value < 0) input.value = 0;
-          if (input.value > 100) input.value = 100;
-          calculerTotalFournisseur(fournisseur.id);
-        });
-        tdCritere.appendChild(input);
-        tr.appendChild(tdCritere);
-      });
+    // Charger le nombre d’évaluations existantes pour ce fournisseur
+    $.ajax({
+      url: `http://localhost:3000/evaluations/count/${idFournisseur}`, // À créer côté serveur (expliqué après)
+      method: 'GET',
+      success: function (res) {
+        $('#compteurEvaluateurs').text(res.count || 0);
+      },
+      error: function () {
+        $('#compteurEvaluateurs').text('0');
+      }
     });
 
-    // Colonnes totaux par critère
-    criteres.forEach(critere => {
-      const tdTotalCritere = document.createElement('td');
-      tdTotalCritere.classList.add('text-center', 'fw-bold');
-      tdTotalCritere.id = `totalFournisseur_${fournisseur.id}_${critere}`;
-      tdTotalCritere.textContent = '0';
-      tr.appendChild(tdTotalCritere);
-    });
-
-    tbody.appendChild(tr);
-  });
-}
-
-// Calcul du total des notes pour un fournisseur
-function calculerTotalFournisseur(fournisseurId) {
-  const criteres = ['Qualité', 'Délai', 'Conformité', 'Service', 'Communication'];
-  let totalGlobal = 0;
-  criteres.forEach(critere => {
-    const inputs = document.querySelectorAll(`input[data-fournisseur-id="${fournisseurId}"][data-critere="${critere}"]`);
-    let totalCritere = 0;
-    inputs.forEach(input => {
-      const val = parseInt(input.value, 10);
-      if (!isNaN(val)) totalCritere += val;
-    });
-    document.getElementById(`totalFournisseur_${fournisseurId}_${critere}`).textContent = totalCritere;
-    totalGlobal += totalCritere;
-  });
-}
-
-// Gestion du submit du formulaire
-document.getElementById('formPanelEvaluation').addEventListener('submit', e => {
-  e.preventDefault();
-
-  // Validation : toutes les notes doivent être entre 0 et 100
-  const inputs = document.querySelectorAll('#formPanelEvaluation input[type="number"]');
-  for (const input of inputs) {
-    const val = parseInt(input.value, 10);
-    if (isNaN(val) || val < 0 || val > 100) {
-      alert('Veuillez saisir des notes valides entre 0 et 100.');
-      input.focus();
-      return;
-    }
+    // Ouvrir la modale Bootstrap
+    const myModal = new bootstrap.Modal(document.getElementById('panelEvaluationFournisseur'));
+    myModal.show();
   }
 
-  // Récupérer les évaluations
-  const evaluations = [];
-  fournisseursSoumissionnaires.forEach(fournisseur => {
-    const evalFournisseur = { fournisseurId: fournisseur.id, membres: {}, total: 0 };
-    membresPanel.forEach(membre => {
-      evalFournisseur.membres[membre.id] = {};
-      let totalMembre = 0;
-      ['Qualité', 'Délai', 'Conformité', 'Service', 'Communication'].forEach(critere => {
-        const input = document.querySelector(`input[data-fournisseur-id="${fournisseur.id}"][data-membre-id="${membre.id}"][data-critere="${critere}"]`);
-        const note = parseInt(input.value, 10);
-        evalFournisseur.membres[membre.id][critere] = note;
-        if (!isNaN(note)) totalMembre += note;
-      });
-      evalFournisseur.total += totalMembre;
+  // Gestion Submit formulaire evaluation
+  $('#formEvalFournisseur').on('submit', function (e) {
+    e.preventDefault();
+    const form = this;
+
+    if (!form.checkValidity()) {
+      e.stopPropagation();
+      $(form).addClass('was-validated');
+      return;
+    }
+
+    // Validation stricte JS : toutes les notes doivent être entre 1 et 10
+    const champs = ['qualite','delai','service','communication','conformite','cout'];
+    for (const champ of champs) {
+      if (form[champ] && form[champ].value) {
+        const val = parseInt(form[champ].value, 10);
+        if (val < 1 || val > 10) {
+          if (typeof showAlert === 'function') {
+            showAlert('Chaque note doit être comprise entre 1 et 10.', 'danger');
+          } else {
+            alert('Chaque note doit être comprise entre 1 et 10.');
+          }
+          form[champ].focus();
+          return;
+        }
+      }
+    }
+
+    // Collecte des données (adapter aux champs attendus par le backend)
+    const qualite = parseInt(form.qualite.value, 10);
+    const delai = parseInt(form.delai.value, 10);
+    const service = parseInt(form.service.value, 10);
+    const communication = parseInt(form.communication.value, 10);
+    const conformite = parseInt(form.conformite.value, 10);
+    const cout = form.cout.value ? parseInt(form.cout.value, 10) : null;
+    const commentaire = form.commentaires.value || '';
+
+    const data = {
+      id_fournisseur: fournisseurSelectionneId,
+      id_utilisateur: 1, // A remplacer par utilisateur connecté réel
+      qualite,
+      delai,
+      service,
+      communication,
+      conformite,
+      cout,
+      commentaire
+    };
+
+    $.ajax({
+      url: 'http://localhost:3000/evaluations',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function (res) {
+        if (typeof showAlert === 'function') {
+          showAlert(res.message || "Évaluation enregistrée avec succès", 'success');
+        } else {
+          alert(res.message || "Évaluation enregistrée avec succès");
+        }
+        // Cacher modale
+        bootstrap.Modal.getInstance(document.getElementById('panelEvaluationFournisseur')).hide();
+        // Déclencher événement custom pour rafraîchir liste fournisseurs si besoin
+        $(document).trigger('fournisseurAjoute');
+      },
+      error: function (xhr) {
+        if (typeof showAlert === 'function') {
+          showAlert(`Erreur : ${xhr.responseJSON?.error || xhr.statusText}`, 'danger');
+        } else {
+          alert(`Erreur : ${xhr.responseJSON?.error || xhr.statusText}`);
+        }
+      }
     });
-    evaluations.push(evalFournisseur);
   });
 
-  console.log('Évaluations enregistrées:', evaluations);
-
-  alert('Évaluations enregistrées avec succès !');
-
-  // Ici tu peux envoyer les données au backend via AJAX ou autre
-  // Fermer modal si besoin
-  const modalEl = document.getElementById('panelEvaluationModal');
-  const modal = bootstrap.Modal.getInstance(modalEl);
-  modal.hide();
-});
-
-// Initialisation
-document.addEventListener('DOMContentLoaded', () => {
-  genererTableauEvaluation();
+  // Exemple : ouverture modale à partir d’un bouton "Évaluer" (à adapter selon ta table)
+  $(document).on('click', '.btn-evaluer-fournisseur', function () {
+    const idF = $(this).data('fournisseur-id');
+    const nomF = $(this).data('fournisseur-nom');
+    ouvrirModaleEvaluation(idF, nomF);
+  });
 });
 
 </script>
+
+

@@ -80,21 +80,21 @@
                     <!-- Un contact principal obligatoire -->
                     <div class="row g-2 align-items-end contact-row">
                       <div class="col-md-3">
-                        <select class="form-select" name="typeContact[]">
+                        <select class="form-select" name="type_contact[]">
                           <option value="principale">Principale</option>
                           <option value="facturation">Facturation</option>
                           <option value="technique">Technique</option>
                         </select>
                       </div>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" name="nomContact[]" placeholder="Nom du contact principal" required>
+                        <input type="text" class="form-control" name="nom_contact[]" placeholder="Nom du contact principal" required>
                         <div class="invalid-feedback">Le nom du contact principal est obligatoire.</div>
                       </div>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" name="telContact[]" placeholder="Téléphone">
+                        <input type="text" class="form-control" name="telephone_contact[]" placeholder="Téléphone">
                       </div>
                       <div class="col-md-4">
-                        <input type="email" class="form-control" name="mailContact[]" placeholder="Email">
+                        <input type="email" class="form-control" name="email_contact[]" placeholder="Email">
                       </div>
                       <div class="col-md-1">
                         <button type="button" class="btn btn-danger btn-sm remove-contact" style="display:none">&times;</button>
@@ -145,6 +145,10 @@
                   <label for="remarques" class="form-label">Remarques</label>
                   <textarea class="form-control" id="remarques" name="remarques" rows="2"></textarea>
                 </div>
+                <div class="mb-3">
+                  <label for="conditionsGeneralesVente" class="form-label">Conditions générales de vente</label>
+                  <textarea class="form-control" id="conditionsGeneralesVente" name="conditionsGeneralesVente" rows="2" placeholder="Ex: 30 jours fin de mois, pénalités, CGV, etc."></textarea>
+                </div>
                 <!-- IMPORT DOCUMENTS -->
                 <div class="mb-3">
                   <label for="documentsDemandes" class="form-label">Documents/informations demandés (import)</label>
@@ -171,91 +175,123 @@
   </div>
 </div>
 
+<!-- JQuery + Bootstrap JS inclus dans ta page -->
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-// Ajout dynamique de contacts
-$(document).ready(function() {
+$(function() {
+  // -------- 1. Ajout/suppression contact dynamique --------
   $('#addContactBtn').on('click', function() {
-    const contactRow = `<div class="row g-2 align-items-end contact-row">
-      <div class="col-md-3 mt-4">
-        <select class="form-select" name="typeContact[]">
-          <option value="principale">Principale</option>
-          <option value="facturation">Facturation</option>
-          <option value="technique">Technique</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <input type="text" class="form-control" name="nomContact[]" placeholder="Nom">
-      </div>
-      <div class="col-md-6">
-        <input type="text" class="form-control" name="telContact[]" placeholder="Téléphone">
-      </div>
-      <div class="col-md-4">
-        <input type="email" class="form-control" name="mailContact[]" placeholder="Email">
-      </div>
-      <div class="col-md-1">
-        <button type="button" class="btn btn-danger btn-sm remove-contact">&times;</button>
-      </div>
-    </div>`;
-    $('#contactsContainer').append(contactRow);
+    const contactHtml = `
+      <div class="row g-2 align-items-end contact-row mt-2">
+        <div class="col-md-3">
+          <select class="form-select" name="type_contact[]">
+            <option value="principale">Principale</option>
+            <option value="facturation">Facturation</option>
+            <option value="technique">Technique</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" name="nom_contact[]" placeholder="Nom du contact" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" name="telephone_contact[]" placeholder="Téléphone">
+        </div>
+        <div class="col-md-2">
+          <input type="email" class="form-control" name="email_contact[]" placeholder="Email">
+        </div>
+        <div class="col-md-1 d-flex align-items-center">
+          <button type="button" class="btn btn-danger btn-sm remove-contact">&times;</button>
+        </div>
+      </div>`;
+    $('#contactsContainer').append(contactHtml);
     $('#contactsContainer .remove-contact').show();
   });
 
-  // Suppression d'un contact
   $('#contactsContainer').on('click', '.remove-contact', function() {
     $(this).closest('.contact-row').remove();
-    // Si un seul contact reste, cacher le bouton supprimer
     if ($('#contactsContainer .contact-row').length === 1) {
       $('#contactsContainer .remove-contact').hide();
     }
   });
 
-  // Au chargement, cacher le bouton supprimer si un seul contact
   if ($('#contactsContainer .contact-row').length === 1) {
     $('#contactsContainer .remove-contact').hide();
   }
-});
-document.getElementById('documentsDemandes').addEventListener('change', function() {
-  let out = '';
-  for (const file of this.files) {
-    out += `<li>${file.name}</li>`;
-  }
-  document.getElementById('listeDemandes').innerHTML = out;
-});
-document.getElementById('documentsFournis').addEventListener('change', function() {
-  let out = '';
-  for (const file of this.files) {
-    out += `<li>${file.name}</li>`;
-  }
-  document.getElementById('listeFournis').innerHTML = out;
-});
-$('#formAjoutFournisseur').on('submit', function(e) {
-  e.preventDefault();
 
-  if (!this.checkValidity()) {
-    this.classList.add('was-validated');
-    return;
-  }
-
-  const formData = new FormData(this);
-
-  $.ajax({
-    url: 'http://localhost:3000/fournisseurs',
-    method: 'POST',
-    data: formData,
-    processData: false,  // Ne pas traiter les données, laisser FormData gérer
-    contentType: false,  // Ne pas fixer le content-type, laisser FormData gérer
-    success: function(res) {
-      showAlert(res.message, 'success');
-      $('#addSupplierModal').modal('hide');
-      $('#formAjoutFournisseur')[0].reset();
-      $('#formAjoutFournisseur').removeClass('was-validated');
-      // Ici tu peux déclencher un rafraîchissement de la liste des fournisseurs
-    },
-    error: function(xhr) {
-      showAlert('Erreur: ' + (xhr.responseJSON?.error || xhr.statusText), 'danger');
-    }
+  // -------- 2. Affichage fichiers sélectionnés --------
+  $('#documentsDemandes').on('change', function() {
+    let html = '';
+    for(const file of this.files) html += `<li>${file.name}</li>`;
+    $('#listeDemandes').html(html);
   });
+  $('#documentsFournis').on('change', function() {
+    let html = '';
+    for(const file of this.files) html += `<li>${file.name}</li>`;
+    $('#listeFournis').html(html);
+  });
+
+  // -------- 3. Soumission AJAX (AJOUT FOURNISSEUR) --------
+  $('#formAjoutFournisseur').on('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    if(!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return;
+    }
+
+    const formData = new FormData();
+
+    // Ajoute tous les champs simples (hors contacts et fichiers)
+    $(form).serializeArray().forEach(function(item) {
+      // Sauf les champs dynamiques de contacts, qui sont gérés plus bas !
+      if (!['type_contact[]','nom_contact[]','telephone_contact[]','email_contact[]'].includes(item.name)) {
+        formData.append(item.name, item.value);
+      }
+    });
+
+    // Ajoute les contacts champ par champ, noms EXACT attendus par le back (attention !)
+    $(form).find('.contact-row').each(function() {
+      formData.append('typeContact', $(this).find('select[name="type_contact[]"]').val());
+      formData.append('nomContact', $(this).find('input[name="nom_contact[]"]').val());
+      formData.append('telContact', $(this).find('input[name="telephone_contact[]"]').val());
+      formData.append('mailContact', $(this).find('input[name="email_contact[]"]').val());
+    });
+
+    // Ajoute les fichiers pour documentsDemandes
+    const demandesFiles = form.documentsDemandes.files;
+    for(let i=0; i<demandesFiles.length; i++) {
+      formData.append('documentsDemandes', demandesFiles[i]);
+    }
+    // Ajoute les fichiers pour documentsFournis
+    const fournisFiles = form.documentsFournis.files;
+    for(let i=0; i<fournisFiles.length; i++) {
+      formData.append('documentsFournis', fournisFiles[i]);
+    }
+
+    $.ajax({
+      url: 'http://localhost:3000/fournisseurs',
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(res) {
+        showAlert(res.message || 'Fournisseur ajouté avec succès', 'success');
+        // alert(res.message || 'Fournisseur ajouté !');
+        $('#addSupplierModal').modal('hide');
+        $('#formAjoutFournisseur')[0].reset();
+        $('#formAjoutFournisseur').removeClass('was-validated');
+        $('#contactsContainer').find('.contact-row:gt(0)').remove(); // Garde le principal, reset les autres
+        $('#listeDemandes, #listeFournis').empty();
+        // Mets à jour la liste fournisseurs si besoin
+        if(typeof chargerFournisseurs === 'function') chargerFournisseurs();
+      },
+      error: function(xhr) {
+        alert('Erreur: ' + (xhr.responseJSON?.error || xhr.statusText));
+      }
+    });
+  });
+
 });
 
 </script>
