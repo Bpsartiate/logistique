@@ -1,17 +1,5 @@
-<div class="modal modal-dialog-scrollable fade modal-lg" id="HistoFournisseur" tabindex="-1" aria-labelledby="HistoFournisseur" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-            <!-- modal header -->
-            <div class="modal-header inline-flex ">
-                <h5 class="mb-0">Historique Fournisseur: Société Alpha</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <!-- modal body -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div id="tableHistorique" data-list='{"valueNames":["dateheure","utilisateur","role","action","objet","detail","commentaire"],"page":3,"pagination":true}'>
+<!-- historique -->
+ <div id="tableHistorique" data-list='{"valueNames":["dateheure","utilisateur","role","action","objet","detail","commentaire"],"page":3,"pagination":true}'>
                                 <div class="row align-items-center g-2 mb-3">
                                     <div class="col-md-3">
                                     <!-- Filtre par action -->
@@ -134,14 +122,7 @@
                                     <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    </div>
-                
-                </div>
-            </div>
-    </div>
-</div>
+ <!--  -->
 <script>
 function exportHistorique() {
   const rows = document.querySelectorAll('#tableHistorique tbody tr');

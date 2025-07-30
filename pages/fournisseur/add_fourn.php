@@ -277,13 +277,15 @@ $(function() {
       contentType: false,
       success: function(res) {
         showAlert(res.message || 'Fournisseur ajouté avec succès', 'success');
-        // alert(res.message || 'Fournisseur ajouté !');
         $('#addSupplierModal').modal('hide');
+        setTimeout(function() {
+          $('.modal-backdrop').remove();
+          $('body').removeClass('modal-open');
+        }, 500);
         $('#formAjoutFournisseur')[0].reset();
         $('#formAjoutFournisseur').removeClass('was-validated');
         $('#contactsContainer').find('.contact-row:gt(0)').remove(); // Garde le principal, reset les autres
         $('#listeDemandes, #listeFournis').empty();
-        // Mets à jour la liste fournisseurs si besoin
         if(typeof chargerFournisseurs === 'function') chargerFournisseurs();
       },
       error: function(xhr) {

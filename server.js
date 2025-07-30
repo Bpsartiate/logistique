@@ -4,12 +4,24 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const { Sequelize, DataTypes } = require('sequelize');
+
+
+// Initialisation Sequelize (adapter les paramètres si besoin)
+const sequelize = new Sequelize('c1743910c_aurorardc', 'root', 'aurora@2021RDC', {
+  host: 'localhost',
+  dialect: 'mysql',
+  logging: false
+});
+
 
 const app = express();
 const port = 3000;
 
+
 app.use(cors());
 app.use(express.json());
+
 
 // ======== Config MySQL ========
 const db = mysql.createConnection({
@@ -19,6 +31,7 @@ const db = mysql.createConnection({
   database: 'c1743910c_aurorardc'
 });
 
+
 db.connect(err => {
   if (err) {
     console.error('Erreur connexion MySQL:', err);
@@ -27,10 +40,12 @@ db.connect(err => {
   console.log('Connecté à la base MySQL');
 });
 
+
 // ======== Upload fichiers (Multer & fichiers statiques) ========
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 app.use('/uploads', express.static(uploadDir)); // Expose le dossier uploads côté web
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
@@ -40,6 +55,7 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
+
 
 /**
  * Statut automatique d’un document selon sa date d’expiration.
@@ -56,6 +72,7 @@ function getStatutValidite(date_expiration) {
   return 'Valide';
 }
 
+
 // ======== FONCTIONNEL Fournisseurs/Evaluations/Incidents (conforme tes messages) ========
 function majStatutEtScoreAvecIncidents(fournisseurId, callback) {
   db.query(
@@ -70,9 +87,26 @@ function majStatutEtScoreAvecIncidents(fournisseurId, callback) {
         (err2, incRes) => {
           if (err2) return callback(err2);
           const maxGravite = incRes[0].max_gravite || 0;
+
+
           let statut = 'En attente';
-          if (score >= 80 && maxGravite < 3) statut = 'Actif';
-          else if (score < 50 || maxGravite >= 3) statut = 'Suspendu';
+
+
+          // Nouvelle échelle de statut plus fine et lisible
+          if (score >= 85 && maxGravite < 2) {
+            statut = 'Actif';
+          } else if (score >= 70 && maxGravite < 3) {
+            statut = 'Sous surveillance';
+          } else if (score >= 50 && maxGravite < 4) {
+            statut = 'Risque élevé';
+          } else {
+            statut = 'Suspendu';
+          }
+
+
+          // Historique des changements de statut (à implémenter si besoin)
+
+
           db.query(
             'UPDATE t_fournisseur SET score = ?, statut = ? WHERE id = ?', 
             [score, statut, fournisseurId], 
@@ -83,6 +117,7 @@ function majStatutEtScoreAvecIncidents(fournisseurId, callback) {
     }
   );
 }
+
 
 // ========= FOURNISSEUR : Création + listing ==========
 app.post('/fournisseurs', upload.fields([
@@ -129,6 +164,7 @@ app.post('/fournisseurs', upload.fields([
     }
     const fournisseurId = result.insertId;
 
+
     // Contacts
     const ensureArray = d => Array.isArray(d) ? d : (d ? [d] : []);
     const typesContact = ensureArray(req.body.typeContact);
@@ -155,6 +191,7 @@ app.post('/fournisseurs', upload.fields([
     }
     const produitsToInsert = produitsList.map(p => [fournisseurId, p]);
 
+
     // Documents
     const documentsToInsert = [];
     if (req.files) {
@@ -173,6 +210,7 @@ app.post('/fournisseurs', upload.fields([
       });
     }
 
+
     const processNext = (err, cb) => {
       if (err) {
         console.error(err);
@@ -180,6 +218,7 @@ app.post('/fournisseurs', upload.fields([
       }
       cb();
     }
+
 
     const insertContacts = (cb) => {
       if (contactsToInsert.length === 0) return cb();
@@ -194,11 +233,13 @@ app.post('/fournisseurs', upload.fields([
       db.query('INSERT INTO t_document_fournisseur (fournisseur_id, nom_original,type_document, nom_genere, chemin_fichier) VALUES ?', [documentsToInsert], (e) => processNext(e, cb));
     }
 
+
     insertContacts(() => insertProduits(() => insertDocuments(() => {
       res.status(201).json({ message: "Fournisseur créé avec succès", fournisseurId });
     })));
   });
 });
+
 
 // Route GET fournisseurs avec contact principal
 app.get('/fournisseurs', (req, res) => {
@@ -241,9 +282,21 @@ app.get('/fournisseurs', (req, res) => {
   });
 });
 
+
 // ========= Evaluations =========
-app.post('/evaluations', (req, res) => {
-  const { id_fournisseur, id_utilisateur, qualite, delai, conformite, service, communication, commentaire } = req.body;
+// GET toutes les évaluations d'un fournisseur
+app.get('/evaluations/:idFournisseur', (req, res) => {
+  const id = req.params.idFournisseur;
+  db.query('SELECT * FROM t_evaluation_fournisseur WHERE id_fournisseur = ? ORDER BY id_evaluation DESC', [id], (err, results) => {
+    if (err) {
+      console.error('Erreur récupération évaluations :', err);
+      return res.status(500).json({ error: 'Erreur serveur' });
+    }
+    res.json(results);
+  });
+});
+app.post('/evaluations', upload.none(), (req, res) => {
+  const { id_fournisseur, id_utilisateur, id_entreprise, qualite, delai, conformite, service, communication, commentaire } = req.body;
   let cout = Number(req.body.cout);
   if (isNaN(cout) || cout < 1 || cout > 10) cout = 0;
   const notes = [
@@ -256,9 +309,11 @@ app.post('/evaluations', (req, res) => {
   ];
   const score_global = notes.reduce((a, b) => a + b, 0) / notes.length;
 
+
   const dataEval = {
     id_fournisseur,
     id_utilisateur,
+    id_entreprise, // Ajouté ici
     qualite,
     delai,
     conformite,
@@ -268,6 +323,7 @@ app.post('/evaluations', (req, res) => {
     score_global,
     commentaire: commentaire || null
   };
+
 
   db.query('INSERT INTO t_evaluation_fournisseur SET ?', dataEval, (err) => {
     if (err) {
@@ -281,6 +337,7 @@ app.post('/evaluations', (req, res) => {
   });
 });
 
+
 app.get('/evaluations/count/:idFournisseur', (req, res) => {
   const id = req.params.idFournisseur;
   db.query('SELECT COUNT(*) AS count FROM t_evaluation_fournisseur WHERE id_fournisseur = ?', [id], (err, results) => {
@@ -292,10 +349,13 @@ app.get('/evaluations/count/:idFournisseur', (req, res) => {
   });
 });
 
+
 // ========= Incidents =========
-app.post('/incidents', (req, res) => {
+// Correction: multer middleware to parse files and multipart/form-data
+app.post('/incidents', upload.array('fichiers[]'), (req, res) => {
   const { id_fournisseur, type_incident, gravite, description } = req.body;
   if (!id_fournisseur || !type_incident || !gravite) return res.status(400).json({ error: 'Champs obligatoires manquants' });
+
 
   const incidentData = { id_fournisseur, type_incident, gravite, statut_incident: 'ouvert', description };
   db.query('INSERT INTO t_incident_fournisseur SET ?', incidentData, (err, result) => {
@@ -307,6 +367,7 @@ app.post('/incidents', (req, res) => {
   });
 });
 
+
 app.get('/incidents/:idFournisseur', (req, res) => {
   const id = req.params.idFournisseur;
   db.query('SELECT * FROM t_incident_fournisseur WHERE id_fournisseur = ?', [id], (err, results) => {
@@ -315,7 +376,9 @@ app.get('/incidents/:idFournisseur', (req, res) => {
   });
 });
 
+
 // ========= DOCUMENTS FOURNISSEUR : Liste, Compte, Ajouter, Modifier (infos+fichier), Supprimer =========
+
 
 // Lister docs fournisseur (+ statut validité dynamique)
 app.get('/documents/:fournisseur_id', (req, res) => {
@@ -346,6 +409,7 @@ app.get('/documents/:fournisseur_id', (req, res) => {
   );
 });
 
+
 // Compter les documents d'un fournisseur
 app.get('/documents/count/:fournisseur_id', (req, res) => {
   const fournisseurId = req.params.fournisseur_id;
@@ -358,11 +422,13 @@ app.get('/documents/count/:fournisseur_id', (req, res) => {
   });
 });
 
+
 // Ajouter un document (upload)
 app.post('/documents', upload.single('fichier'), (req, res) => {
   const { id_fournisseur, type, nom, date_emission, date_expiration } = req.body;
   if (!id_fournisseur || !type || !nom || !req.file)
     return res.status(400).json({ error: 'Champs obligatoires manquants' });
+
 
   const data = {
     fournisseur_id: id_fournisseur,
@@ -375,6 +441,7 @@ app.post('/documents', upload.single('fichier'), (req, res) => {
     // ajoute_par: req.user?.id_utilisateur || null  // À ajouter si auth
   };
 
+
   db.query('INSERT INTO t_document_fournisseur SET ?', data, err => {
     if (err) {
       console.error('Erreur ajout document:', err);
@@ -386,14 +453,17 @@ app.post('/documents', upload.single('fichier'), (req, res) => {
   });
 });
 
+
 // Editer (infos ET fichier si remplacé)
 app.put('/documents/:id_document', upload.single('fichier'), (req, res) => {
   const id = req.params.id_document;
   const { nom, type, date_emission, date_expiration } = req.body;
 
+
   db.query('SELECT chemin_fichier FROM t_document_fournisseur WHERE id=?', [id], (err, result) => {
     if (err || result.length === 0) return res.status(404).json({ error: 'Document introuvable' });
     const ancienChemin = result[0].chemin_fichier;
+
 
     let updateFields = {
       nom_original: nom,
@@ -405,6 +475,7 @@ app.put('/documents/:id_document', upload.single('fichier'), (req, res) => {
       updateFields.nom_genere = req.file.filename;
       updateFields.chemin_fichier = req.file.path;
     }
+
 
     db.query(
       'UPDATE t_document_fournisseur SET ? WHERE id=?',
@@ -422,6 +493,7 @@ app.put('/documents/:id_document', upload.single('fichier'), (req, res) => {
     );
   });
 });
+
 
 // Supprimer un document (physique + BDD)
 app.delete('/documents/:id_document', (req, res) => {
@@ -441,4 +513,115 @@ app.delete('/documents/:id_document', (req, res) => {
   });
 });
 
+
 app.listen(port, () => console.log(`Serveur démarré sur http://localhost:${port}`));
+//  Modèle Sequelize pour t_ponderations_entreprise
+const PonderationEntreprise = sequelize.define('t_ponderations_entreprise', {
+  id_entreprise: { type: Sequelize.INTEGER, primaryKey: true },
+  critere: { type: Sequelize.STRING, primaryKey: true },
+  poids: { type: Sequelize.FLOAT, allowNull: false, defaultValue: 0 }
+}, { tableName: 't_ponderations_entreprise', timestamps: false });
+// Route POST pour enregistrer les pondérations (validation somme ≤100)
+app.post('/api/ponderations', async (req, res) => {
+  const { id_entreprise, ponderations } = req.body;
+  const criteres = ['qualite', 'communication', 'cout', 'service', 'delai', 'conformite'];
+
+
+  let total = 0;
+  for (const c of criteres) {
+    const val = parseFloat(ponderations[c]) || 0;
+    if (val < 0) return res.status(400).json({ error: 'Pondérations négatives non autorisées' });
+    total += val;
+  }
+  if (total > 100)
+    return res.status(400).json({ error: 'La somme des pondérations doit être ≤ 100%' });
+
+
+  await Promise.all(criteres.map(critere =>
+    PonderationEntreprise.upsert({
+      id_entreprise, critere, poids: parseFloat(ponderations[critere]) || 0
+    })
+  ));
+
+
+  return res.json({ success: true });
+});
+
+
+// GET /api/ponderations/:id_entreprise
+app.get('/api/ponderations/:id_entreprise', async (req, res) => {
+  const id_entreprise = req.params.id_entreprise;
+  try {
+    const ponderations = await PonderationEntreprise.findAll({ where: { id_entreprise } });
+    // Format: [{ critere, poids }, ...]
+    res.json(ponderations.map(p => ({ critere: p.critere, poids: p.poids })));
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+
+// DELETE /api/ponderations/:id_entreprise/:critere
+app.delete('/api/ponderations/:id_entreprise/:critere', async (req, res) => {
+  const { id_entreprise, critere } = req.params;
+  try {
+    await PonderationEntreprise.destroy({ where: { id_entreprise, critere } });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+
+// GET score global pondéré pour une entreprise
+app.get('/api/score-global-pondere/:id_entreprise', (req, res) => {
+  const id_entreprise = Number(req.params.id_entreprise);
+  if (isNaN(id_entreprise)) return res.status(400).json({ error: 'ID entreprise invalide' });
+
+
+  const sql = `
+    SELECT AVG(score_global) AS avg_score
+    FROM t_evaluation_fournisseur
+    WHERE id_entreprise = ? AND score_global IS NOT NULL
+  `;
+  db.query(sql, [id_entreprise], (err, results) => {
+    if (err) {
+      console.error('Erreur calcul score global pondéré:', err);
+      return res.status(500).json({ error: 'Erreur serveur' });
+    }
+    const score = results[0].avg_score !== null ? parseFloat(results[0].avg_score) : null;
+    res.json({ score });
+  });
+});
+//  Calcul du score pondéré pour une évaluation
+async function calculScorePonderePourcent(idEvaluation, idEntreprise) {
+  const eval = await Evaluation.findOne({ where: { id_evaluation: idEvaluation, id_entreprise: idEntreprise } });
+  if (!eval) throw new Error('Évaluation introuvable');
+
+
+  const ponderations = await PonderationEntreprise.findAll({ where: { id_entreprise: idEntreprise } });
+  const poidsMap = {};
+  ponderations.forEach(p => { poidsMap[p.critere] = (p.poids || 0) / 100; });
+
+
+  const criteres = ['qualite', 'communication', 'cout', 'service', 'delai', 'conformite'];
+
+
+  let somme = 0, sommePoids = 0;
+  criteres.forEach(c => {
+    const note = eval[c];
+    const poids = poidsMap[c] || 0;
+    if (note !== null && poids > 0) {
+      somme += note * poids;
+      sommePoids += poids;
+    }
+  });
+
+
+  if (sommePoids === 0) return null;
+
+
+  const score = somme / sommePoids;
+  await eval.update({ score_global: score });
+  return score;
+}

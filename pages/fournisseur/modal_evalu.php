@@ -57,8 +57,8 @@
   $(function () {
   let fournisseurSelectionneId = null;
 
-  // Fonction pour ouvrir la modale avec le fournisseur ciblé
-  function ouvrirModaleEvaluation(idFournisseur, nomFournisseur) {
+  // Fonction globale pour ouvrir la modale avec le fournisseur ciblé
+  window.ouvrirModaleEvaluation = function(idFournisseur, nomFournisseur) {
     fournisseurSelectionneId = idFournisseur;
     $('#fournisseurNom').text(nomFournisseur);
 
@@ -69,7 +69,7 @@
 
     // Charger le nombre d’évaluations existantes pour ce fournisseur
     $.ajax({
-      url: `http://localhost:3000/evaluations/count/${idFournisseur}`, // À créer côté serveur (expliqué après)
+      url: `http://localhost:3000/evaluations/count/${idFournisseur}`,
       method: 'GET',
       success: function (res) {
         $('#compteurEvaluateurs').text(res.count || 0);
@@ -83,6 +83,15 @@
     const myModal = new bootstrap.Modal(document.getElementById('panelEvaluationFournisseur'));
     myModal.show();
   }
+
+  // Rouvrir la fiche fournisseur à la fermeture du modal d'évaluation (même sans soumission)
+  $('#panelEvaluationFournisseur').on('hidden.bs.modal', function() {
+    if (window.chargerFicheFournisseur && typeof window.chargerFicheFournisseur === 'function' && typeof fournisseurSelectionneId !== 'undefined') {
+      window.chargerFicheFournisseur(fournisseurSelectionneId);
+      const ficheModal = new bootstrap.Modal(document.getElementById('ficheFournisseur'));
+      ficheModal.show();
+    }
+  });
 
   // Gestion Submit formulaire evaluation
   $('#formEvalFournisseur').on('submit', function (e) {
@@ -121,9 +130,12 @@
     const cout = form.cout.value ? parseInt(form.cout.value, 10) : null;
     const commentaire = form.commentaires.value || '';
 
+    // Récupère l'id_entreprise (à adapter selon ton contexte, ici variable globale ou à définir)
+    const idEntreprise = window.idEntreprise || 1; // À adapter selon ton app
     const data = {
       id_fournisseur: fournisseurSelectionneId,
       id_utilisateur: 1, // A remplacer par utilisateur connecté réel
+      id_entreprise: idEntreprise, // Ajouté ici
       qualite,
       delai,
       service,
@@ -148,6 +160,14 @@
         bootstrap.Modal.getInstance(document.getElementById('panelEvaluationFournisseur')).hide();
         // Déclencher événement custom pour rafraîchir liste fournisseurs si besoin
         $(document).trigger('fournisseurAjoute');
+        // Rouvrir la fiche fournisseur et rafraîchir ses données
+        setTimeout(function() {
+          if (window.chargerFicheFournisseur && typeof window.chargerFicheFournisseur === 'function' && typeof fournisseurSelectionneId !== 'undefined') {
+            window.chargerFicheFournisseur(fournisseurSelectionneId);
+            const ficheModal = new bootstrap.Modal(document.getElementById('ficheFournisseur'));
+            ficheModal.show();
+          }
+        }, 400);
       },
       error: function (xhr) {
         if (typeof showAlert === 'function') {

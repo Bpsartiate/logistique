@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="modalIncidentFournisseur" tabindex="-1" aria-labelledby="modalIncidentFournisseurLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <form class="modal-content" id="formSignalementIncident" novalidate>
@@ -73,3 +74,81 @@
     </form>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  
+// Gestion soumission du formulaire d'incident
+$(function() {
+  let incidentFournisseurId = null;
+
+  // Ecouteur unique sur la fermeture de la modale, placé ici hors submit
+  $('#modalIncidentFournisseur').on('hidden.bs.modal', function() {
+    if (window.chargerFicheFournisseur && typeof window.chargerFicheFournisseur === 'function' && incidentFournisseurId !== null) {
+      window.chargerFicheFournisseur(incidentFournisseurId);
+      const ficheModal = new bootstrap.Modal(document.getElementById('ficheFournisseur'));
+      ficheModal.show();
+    }
+  });
+
+  // Fonction globale pour ouvrir la modale avec le fournisseur sélectionné
+  window.ouvrirModalSignalerIncident = function(idFournisseur, nomFournisseur) {
+    incidentFournisseurId = idFournisseur;
+    $('#incidentFournisseurNom').text(nomFournisseur);
+    $('#formSignalementIncident')[0].reset();
+    $('#formSignalementIncident').removeClass('was-validated');
+    const myModal = new bootstrap.Modal(document.getElementById('modalIncidentFournisseur'));
+    myModal.show();
+  };
+
+  $('#formSignalementIncident').on('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+
+    if (!form.checkValidity()) {
+      e.stopPropagation();
+      $(form).addClass('was-validated');
+      return;
+    }
+
+    // Préparation des données avec FormData (gestion fichiers multiples)
+    const formData = new FormData(form);
+    formData.append('id_fournisseur', incidentFournisseurId);
+
+    // Désactiver bouton submit et afficher feedback
+    const $submitBtn = $(form).find('button[type="submit"]');
+    $submitBtn.prop('disabled', true).text('Envoi en cours...');
+
+    // URL de l’API configurable 
+    const API_BASE_URL = 'http://localhost:3000';
+
+    $.ajax({
+      url: `${API_BASE_URL}/incidents`,
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(res) {
+        if (typeof showAlert === 'function') {
+          showAlert(res.message || "Incident signalé avec succès", 'success');
+        } else {
+          alert(res.message || "Incident signalé avec succès");
+        }
+        // Fermeture de la modale
+        bootstrap.Modal.getInstance(document.getElementById('modalIncidentFournisseur')).hide();
+      },
+      error: function(xhr) {
+        if (typeof showAlert === 'function') {
+          showAlert(`Erreur : ${xhr.responseJSON?.error || xhr.statusText}`, 'danger');
+        } else {
+          alert(`Erreur : ${xhr.responseJSON?.error || xhr.statusText}`);
+        }
+      },
+      complete: function() {
+        // Réactiver bouton et remettre texte initial
+        $submitBtn.prop('disabled', false).html('<span class="fa fa-flag me-1"></span> Signaler l’incident');
+      }
+    });
+  });
+});
+
+</script>

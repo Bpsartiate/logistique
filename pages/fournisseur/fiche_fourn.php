@@ -256,23 +256,7 @@
           <!-- Onglet Historique -->
           <div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="historique-tab">
             <h6>Journal d'activité</h6>
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped table-sm">
-                <thead>
-                  <tr>
-                    <th>Date/Heure</th>
-                    <th>Utilisateur</th>
-                    <th>Action</th>
-                    <th>Objet</th>
-                    <th>Détail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Historique dynamique -->
-                </tbody>
-              </table>
-            </div>
-            <button class="btn btn-outline-primary btn-sm mt-2"><i class="fas fa-file-export me-1"></i>Exporter l'historique</button>
+               <?php include_once "historique_fourn.php" ?>
           </div>
           <!-- Onglet Conformité -->
           <div class="tab-pane fade" id="conformite" role="tabpanel" aria-labelledby="conformite-tab">
@@ -292,8 +276,8 @@
         <span class="me-auto text-muted">Connecté en tant que <strong>Responsable Achats</strong></span>
         <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
         <button class="btn btn-primary">Modifier</button>
-        <button onclick="ouvrirPanelEvaluationFournisseur()" class="btn btn-success">Ajouter évaluation</button>
-        <button class="btn btn-warning">Signaler incident</button>
+        <button id="btnOuvrirModalEvaluation" class="btn btn-success">Ajouter évaluation</button>
+        <button id="btnOuvrirModalIncident" class="btn btn-warning">Signaler incident</button>
         <button class="btn btn-outline-info">Exporter fiche</button>
       </div>
     </div>
@@ -301,11 +285,15 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+let ficheFournisseurId = null;
+let ficheFournisseurNom = null;
 function chargerFicheFournisseur(id) {
+  ficheFournisseurId = id;
   // Infos générales
   $.get('http://localhost:3000/fournisseurs', function(fournisseurs) {
     const f = fournisseurs.find(f => f.id == id);
     if (!f) return;
+    ficheFournisseurNom = f.nom || '';
     // Infos générales
     $('#ficheFournisseur .fw-semibold').text(f.nom || '');
     // Fil d'Ariane : nom du fournisseur
@@ -404,10 +392,103 @@ function chargerFicheFournisseur(id) {
     $('#documents .list-group').html(html);
   });
 
-  // Evaluations
-  $.get('http://localhost:3000/evaluations/count/' + id, function(data) {
-    // Afficher le nombre d'évaluations si besoin
-    // $('#evaluations .nb-evals').text(data.count);
+  // Evaluations : afficher l'historique et remplir le tableau des critères
+  $.get('http://localhost:3000/evaluations/' + id, function(evals) {
+    // Historique amélioré avec style et utilisateur
+    let evalHtml = '';
+    if (evals && evals.length) {
+      evals.forEach(ev => {
+        // Couleur du score global
+        let score = typeof ev.score_global === 'number' ? ev.score_global : null;
+        let color = score === null ? 'secondary' : (score * 10 < 50 ? 'danger' : 'success');
+        // Utilisateur
+        let utilisateur = ev.utilisateur || ev.auteur || '-';
+        // Date
+        let date = ev.date_evaluation ? ev.date_evaluation.substring(0, 10) : '-';
+        evalHtml += `
+        <li class="list-group-item p-3 border rounded mb-2 shadow-sm" style="background: #f8fafc;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge bg-primary"><i class="fas fa-calendar-alt me-1"></i> ${date}</span>
+               <span class="ms-2 badge bg-${ev.action && ev.action.toLowerCase() === 'modification' ? 'warning text-dark' : 'success'}">
+          <i class="fas fa-${ev.action && ev.action.toLowerCase() === 'modification' ? 'edit' : 'plus'} me-1"></i>
+          ${(ev.action && (ev.action.toLowerCase() === 'modification' || ev.action.toLowerCase() === 'modifié')) ? 'Modification' : 'Ajout'}
+        </span>
+            <span class="badge bg-info text-dark"><i class="fas fa-user me-1"></i> ${utilisateur}</span>
+          </div>
+          <div class="mb-2">
+            <span class="fw-bold">Score global :</span> <span class="badge bg-${color} fs-3">${score !== null ? (score * 10).toFixed(1) + ' %' : '-'}</span>
+          </div>
+          <table class="table table-bordered table-sm table-hover mb-2" style="background: #fff;">
+            <thead class="table-light">
+              <tr>
+                <th>Critère</th>
+                <th>Score</th>
+                <th>Commentaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Qualité</td>
+                <td>${ev.qualite !== undefined && ev.qualite !== null ? (ev.qualite * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_qualite || ''}</td>
+              </tr>
+              <tr>
+                <td>Délai</td>
+                <td>${ev.delai !== undefined && ev.delai !== null ? (ev.delai * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_delai || ''}</td>
+              </tr>
+              <tr>
+                <td>Conformité</td>
+                <td>${ev.conformite !== undefined && ev.conformite !== null ? (ev.conformite * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_conformite || ''}</td>
+              </tr>
+              <tr>
+                <td>Service</td>
+                <td>${ev.service !== undefined && ev.service !== null ? (ev.service * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_service || ''}</td>
+              </tr>
+              <tr>
+                <td>Communication</td>
+                <td>${ev.communication !== undefined && ev.communication !== null ? (ev.communication * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_communication || ''}</td>
+              </tr>
+              <tr>
+                <td>Coût</td>
+                <td>${ev.cout !== undefined && ev.cout !== null ? (ev.cout * 10) + ' %' : '-'}</td>
+                <td>${ev.commentaire_cout || ''}</td>
+              </tr>
+            </tbody>
+       
+          </table>
+          <div class="fst-italic text-muted"><i class="fas fa-comment-dots me-1"></i>${ev.commentaire || ''}</div>
+        </li>`;
+      });
+    } else {
+      evalHtml = '<li class="list-group-item text-muted text-center">Aucune évaluation</li>';
+    }
+    $('#historiqueEvaluations').html(evalHtml);
+
+    // Tableau des critères (dernière évaluation)
+    let critHtml = '';
+    if (evals && evals.length) {
+      const last = evals[0];
+      const criteres = [
+        { label: 'Qualité', val: last.qualite },
+        { label: 'Délai', val: last.delai },
+        { label: 'Conformité', val: last.conformite },
+        { label: 'Service', val: last.service },
+        { label: 'Communication', val: last.communication },
+        { label: 'Coût', val: last.cout }
+      ];
+      criteres.forEach(c => {
+        let score = (typeof c.val === 'number' && !isNaN(c.val)) ? c.val * 10 : null;
+        let color = score === null ? '' : (score < 50 ? 'danger' : 'success');
+        critHtml += `<tr><td>${c.label}</td><td><span class='badge bg-${color}'>${score !== null ? score + ' %' : '-'}</span></td><td>${last.commentaire || ''}</td></tr>`;
+      });
+    } else {
+      critHtml = `<tr><td colspan='3' class='text-center text-muted'>Aucune évaluation</td></tr>`;
+    }
+    $('#evaluations table tbody').html(critHtml);
   });
 
   // Incidents
@@ -435,5 +516,39 @@ $(document).on('click', '.btn-fiche-fournisseur', function() {
   const id = $(this).data('fournisseur-id');
   chargerFicheFournisseur(id);
   $('#ficheFournisseur').modal('show');
+});
+
+// Bouton Ajouter évaluation : ouvre le modal modal_evalu.php
+$(document).on('click', '#btnOuvrirModalEvaluation', function() {
+  // Fermer la fiche fournisseur avant d'ouvrir la modale d'évaluation
+  const ficheModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('ficheFournisseur'));
+  ficheModal.hide();
+  setTimeout(function() {
+    if (typeof window.ouvrirModaleEvaluation === 'function') {
+      window.ouvrirModaleEvaluation(ficheFournisseurId, ficheFournisseurNom);
+    } else if ($('#panelEvaluationFournisseur').length) {
+      // Si la fonction n'est pas globale, on tente d'ouvrir le modal Bootstrap
+      $('#fournisseurNom').text(ficheFournisseurNom);
+      const myModal = new bootstrap.Modal(document.getElementById('panelEvaluationFournisseur'));
+      myModal.show();
+    }
+  }, 400); // attendre la fermeture du premier modal
+});
+
+// Bouton Signaler incident : ouvre le modal signaler_incident.php
+$(document).on('click', '#btnOuvrirModalIncident', function() {
+  // Fermer la fiche fournisseur avant d'ouvrir la modale d'incident
+  const ficheModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('ficheFournisseur'));
+  ficheModal.hide();
+  setTimeout(function() {
+    if (typeof window.ouvrirModalSignalerIncident === 'function') {
+      window.ouvrirModalSignalerIncident(ficheFournisseurId, ficheFournisseurNom);
+    } else if ($('#modalIncidentFournisseur').length) {
+      // Si la fonction n'est pas globale, on tente d'ouvrir le modal Bootstrap
+      $('#incidentFournisseurNom').text(ficheFournisseurNom);
+      const myModal = new bootstrap.Modal(document.getElementById('modalIncidentFournisseur'));
+      myModal.show();
+    }
+  }, 400); // attendre la fermeture du premier modal
 });
 </script>

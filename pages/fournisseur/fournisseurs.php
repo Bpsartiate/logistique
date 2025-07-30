@@ -6,9 +6,10 @@
 <!-- Modal -->
     <?php include_once "add_fourn.php"; ?>
     <?php include_once "fiche_fourn.php" ?>
-    <?php include_once "historique_fourn.php" ?>
     <?php include_once "modal_evalu.php"; ?>
+    <?php include_once "signaler_incident.php"; ?>
     <?php include_once "docFourn.php"; ?>
+    <?php include_once "ponderation.php"; ?>
 
      <!-- conetent  end -->
       <!-- tittre -->
@@ -21,8 +22,11 @@
 
                     <div class="card-body position-relative">
                     <div class="row">
-                        <div class="col-lg-8">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="mt-3">Gestion des Fournisseurs</h5>
+                         <button class="btn mt-2 btn-primary" data-bs-toggle="modal" data-bs-target="#modalPonderations">
+                          <i class="fas fa-plus me-1"></i>Ponderations
+                          </button>
                         </div>
                     </div>
                     </div>
@@ -106,11 +110,16 @@ function chargerFournisseurs() {
 
       const items = fournisseurs.map(f => {
         let statutClass = 'bg-secondary';
+        let statutContent = f.statut || '';
         if (f.statut) {
           const s = f.statut.toLowerCase();
           if (s === 'actif') statutClass = 'bg-success';
           else if (s === 'suspendu') statutClass = 'bg-danger';
-          else if (s === 'en attente') statutClass = 'bg-warning text-dark';
+          else if (s === 'en attente') {
+            statutClass = 'bg-warning text-dark';
+            // Ajout du spinner pour le style
+            statutContent = `<span class="badge bg-warning text-dark"><i class="fas fa-spinner fa-spin"></i></span>${f.statut}`;
+          }
         }
 
         let risqueClass = 'bg-secondary';
@@ -133,7 +142,7 @@ function chargerFournisseurs() {
         return {
           nom: f.nom || '',
           type: f.statut_juridique || f.type || '',
-          statut: `<span class="badge ${statutClass}">${f.statut || ''}</span>`,
+          statut: `<span class="badge ${statutClass}">${statutContent}</span>`,
           contact: f.nom_contact_principal || contactsText,
           score: (typeof f.score === 'number') ? f.score.toFixed(2) : '-',
           risque: `<span class="badge ${risqueClass}">${risqueText}</span>`,
@@ -154,7 +163,6 @@ function chargerFournisseurs() {
             title="Évaluer">
             <span class="fa fa-star"></span>
             </button>
-            <a data-bs-toggle="modal" class="btn btn-sm btn-secondary" data-bs-target="#HistoFournisseur" title="Historique"><span class="fa fa-history"></span></a>
             <a 
                 class="btn btn-sm btn-dark btn-docs-fournisseur" 
                 data-fournisseur-id="${f.id || ''}" 
