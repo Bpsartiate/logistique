@@ -101,7 +101,7 @@
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 <script src="vendors/echarts/echarts.min.js"></script>
 <script>
 $(document).ready(function() {

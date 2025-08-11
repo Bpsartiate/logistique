@@ -46,6 +46,7 @@
         <!-- table -->
 <script>
 // Fonction pour afficher une alerte Bootstrap
+
 function showAlert(message, type = 'info', timeout = 4000) {
   const alertId = 'alert-' + Date.now();
   const alertHtml = `<div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
@@ -94,21 +95,21 @@ function showAlert(message, type = 'info', timeout = 4000) {
                         <tbody class="list">
                             <!-- Les lignes seront générées dynamiquement -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
 <script>
- let fournisseurList;
+let fournisseurList;
 
 function chargerFournisseurs() {
   $.ajax({
     url: 'http://localhost:3000/fournisseurs',
-    
     method: 'GET',
     dataType: 'json',
     success: function(fournisseurs) {
-      if (fournisseurList) {
-        fournisseurList.clear();
-      }
+      if (fournisseurList) fournisseurList.clear();
 
       const items = fournisseurs.map(f => {
+        // Calcul classes et contenu badges
         let statutClass = 'bg-secondary';
         let statutContent = f.statut || '';
         if (f.statut) {
@@ -117,7 +118,6 @@ function chargerFournisseurs() {
           else if (s === 'suspendu') statutClass = 'bg-danger';
           else if (s === 'en attente') {
             statutClass = 'bg-warning text-dark';
-            // Ajout du spinner pour le style
             statutContent = `<span class="badge bg-warning text-dark"><i class="fas fa-spinner fa-spin"></i></span>${f.statut}`;
           }
         }
@@ -147,31 +147,25 @@ function chargerFournisseurs() {
           score: (typeof f.score === 'number') ? f.score.toFixed(2) : '-',
           risque: `<span class="badge ${risqueClass}">${risqueText}</span>`,
           actions: `
-           <a 
-              data-bs-toggle="modal"  
-              data-fournisseur-id="${f.id || ''}" 
-              data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}"  
-              data-bs-target="#ficheFournisseur" 
-              class="btn btn-sm btn-info btn-fiche-fournisseur" 
-              title="Voir fiche">
+            <a class="btn btn-sm btn-info btn-fiche-fournisseur"
+               data-fournisseur-id="${f.id || ''}"
+               title="Voir fiche">
               <span class="fa fa-eye"></span>
             </a>
-
-            <button class="btn btn-sm btn-warning btn-evaluer-fournisseur" 
-            data-fournisseur-id="${f.id || ''}" 
-            data-fournisseur-nom="${f.nom ? f.nom.replace(/\"/g, '&quot;') : ''}"
-            title="Évaluer">
-            <span class="fa fa-star"></span>
+            <button class="btn btn-sm btn-warning btn-evaluer-fournisseur"
+                    data-fournisseur-id="${f.id || ''}"
+                    data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}"
+                    title="Évaluer">
+              <span class="fa fa-star"></span>
             </button>
-            <a 
-                class="btn btn-sm btn-dark btn-docs-fournisseur" 
-                data-fournisseur-id="${f.id || ''}" 
-                data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}" 
-                data-bs-toggle="modal"
-                data-bs-target="#modalDocsFournisseur"
-                title="Documents">
-                <span class="fa fa-file-alt"></span>
-              </a>          `
+            <a class="btn btn-sm btn-dark btn-docs-fournisseur"
+               data-fournisseur-id="${f.id || ''}"
+               data-fournisseur-nom="${(f.nom || '').replace(/\"/g, '&quot;')}"
+               data-bs-toggle="modal"
+               data-bs-target="#modalDocsFournisseur"
+               title="Documents">
+              <span class="fa fa-file-alt"></span>
+            </a>`
         };
       });
 
@@ -193,18 +187,10 @@ function chargerFournisseurs() {
       }
 
       fournisseurList.add(items);
-
-      if (typeof fournisseurList.page === 'function') {
-        fournisseurList.page(1);
-      }
+      fournisseurList.page(1);
     },
     error: function() {
-      // Si tu as une fonction showAlert, sinon utilise alert()
-      if (typeof showAlert === 'function') {
-        showAlert('Erreur lors du chargement des fournisseurs', 'danger');
-      } else {
-        alert('Erreur lors du chargement des fournisseurs');
-      }
+      showAlert('Erreur lors du chargement des fournisseurs');
     }
   });
 }
@@ -213,8 +199,28 @@ $(document).ready(() => {
   chargerFournisseurs();
 });
 
-$(document).on('fournisseurAjoute', () => {
-  chargerFournisseurs();
+// Handler clic bouton "Voir fiche" qui récupère l'ID et ouvre modale Vue
+$(document).on('click', '.btn-fiche-fournisseur', function() {
+  const idFournisseur = $(this).data('fournisseur-id');
+  if (!idFournisseur) {
+    alert('ID Fournisseur manquant');
+    return;
+  }
+
+fetch(`http://localhost:3000/fournisseurs/${idFournisseur}`)
+  .then(res => {
+    if (!res.ok) throw new Error('Erreur de chargement fournisseur');
+    return res.json();
+  })
+  .then(data => {
+    if (window.ouvrirModalFournisseur) {
+      window.ouvrirModalFournisseur(data);
+    } else {
+      alert('Méthode ouvrirModalFournisseur introuvable');
+    }
+  })
+  .catch(err => alert('Erreur : ' + err.message));
+
 });
 
 </script>

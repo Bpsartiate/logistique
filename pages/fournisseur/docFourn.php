@@ -166,37 +166,165 @@
 <script>
   // ---- VARIABLES GLOBALES ----
 let fournisseurDocsSelectionneId = null;
-let docsFournisseurList = []; // liste complète reçue du serveur, stockée pour les filtres/édit
+let docsFournisseurList = [];
 
-// ---- 1. OUVERTURE DU MODAL DOCUMENTS ----
-$(document).on('click', '.btn-docs-fournisseur', function() {
-  fournisseurDocsSelectionneId = $(this).data('fournisseur-id');
-  const nom = $(this).data('fournisseur-nom');
-  $('#nomFournisseurDocs').text(nom);
-  chargerDocsFournisseur(fournisseurDocsSelectionneId);
+// --- Initialisation globale ---
+$(function() {
+
+  // ---- 1. OUVERTURE DU MODAL DOCUMENTS ----
+  $(document).on('click', '.btn-docs-fournisseur', function() {
+    fournisseurDocsSelectionneId = $(this).data('fournisseur-id');
+    const nom = $(this).data('fournisseur-nom');
+    $('#nomFournisseurDocs').text(nom);
+    chargerDocsFournisseur(fournisseurDocsSelectionneId);
+    // Ouvre la modale principale
+    $('#modalDocsFournisseur').modal('show');
+  });
+
+  // ---- 2. FILTRES ----
+  $('#filtreTypeDoc, #filtreValiditeDoc').on('change', renderTableDocuments);
+  $('#filtreTexteDoc').on('input', renderTableDocuments);
+
+  // ---- 3. TRI PAR CLIQUE SUR HEADER ----
+  $('#tableDocumentsFournisseur').on('click', 'th.sortable', function(){
+    let col = $(this).data('col');
+    let sort = window.currentDocSort || {col: null, dir: 'asc'};
+    if(sort.col === col){
+      sort.dir = (sort.dir === 'asc') ? 'desc' : 'asc';
+    } else {
+      sort.col = col;
+      sort.dir = 'asc';
+    }
+    window.currentDocSort = sort;
+    renderTableDocuments();
+  });
+
+
+  // ---- 4. MODALE AJOUT DOCUMENT ----
+  $('#modalAjouterDocument').on('show.bs.modal', function () {
+    $('#modalDocsFournisseur').modal('hide');
+    $('#formAjouterDocument input[name="id_fournisseur"]').val(fournisseurDocsSelectionneId);
+  });
+  $('#modalAjouterDocument').on('hidden.bs.modal', function () {
+    $('#modalDocsFournisseur').modal('show');
+  });
+
+  $('#formAjouterDocument').on('submit', function(e){
+    e.preventDefault();
+    let form = this;
+    let fd = new FormData(form);
+    fd.set('id_fournisseur', fournisseurDocsSelectionneId);
+
+    $.ajax({
+      url: 'http://localhost:3000/documents',
+      method: 'POST',
+      data: fd,
+      contentType: false,
+      processData: false,
+      success: function(){ 
+        $('#modalAjouterDocument').modal('hide');
+        toastr.success('Document ajouté');
+        form.reset();
+        chargerDocsFournisseur(fournisseurDocsSelectionneId);
+      },
+      error: function(xhr){
+        toastr.error(xhr.responseJSON?.error || 'Erreur lors de l\'envoi');
+      }
+    });
+  });
+
+
+  // ---- 5. MODALE MODIFICATION DOCUMENT ----
+  $('#modalEditDocument').on('show.bs.modal', function () {
+    $('#modalDocsFournisseur').modal('hide');
+    // reset champ fichier à l'ouverture
+    $(this).find('input[name="fichier"]').val('');
+  });
+  $('#modalEditDocument').on('hidden.bs.modal', function () {
+    $('#modalDocsFournisseur').modal('show');
+  });
+
+  $(document).on('click', '.btn-edit-doc', function() {
+    let $tr = $(this).closest('tr');
+    let id = $tr.data('id');
+    let doc = docsFournisseurList.find(d => d.id == id);
+    if(!doc) return;
+
+    let $modal = $('#modalEditDocument');
+    $modal.find('input[name="id_document"]').val(id);
+    $modal.find('select[name="type"]').val(doc.type_document);
+    $modal.find('input[name="nom"]').val(doc.nom_original);
+    $modal.find('input[name="date_emission"]').val(doc.date_emission);
+    $modal.find('input[name="date_expiration"]').val(doc.date_expiration);
+    $modal.find('input[name="fichier"]').val('');
+    
+    $modal.modal('show');
+  });
+
+  $('#formEditDocument').on('submit', function(e){
+    e.preventDefault();
+    let form = this;
+    let id = $(form).find('input[name="id_document"]').val();
+    let fd = new FormData(form);
+    fd.delete('id_document');
+    $.ajax({
+      url: 'http://localhost:3000/documents/' + id,
+      method: 'PUT',
+      data: fd,
+      contentType: false,
+      processData: false,
+      success: function() {
+        toastr.success('Document modifié');
+        $('#modalEditDocument').modal('hide');
+        chargerDocsFournisseur(fournisseurDocsSelectionneId);
+      },
+      error: function(xhr){
+        toastr.error(xhr.responseJSON?.error || 'Erreur mise à jour');
+      }
+    });
+  });
+
+
+  // ---- 6. SUPPRESSION DOCUMENT ----
+  $(document).on('click', '.btn-delete-doc', function() {
+    let $tr = $(this).closest('tr');
+    let id = $tr.data('id');
+    if(!confirm("Supprimer ce document ?")) return;
+    $.ajax({
+      url: 'http://localhost:3000/documents/' + id,
+      method: 'DELETE',
+      success: function(){
+        toastr.success('Document supprimé');
+        chargerDocsFournisseur(fournisseurDocsSelectionneId);
+      },
+      error: function(xhr){
+        toastr.error(xhr.responseJSON?.error || 'Erreur suppression');
+      }
+    });
+  });
+
 });
 
-// ---- 2. CHARGEMENT ET AFFICHAGE DES DOCUMENTS ----
+// ---- 7. CHARGEMENT ET AFFICHAGE DES DOCUMENTS ----
 function chargerDocsFournisseur(idFournisseur) {
   $('#tableDocumentsFournisseur tbody').html('<tr><td colspan="6" class="text-center">Chargement...</td></tr>');
   $.get('http://localhost:3000/documents/' + idFournisseur, function(docs) {
-    docsFournisseurList = docs; // stocke la liste reçue brute
+    docsFournisseurList = docs; 
     renderTableDocuments();
   }).fail(function(){
     $('#tableDocumentsFournisseur tbody').html('<tr><td colspan="6" class="text-danger text-center">Erreur lors du chargement</td></tr>');
   });
 }
 
-// ---- 3. AFFICHAGE DU TABLEAU FILTRÉ ----
-// --- Tri ---
+// ---- 8. AFFICHAGE TABLEAU FILTRÉ, TRI ET PAGINATION ----
 window.currentDocSort = {col: null, dir: 'asc'};
+window.currentDocPage = 1;
 
 function renderTableDocuments() {
   let type = $('#filtreTypeDoc').val().toLowerCase();
   let validite = $('#filtreValiditeDoc').val();
   let texte = ($('#filtreTexteDoc').val() || '').toLowerCase();
 
-  // Filtrage JS
   let docs = docsFournisseurList.filter(doc => {
     let ok = true;
     if(type && doc.type_document.toLowerCase() !== type) ok = false;
@@ -213,31 +341,26 @@ function renderTableDocuments() {
     return ok;
   });
 
-  // Tri JS
   let sort = window.currentDocSort || {col: null, dir: 'asc'};
   if(sort.col) {
     docs = docs.slice().sort((a, b) => {
       let va = a[sort.col], vb = b[sort.col];
-      // Dates: compare as string or as date
       if(sort.col === 'date_emission' || sort.col === 'date_expiration') {
         va = va || '';
         vb = vb || '';
         return (va.localeCompare(vb, 'fr')) * (sort.dir==='asc'?1:-1);
       }
-      // Statut: custom order
       if(sort.col === 'statut_validite') {
         const order = {'valide':1, 'expire bientôt':2, 'expiré':3};
         let oa = order[(va||'').toLowerCase()]||99, ob = order[(vb||'').toLowerCase()]||99;
         return (oa-ob)*(sort.dir==='asc'?1:-1);
       }
-      // Default: string compare
       va = (va||'').toString().toLowerCase();
       vb = (vb||'').toString().toLowerCase();
       return va.localeCompare(vb, 'fr') * (sort.dir==='asc'?1:-1);
     });
   }
 
-  // Construction du html
   const $tbody = $('#tableDocumentsFournisseur tbody').empty();
   const $pagination = $('#paginationDocuments');
   const pageSize = 10;
@@ -249,14 +372,12 @@ function renderTableDocuments() {
   if(docs.length === 0) {
     $tbody.append('<tr><td colspan="6" class="text-center text-muted">Aucun document trouvé</td></tr>');
     $pagination.html('');
-    // Reset sort indicators
     $('#tableDocumentsFournisseur th.sortable .sort-indicator').html('');
     return;
   }
-  // Pagination avec .slice() puis .forEach() sur la liste paginée
+
   let start = (page-1)*pageSize;
-  let end = start+pageSize;
-  let docsList = docs.slice(start, end);
+  let docsList = docs.slice(start, start + pageSize);
   docsList.forEach(doc => {
     let badge = statutToBadge(doc.statut_validite);
     let urlAbs = doc.url_public ? ('http://localhost:3000' + doc.url_public) : ('/uploads/' + (doc.nom_genere || ''));
@@ -279,7 +400,7 @@ function renderTableDocuments() {
       </tr>
     `);
   });
-  // Pagination controls (Bootstrap style)
+
   let pagHtml = `<nav><ul class="pagination justify-content-center pagination-sm">`;
   pagHtml += `<li class="page-item${page===1?' disabled':''}"><a class="page-link" href="#" data-page="${page-1}">&laquo;</a></li>`;
   for(let i=1;i<=totalPages;i++) {
@@ -292,6 +413,7 @@ function renderTableDocuments() {
   pagHtml += `<li class="page-item${page===totalPages?' disabled':''}"><a class="page-link" href="#" data-page="${page+1}">&raquo;</a></li>`;
   pagHtml += `</ul></nav>`;
   $pagination.html(pagHtml);
+
   $pagination.off('click').on('click', 'a.page-link', function(e){
     e.preventDefault();
     let p = Number($(this).data('page'));
@@ -301,7 +423,6 @@ function renderTableDocuments() {
     }
   });
 
-  // Affichage des indicateurs de tri
   $('#tableDocumentsFournisseur th.sortable').each(function(){
     let col = $(this).data('col');
     let $ind = $(this).find('.sort-indicator');
@@ -313,138 +434,27 @@ function renderTableDocuments() {
   });
 }
 
-// Helpers d'affichage :
 function statutToBadge(statut) {
   if(!statut) return '-';
   let color = "secondary", txt = statut;
-  if(statut.toLowerCase()==='valide')      color="success";
+  if(statut.toLowerCase()==='valide')       color="success";
   else if(statut.toLowerCase()==='expire bientôt') color="warning text-dark";
   else if(statut.toLowerCase()==='expiré')   color="danger";
   return `<span class="badge bg-${color}">${txt}</span>`;
 }
+
 function escapeHtml(str){
   return (str||'').replace(/[<>"'&]/g, s => ({
     '<': '&lt;','>': '&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'
   })[s]);
 }
 
-// ---- 4. FILTRES ----
-$('#filtreTypeDoc, #filtreValiditeDoc').on('change', renderTableDocuments);
-$('#filtreTexteDoc').on('input', renderTableDocuments);
+// Fonction pour réinitialiser les filtres
 function resetFiltreDocs() {
   $('#filtreTypeDoc').val('');
   $('#filtreValiditeDoc').val('');
   $('#filtreTexteDoc').val('');
   renderTableDocuments();
 }
-
-// ---- 5. AJOUT DOCUMENT ----
-$('#modalAjouterDocument').on('show.bs.modal', function () {
-  $('#formAjouterDocument input[name="id_fournisseur"]').val(fournisseurDocsSelectionneId);
-});
-$('#formAjouterDocument').on('submit', function(e){
-  e.preventDefault();
-  let form = this;
-  let fd = new FormData(form);
-  fd.set('id_fournisseur', fournisseurDocsSelectionneId);
-
-  $.ajax({
-    url: 'http://localhost:3000/documents',
-    method: 'POST',
-    data: fd,
-    contentType: false,
-    processData: false,
-    success: function(){ 
-      $('#modalAjouterDocument').modal('hide');
-      toastr.success('Document ajouté');
-      form.reset();
-      chargerDocsFournisseur(fournisseurDocsSelectionneId);
-    },
-    error: function(xhr){
-      toastr.error(xhr.responseJSON?.error || 'Erreur lors de l\'envoi');
-    }
-  });
-});
-
-// ---- 6. SUPPRESSION DOCUMENT ----
-$(document).on('click', '.btn-delete-doc', function() {
-  let $tr = $(this).closest('tr');
-  let id = $tr.data('id');
-  if(!confirm("Supprimer ce document ?")) return;
-  $.ajax({
-    url: 'http://localhost:3000/documents/' + id,
-    method: 'DELETE',
-    success: function(){
-      toastr.success('Document supprimé');
-      chargerDocsFournisseur(fournisseurDocsSelectionneId);
-    },
-    error: function(xhr){
-      toastr.error(xhr.responseJSON?.error || 'Erreur suppression');
-    }
-  });
-});
-
-// ---- 7. EDITION DOCUMENT ----
-// Modal d'édition (à créer) ou inline : ici édition inline simple
-$(document).on('click', '.btn-edit-doc', function() {
-
-  let $tr = $(this).closest('tr');
-  let id = $tr.data('id');
-  let doc = docsFournisseurList.find(d => d.id == id);
-  if(!doc) return;
-
-  // Pré-remplir le formulaire de modification
-  let $modal = $('#modalEditDocument');
-  $modal.find('input[name="id_document"]').val(id);
-  $modal.find('select[name="type"]').val(doc.type_document);
-  $modal.find('input[name="nom"]').val(doc.nom_original);
-  $modal.find('input[name="date_emission"]').val(doc.date_emission);
-  $modal.find('input[name="date_expiration"]').val(doc.date_expiration);
-  $modal.find('input[name="fichier"]').val(''); // reset file input
-  $modal.modal('show');
-});
-
-// Soumission du formulaire de modification
-$('#formEditDocument').on('submit', function(e){
-  e.preventDefault();
-  let form = this;
-  let id = $(form).find('input[name="id_document"]').val();
-  let fd = new FormData(form);
-  // On retire l'id_document du formData (pas attendu côté backend)
-  fd.delete('id_document');
-  $.ajax({
-    url: 'http://localhost:3000/documents/' + id,
-    method: 'PUT',
-    data: fd,
-    contentType: false,
-    processData: false,
-    success: function() {
-      toastr.success('Document modifié');
-      $('#modalEditDocument').modal('hide');
-      chargerDocsFournisseur(fournisseurDocsSelectionneId);
-    },
-    error: function(xhr){
-      toastr.error(xhr.responseJSON?.error || 'Erreur mise à jour');
-    }
-  });
-});
-
-// ---- 8. INITIALISATEUR ----
-$(function(){
-  // Tri sur clic entête
-  $('#tableDocumentsFournisseur').on('click', 'th.sortable', function(){
-    let col = $(this).data('col');
-    let sort = window.currentDocSort || {col: null, dir: 'asc'};
-    if(sort.col === col) {
-      sort.dir = (sort.dir === 'asc') ? 'desc' : 'asc';
-    } else {
-      sort.col = col;
-      sort.dir = 'asc';
-    }
-    window.currentDocSort = sort;
-    renderTableDocuments();
-  });
-  // Ici tu peux ajouter une ligne pour afficher le modal au clic sur un bouton fournisseur
-});
 
 </script>
