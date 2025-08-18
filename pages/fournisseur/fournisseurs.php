@@ -36,36 +36,71 @@
        <div class="row">
         <div class="col-md-12">
              <!-- Exemple d'alerte critique -->
-        <div class="alert alert-danger mt-2 d-flex align-items-center" role="alert">
-                    <span class="fas fa-exclamation-triangle me-2"></span>
-                    Évaluation urgente à faire pour 2 fournisseurs à risque élevé !
-                    <a href="#" class="btn btn-sm btn-outline-danger ms-auto">Voir</a>
-        </div>
+  <!-- Alerte -->
+<!-- Alerte avec compteur et bouton Voir -->
+<div class="alert alert-danger d-flex align-items-center mt-2" role="alert">
+  <span class="fas fa-exclamation-triangle me-2"></span>
+  Évaluation urgente à faire pour <span class="badge text-bg-danger" id="nbFournisseursRisque"> 0 </span> fournisseurs à risque élevé !
+  <button id="btnVoirRisque" class="btn btn-sm btn-outline-danger ms-auto">Voir</button>
+</div>
+
+<!-- Conteneur List.js (cherche dans tout ce conteneur) -->
+ <div class="row">
+  <div class="col-md-12">
+    <div class="card mb-2">
+      <div class="container-fluid">
+        <div id="containerRisque" style="display:none;">
+        <div id="alertFourn" data-list='{"valueNames":["nom","score","statut"],"page":5,"pagination":true}'>
+        <!-- Barre de recherche -->
+          <div class="row justify-content-between align-items-center mt-4 g-0 mb-3">
+              <div class="col-auto col-sm-5">
+              <form>
+                  <div class="input-group">
+                  <input class="form-control form-control-sm shadow-none search" type="search" placeholder="Rechercher un fournisseur..." aria-label="search" />
+                  <div class="input-group-text bg-transparent"><span class="fa fa-search fs--1 text-600"></span></div>
+                  </div>
+              </form>
+              </div>
+            </div>
+    <!-- Table des fournisseurs -->
+            <div class="table-responsive scrollbar">
+                  <table class="table table-bordered table-striped fs--5 mb-0">
+                    <thead class="bg-200 text-900" >
+                      <tr>
+                        <th class="sort" data-sort="nom">Nom fournisseur</th>
+                        <th class="sort" data-sort="score">Score</th>
+                        <th class="sort" data-sort="statut">Statut</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="list" id="listFournisseursBody">
+                      <!-- Les lignes chargées via JS seront ajoutées ici -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Pagination générée automatiquement -->
+              <div class="d-flex justify-content-center mb-3">
+                    <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Précédent" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                    <ul class="pagination mb-0"></ul>
+                    <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
         </div>
        </div>
         <!-- table -->
-<script>
-// Fonction pour afficher une alerte Bootstrap
-
-function showAlert(message, type = 'info', timeout = 4000) {
-  const alertId = 'alert-' + Date.now();
-  const alertHtml = `<div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
-    ${message}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>`;
-  $('#alertContainer').append(alertHtml);
-  if (timeout > 0) {
-    setTimeout(() => {
-      $('#' + alertId).alert('close');
-    }, timeout);
-  }
-}
-</script>
         <div class="row">
             <div class="col-12 col-lg-12 col-xl-12">
                 <div class="card mb-4">
                 <div class="card-body">
-                    <div id="tableFournisseurs" data-list='{"valueNames":["nom","type","statut","contact","score","risque"],"page":5,"pagination":true}'>
+                    <div id="tableFournisseurs" data-list='{"valueNames":["nom","type","statut","contact","score","risque"],"page":10"pagination":true}'>
                     <div class="row justify-content-between align-items-center g-0 mb-3">
                         <div class="col-auto col-sm-5">
                         <form>
@@ -93,11 +128,38 @@ function showAlert(message, type = 'info', timeout = 4000) {
                             </tr>
                         </thead>
                         <tbody class="list">
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Précédent" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                        <ul class="pagination mb-0"></ul>
+                        <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
+                    </div>
+                    </div>
                             <!-- Les lignes seront générées dynamiquement -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
 <script>
+
+// Fonction pour afficher une alerte Bootstrap
+
+function showAlert(message, type = 'info', timeout = 4000) {
+  const alertId = 'alert-' + Date.now();
+  const alertHtml = `<div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>`;
+  $('#alertContainer').append(alertHtml);
+  if (timeout > 0) {
+    setTimeout(() => {
+      $('#' + alertId).alert('close');
+    }, timeout);
+  }
+}
+// Fonction pour charger les fournisseurs et mettre à jour la liste
+// Utilise List.js pour la pagination et la recherche
 let fournisseurList;
 
 function chargerFournisseurs() {
@@ -187,7 +249,6 @@ function chargerFournisseurs() {
       }
 
       fournisseurList.add(items);
-      fournisseurList.page(1);
     },
     error: function() {
       showAlert('Erreur lors du chargement des fournisseurs');
@@ -222,17 +283,127 @@ fetch(`http://localhost:3000/fournisseurs/${idFournisseur}`)
   .catch(err => alert('Erreur : ' + err.message));
 
 });
+// risque affichage
+  let listeFournisseurs;
+
+function createRowHtml(fournisseur) {
+  let badgeScoreClass = 'bg-secondary';
+  if (fournisseur.score !== null && fournisseur.score !== undefined) {
+    const score = parseFloat(fournisseur.score);
+    if (score < 50) badgeScoreClass = 'bg-danger';
+    else if (score < 70) badgeScoreClass = 'bg-warning text-dark';
+    else badgeScoreClass = 'bg-success';
+  }
+
+  let badgeStatutClass = 'bg-secondary';
+  if (fournisseur.statut) {
+    const stat = fournisseur.statut.toLowerCase();
+    if (stat === 'risque élevé') badgeStatutClass = 'bg-warning text-dark';
+    else if (stat === 'suspendu') badgeStatutClass = 'bg-danger';
+    else if (stat === 'actif') badgeStatutClass = 'bg-success';
+  }
+
+  return `
+    <tr>
+      <td class="nom">${fournisseur.nom}</td>
+      <td class="score"><span class="badge ${badgeScoreClass}">${fournisseur.score}</span></td>
+      <td class="statut"><span class="badge ${badgeStatutClass}">${fournisseur.statut}</span></td>
+      <td class="actions">
+        <button class="btn btn-sm btn-warning btn-evaluer-fournisseur"
+          data-fournisseur-id="${fournisseur.id}"
+          data-fournisseur-nom="${fournisseur.nom.replace(/"/g, '&quot;')}"
+          title="Évaluer">
+          <span class="fa fa-star"></span>
+        </button>
+      </td>
+    </tr>
+  `;
+}
+// if(!listeFournisseurs) {
+//   listeFournisseurs = new List('alertFourn', {
+//     valueNames: ['nom', 'score', 'statut'],
+//     page: 5,
+//     pagination: true,
+//     item: `<tr>
+//       <td class="nom"></td>
+//       <td class="score"></td>
+//       <td class="statut"></td>
+//       <td class="actions">
+//         <button class="btn btn-sm btn-warning btn-evaluer-fournisseur"
+//           data-fournisseur-id=""
+//           data-fournisseur-nom=""
+//           title="Évaluer">
+//           <span class="fa fa-star"></span>
+//         </button>
+//       </td>
+//     </tr>`
+//   });
+// }
+function chargerAlertFourn() {
+  $.ajax({
+    url: 'http://localhost:3000/fournisseurs-risque-eleve',
+    method: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      const tbody = $('#listFournisseursBody').empty();
+
+      data.forEach(f => {
+        tbody.append(createRowHtml({
+          nom: f.nom || '',
+          score: f.score != null ? f.score.toFixed(1) : '-',
+          statut: f.statut || '',
+          id: f.id || ''
+        }));
+      });
+
+      // Initialise List.js une fois le tableau rempli
+      if (listeFournisseurs) {
+        listeFournisseurs.reIndex();
+      } else {
+        listeFournisseurs = new List('alertFourn', {
+          valueNames: ['nom', 'score', 'statut'],
+          page: 5,
+          pagination: true
+        });
+      }
+
+      // Attache le clic sur les boutons "Évaluer"
+      $('.btn-evaluer-fournisseur').off('click').on('click', function() {
+        const id = $(this).data('fournisseur-id');
+        const nom = $(this).data('fournisseur-nom');
+        ouvrirModalEvaluation(id, nom);
+      });
+
+      // Mise à jour compteur alerte
+      $('#nbFournisseursRisque').text(data.length);
+    },
+    error: function() {
+      alert('Erreur lors du chargement des fournisseurs.');
+    }
+  });
+}
+
+function ouvrirModalEvaluation(idFournisseur, nomFournisseur) {
+  $('#modalEvaluation .modal-title').text(`Évaluer le fournisseur : ${nomFournisseur}`);
+  $('#modalEvaluation input[name="id_fournisseur"]').val(idFournisseur);
+  $('#modalEvaluation').modal('show');
+}
+
+$(document).ready(function() {
+  chargerAlertFourn();
+
+  // Optionnel : gérer bouton "Voir" pour afficher/masquer tableau si besoin
+  $('#btnVoirRisque').on('click', function() {
+    $('#containerRisque').toggle();
+    $(this).text($('#containerRisque').is(':visible') ? 'Cacher' : 'Voir');
+  });
+});
+
+
 
 </script>
 </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3">
-                        <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Précédent" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                        <ul class="pagination mb-0"></ul>
-                        <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
-                    </div>
-                    </div>
+                       
                     
                 </div>
                 </div>

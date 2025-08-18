@@ -729,6 +729,24 @@ app.get('/api/actions_fournisseur/:idFournisseur', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur lors du chargement de l\'historique', details: error.message });
   }
 });
+//fournisseurs a risque elever
+// GET fournisseurs à risque élevé (score < 50 ou statut = Risque élevé ou Suspendu)
+app.get('/fournisseurs-risque-eleve', async (req, res) => {
+  try {
+    const [fournisseurs] = await db.query(`
+      SELECT id, nom, score, statut
+      FROM t_fournisseur
+      WHERE statut IN ('Risque élevé', 'Suspendu') OR score < 50
+      ORDER BY score ASC
+      LIMIT 100
+    `);
+    res.json(fournisseurs);
+  } catch (err) {
+    console.error('Erreur récupération fournisseurs à risque élevé:', err);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
 
 // Lancement serveur
 app.listen(port, () => console.log(`Serveur démarré sur http://localhost:${port}`));
