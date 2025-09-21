@@ -23,8 +23,10 @@
     <link rel="manifest" href="assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
-    <script src="assets/js/config.js"></script>
-    <script src="vendors/simplebar/simplebar.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="vendors/simplebar/simplebar.min.js"></script>
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 
     <!-- ===============================================-->
@@ -93,14 +95,14 @@
     <script src="vendors/bootstrap/bootstrap.min.js"></script>
     <script src="vendors/anchorjs/anchor.min.js"></script>
     <script src="vendors/is/is.min.js"></script>
-    <script src="vendors/echarts/echarts.min.js"></script>
+    <!-- <script src="vendors/echarts/echarts.min.js"></script> -->
     <script src="vendors/fontawesome/all.min.js"></script>
     <script src="vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <!-- <script src="https://cdn.polyfill.io/v3/polyfill.min.js"></script> -->
     <script src="vendors/list.js/list.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="vendors/echarts/echarts.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+    <!-- <script src="vendors/echarts/echarts.min.js"></script> -->
     
     <script>
         $(document).ready(function() {

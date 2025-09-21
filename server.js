@@ -4,6 +4,14 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { Sequelize } = require('sequelize');
+// procedure d'approvisionnement
+const proceduresRouter = require('./routes/proceduresRoutes');
+// projets
+const projetsRouter = require('./routes/projetRoute');
+// plan achat articles
+const planAchatArticleRoutes = require('./routes/planAchatArticle');
+//plan achat
+
 
 const db = require('./db'); // pool mysql2/promise
 
@@ -20,6 +28,7 @@ const PonderationEntreprise = sequelize.define('t_ponderations_entreprise', {
   critere: { type: Sequelize.STRING, primaryKey: true },
   poids: { type: Sequelize.FLOAT, allowNull: false, defaultValue: 0 }
 }, { tableName: 't_ponderations_entreprise', timestamps: false });
+
 
 const app = express();
 const port = 3000;
@@ -39,6 +48,12 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
+// procédures d'approvisionnement
+app.use('/api/procedures', proceduresRouter);
+// projets
+app.use('/api/projets', projetsRouter);
+// plan achat articles
+app.use('/api/plan_achat_article', planAchatArticleRoutes);
 
 // Fonction pour statut validité document
 function getStatutValidite(date_expiration) {
@@ -746,6 +761,7 @@ app.get('/fournisseurs-risque-eleve', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });
+// procedure d'approvisionnement
 
 
 // Lancement serveur

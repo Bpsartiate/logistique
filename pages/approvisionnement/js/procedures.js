@@ -1,3 +1,26 @@
+  // Gestion de l’affichage du texte du bouton qui toggle la table procédures
+  function updateToggleProceduresBtn() {
+    const $container = $('#proceduresTableContainer');
+    const $text = $('#toggleProceduresTableText');
+    if ($container.is(':visible')) {
+      $text.text('Masquer');
+    } else {
+      $text.text('Afficher');
+    }
+  }
+
+  // Événement click sur le bouton toggle table procédures
+  $('#btnToggleProceduresTable').on('click', function () {
+    const $container = $('#proceduresTableContainer');
+    if ($container.is(':visible')) {
+      $container.slideUp(200, updateToggleProceduresBtn);
+    } else {
+      $container.slideDown(200, updateToggleProceduresBtn);
+    }
+  });
+
+  // Initialiser l’état du bouton au chargement
+  $(document).ready(updateToggleProceduresBtn);
 $(function() {
   let proceduresCache = [];
 
@@ -19,24 +42,68 @@ $(function() {
   }
 
   // Afficher procédures dans le tableau
-  function renderProceduresTable(procedures) {
-    const tbody = $('#proceduresList').empty();
-    procedures.forEach(p => {
-      tbody.append(`
-        <tr>
-          <td>${p.id}</td>
-          <td>${p.categorie}</td>
-          
-          <td>${parseFloat(p.montant_min).toFixed(2)}</td>
-          <td>${p.montant_max ? parseFloat(p.montant_max).toFixed(2) : ''}</td>
-          <td>${p.type_procedure}</td>
-          <td>
-            <button class="btn btn-sm btn-warning btn-edit" data-id="${p.id}">Modifier</button>
-          </td>
-        </tr>
-      `);
-    });
+  var proceduresListObj = null; // objet List.js global
+
+function renderProceduresTable(procedures) {
+  const $tbody = $('#proceduresList');
+  $tbody.empty();
+
+  if (window.proceduresListObj) {
+    window.proceduresListObj.clear();
+    delete window.proceduresListObj;
   }
+
+  const items = procedures.map(proc => {
+    // Badge catégorie
+    let catBadge = '';
+    if (proc.categorie === 'Biens/Provisions')
+      catBadge = '<span class="badge bg-primary"><i class="bi bi-box-seam me-1"></i>Biens</span>';
+    else if (proc.categorie === 'Services')
+      catBadge = '<span class="badge bg-success"><i class="bi bi-gear me-1"></i>Services</span>';
+    else if (proc.categorie === 'Travaux')
+      catBadge = '<span class="badge bg-warning text-dark"><i class="bi bi-tools me-1"></i>Travaux</span>';
+    else
+      catBadge = `<span class="badge bg-secondary">${proc.categorie || ''}</span>`;
+
+    // Badge procédure
+    let procBadge = '';
+    if (proc.type_procedure)
+      procBadge = `<span class='badge bg-secondary'><i class='bi bi-diagram-3 me-1'></i>${proc.type_procedure}</span>`;
+
+    // Montant min/max avec icône
+    const montantMin = `<span class='badge bg-light text-dark border'><i class='bi bi-currency-dollar me-1'></i>${parseFloat(proc.montant_min).toFixed(2)}</span>`;
+    const montantMax = proc.montant_max !== null ? `<span class='badge bg-light text-dark border'><i class='bi bi-currency-dollar me-1'></i>${parseFloat(proc.montant_max).toFixed(2)}</span>` : '';
+
+    return {
+      id: `<span style='display:none;'>${proc.id}</span>${proc.id}`,
+      categorie: `<span style='display:none;'>${proc.categorie}</span>${catBadge}`,
+      montant_min: montantMin,
+      montant_max: montantMax,
+      type_procedure: procBadge,
+      actions: `<button class="btn btn-sm btn-warning btn-edit" data-id="${proc.id}"><i class="bi bi-pencil"></i> Modifier</button>`
+    };
+  });
+
+  window.proceduresListObj = new List('proceduresTableContainer', {
+    valueNames: ['id', 'categorie', 'montant_min', 'montant_max', 'type_procedure', 'actions'],
+    page: 5,
+    pagination: true,
+    item: `<tr>
+      <td class="id"></td>
+      <td class="categorie"></td>
+      <td class="montant_min"></td>
+      <td class="montant_max"></td>
+      <td class="type_procedure"></td>
+      <td class="actions text-center"></td>
+    </tr>`
+  });
+
+  if (items.length > 0) {
+    window.proceduresListObj.add(items);
+  } else {
+    $tbody.append('<tr class="d-none"><td class="id">-</td><td class="categorie"></td><td class="montant_min"></td><td class="montant_max"></td><td class="type_procedure"></td><td class="actions"></td></tr>');
+  }
+}
 
   // Réinitialiser uniquement les champs montant, type procédure, et procedureId, sans toucher à la catégorie
  function resetForm() {
@@ -143,11 +210,11 @@ $('#categorie, #montant_min').on('change keyup', function() {
     };
 
     if (!payload.categorie || !payload.type_procedure || isNaN(payload.montant_min)) {
-      alert('Veuillez remplir tous les champs obligatoires correctement.');
+      showFormAlert('Veuillez remplir tous les champs obligatoires correctement.');
       return;
     }
     if (payload.montant_max !== null && payload.montant_max < payload.montant_min) {
-      alert('Le montant maximum doit être supérieur ou égal au montant minimum.');
+      showFormAlert('Le montant maximum doit être supérieur ou égal au montant minimum.');
       return;
     }
 
@@ -164,11 +231,10 @@ $('#categorie, #montant_min').on('change keyup', function() {
         $('#addProcedureModal').modal('hide');
         loadProcedures();
         resetForm();
-        alert('Procédure sauvegardée avec succès.');
+        showFormAlert('Procédure sauvegardée avec succès.');
       },
-      error: function(xhr) {                   // <-- ici
-    const res = xhr.responseJSON;
-    alert(res && res.error ? `Erreur : ${res.error}` : 'Erreur lors de la création du projet');
+      error: function(xhr) {
+        showFormAlert(xhr.responseJSON?.error || 'Erreur serveur');
       }
     });
   });
@@ -181,7 +247,7 @@ $(document).on('click', '.btn-edit', function() {
   // Cherche la procédure dans le cache
   const proc = proceduresCache.find(p => p.id === id);
   if (!proc) {
-    alert('Procédure non trouvée');
+    showFormAlert('Procédure non trouvée');
     return;
   }
 
@@ -220,4 +286,6 @@ $('#categorie, #montant_min').on('change keyup', function() {
   // Chargement initial
   loadProcedures();
 });
+
+
 

@@ -1,28 +1,79 @@
-<?php
-require_once(__DIR__ . '/../../connect.php'); // Chemin correct depuis le dossier pages/approvisionnement
-$approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY id DESC");
-?>
+
 <div class="content">
      <!-- content nav -->
-     <?php include_once "./content_nav.php" ?>
-     <!-- conetent  end -->
-        <div class="row mb-4">
-            <div class="col-12 col-lg-12 col-xl-12 d-flex">
-                <h5 class="mb-0">Gestion des Approvisionnements</h5>
-            </div>
-
-            <!-- Modal -->
+     <?php include_once "./content_nav.php" ?> <!-- Modal -->
              <?php include_once "add_besoin.php"; ?>
              <?php include_once "fiche_besoin.php" ?>
-             <?php include_once "historique_besoin.php" ?>
+             <?php include_once "add_procedure.php" ?>
+             <?php include_once "projetVue.php" ?>
 
-           
-        </div>
+
+     <!-- conetent  end -->
+          <div class="row mb-3">
+                <div class="col-md-12">
+                <div class="card">
+                    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
+                    </div>
+                    <!--/.bg-holder-->
+
+                    <div class="card-body position-relative">
+                    <div class="row">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mt-3">Planification des Besoin</h5>
+                        <div class="d-flex align-items-center gap-2">
+                          <button class="btn mt-2 btn-primary" data-bs-toggle="modal" data-bs-target="#addProcedureModal">
+                            <i class="fas fa-plus me-1"></i>Type de procedure
+                          </button>
+                          <button id="btnToggleProceduresTable" class="btn btn-outline-secondary mt-2" type="button">
+                            <i class="fas fa-table me-1"></i><span id="toggleProceduresTableText">Afficher</span> les procédures
+                          </button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    
+          <div id="proceduresTableContainer" data-list='{"valueNames":["id","designation","montant_max","montant_max","type_procedure"],"page":5,"pagination":true}'  class="table-responsive scrollbar" style="display:none;">
+            <div class="row justify-content-between align-items-center g-0 mb-3">
+                <div class="col-auto col-sm-5">
+                <form>
+                    <div class="input-group">
+                    <input class="form-control form-control-sm shadow-none search" type="search" placeholder="Rechercher un besoin..." aria-label="search" />
+                    <div class="input-group-text bg-transparent"><span class="fa fa-search fs--1 text-600"></span></div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <table class="table table-bordered table-striped fs--1 mb-0">
+              <thead class="bg-200 text-900">
+                <tr>
+                  <th class="sort" data-sort="id">ID</th>
+                  <th class="sort" data-sort="categorie">Type d'achat</th>
+                  <th class="sort" data-sort="montant_min">Montant min</th>
+                  <th class="sort" data-sort="montant_max">Montant max</th>
+                  <th class="sort" data-sort="type_procedure">Procédure</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="proceduresList" class="list">
+              </tbody>
+            </table>
+             <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Précédent" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                <ul class="pagination mb-0"></ul>
+                <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Suivant" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
+              </div>
+          </div>
+                   
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         <!-- Exemple d'alerte critique -->
         
         <!-- table -->
         <div class="row">
-            <div class="col-12 col-lg-12 col-xl-12">
+            <div class="col-8 col-lg-8 col-xl-8">
                 <div class="card mb-4">
                 <div class="card-body">
                     <div id="tableFournisseurs" data-list='{"valueNames":["nom","type","statut","contact","score","risque"],"page":5,"pagination":true}'>
@@ -36,7 +87,7 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                         </form>
                         </div>
                         <div class="col-auto">
-                            <a href = "type_procedure.php" class="btn btn-sm btn-primary" type="button"></span>Type de procedure</a>
+                            <!-- <a href = ".../type_procedure.php" class="btn btn-sm btn-primary" type="button"></span>Type de procedure</a> -->
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal" type="button"><span class="fa fa-plus me-1"></span>Ajouter un besoin</button>
                         </div>
                     </div>
@@ -56,35 +107,6 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                                 </tr>
                             </thead>
                             <tbody class="list">
-                                <?php
-                                if($approvisionnements->rowCount() > 0){
-                                    while($approvisionnement = $approvisionnements->fetch()){
-                                ?>
-                                <tr>
-                                    <td class = "approvisionnement_id" id = "approvisionnementid"><?php echo $approvisionnement['id']; ?></td>
-                                    <td><?php echo $approvisionnement['designation']; ?></td>
-                                    <td><?php echo $approvisionnement['quantite']; ?></td>
-                                    <td><?php echo $approvisionnement['budget_estime']; ?></td>
-                                    <td><?php echo $approvisionnement['etat']; ?></td>
-                                    <td><?php echo $approvisionnement['type_besoin']; ?></td>
-                                    <td><?php echo $approvisionnement['type_procedure']; ?></td>
-                                    <td><?php echo $approvisionnement['priorite']; ?></td>
-                                    <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#updateFournisseur" class="btn btn-sm btn-warning edit_data" title="Évaluer" id = "<?php echo $approvisionnement['id']; ?>"><span class="fa fa-edit"></span></a>
-                                        <a data-bs-toggle="modal" class="btn btn-sm btn-secondary delete_data" data-bs-target="#deleteFournisseur" title="Historique"><span class="fa fa-history"></span></a>
-                                    </td>
-                                </tr>
-                                <?php
-                                    }
-                                }else{
-                                ?>
-                                <tr>
-                                    <td colspan = "9">Aucun resultat</td>
-                                </tr>
-                                <?php
-                                    }
-                                ?>
-                                <!-- Ajoute d'autres fournisseurs ici -->
                             </tbody>
                         </table>
                     </div>
@@ -98,102 +120,35 @@ $approvisionnements = $bdd->query("SELECT * FROM plan_approvisionnement ORDER BY
                 </div>
                 </div>
             </div>
+            <div class="col-4">
+                 <div class="kanban-column">
+              <div class="kanban-column-header">
+                  <h5 class="fs-0 mb-0">Projects <span id="projectsCount" class="text-500">(0)</span></h5>                <div class="dropdown font-sans-serif btn-reveal-trigger">
+                  <button class="btn btn-sm btn-reveal py-0 px-2" type="button" id="kanbanColumn2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h"></span></button>
+                  <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="kanbanColumn2"><button class="dropdown-item" id="btnAjouterProjet">Ajouter un Projet</button>
+                  </div>
+                </div>
+              </div>
+              <div class="kanban-items-container scrollbar">
+               <div class="kanban-items-container scrollbar" id="kanbanProjetsContainer">
+                <!-- Projet cards ici -->
+              </div>
+              </div>
+              <div class="kanban-column-footer">
+                <button id="btnAjouterProjet" class="btn btn-link btn-sm d-block w-100 btn-add-card text-decoration-none text-600" type="button"><span class="fas fa-plus me-2"></span>Ajouter un projet</button>
+              </div>
+            </div>
+            </div>
+            
+        </div>
+        <div class="row">
+          
         </div>
 
 </div>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(){
-        $('.view_data').click(function(e) {
-            e.preventDefault();
-
-            /* console.log('Hello'); */
-
-            var approvisionnement_id = $(this).closest('tr').find('.approvisionnement_id').text();
-            /* console.log(user_id); */
-
-            $.ajax({
-                method:"POST",
-                url:"view_approvisionnement.php",
-                data: {
-                    'click_view_btn': true,
-                    'approvisionnement_id':approvisionnement_id,
-                },
-                success: function (response) {
-                    console.log(response);
-
-                    $('.view_approvisionnement_details').html(response);
-                    $('#ficheFournisseur').modal('show');
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-
-        $(document).on('click', '.edit_data', function(){
-            var approvisionnement_id = $(this).attr("id");
-            $.ajax({
-                url:"essai.php",
-                method:"POST",
-                data:{approvisionnement_id:approvisionnement_id},
-                dataType:"json",
-                success:function(data){
-                    $('#designation').val(data.designation);
-                    $('#quantite').val(data.quantite);
-                    $('#prixunitaire').val(data.prix_unitaire);
-                    $('#etat').val(data.etat);
-                    $('#typebesoin').val(data.type_besoin);
-                    $('#valeurbudgetisee').val(data.valeur_budgetisee);
-                    $('#datelimite').val(data.date_limite);
-                    $('#typeprocedure').val(data.type_procedure);
-                    $('#fournisseur').val(data.fournisseur);
-                    $('#debutapprovisionnement').val(data.debut_approvisionnement);
-                    $('#dureeprocedure').val(data.duree_procedure);
-                    $('#raisonsachat').val(data.raisons_achat);
-                    $('#approvisionnementid').val(data.approvisionnement_id);
-                    $('#update').val("Update");
-                    $('#updatemodal').modal("show");
-                }
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        $('.edit_data').on('click', function(){
-            $('#updatemodal').modal('show');
-            $tr = $(this).closest('tr');
-            var data = $tr.children("td").map(function(){
-                return $(this).text();
-            }).get();
-            console.log(data);
-            $('#update_id').val(data[0]);
-            $('#designation').val(data[1]);
-            $('#quantite').val(data[2]);
-            $('#valeurbudgetisee').val(data[3]);
-            $('#etat').val(data[4]);
-            $('#typebesoin').val(data[5]);
-            $('#typeprocedure').val(data[6]);
-            $('#fournisseur').val(data[7]);
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-        $('.delete_data').on('click', function(){
-            $('#deleteFournisseur').modal('show');
-            $tr = $(this).closest('tr');
-
-            var data = $tr.children("td").map(function(){
-                return $(this).text();
-            }).get();
-
-            console.log(data);
-            $('#delete_id').val(data[0]);
-        });
-    });
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="pages/approvisionnement/js/alerts.js"></script>
+<script src="pages/approvisionnement/js/procedures.js"></script>
+<script src="pages/approvisionnement/js/kanbanProjets.js"></script>
+<script src="pages/approvisionnement/js/articles.js"></script>
